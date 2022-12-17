@@ -1,4 +1,4 @@
-import 'package:borzo/Chat.dart';
+import 'package:borzo/someWidgets/Chat.dart';
 import 'package:borzo/Neworders.dart';
 import 'package:borzo/Profile.dart';
 import 'package:borzo/orders.dart';
@@ -9,7 +9,7 @@ import 'package:flutter/src/widgets/framework.dart';
 // class _mainScreenState extends State<mainScreen> {
 //   @override
 //   Widget build(BuildContext context) {
-//     return 
+//     return
 //   }
 // }
 
@@ -25,8 +25,9 @@ class _HomePageState extends State<HomePage> {
 
   final pages = [
     const orders(),
-  
-    const NewOrders(),
+
+    // const NewOrders(),
+    NewOrderFromButton(),
     const chat(),
     const Profile(),
   ];

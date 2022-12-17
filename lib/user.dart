@@ -1,6 +1,6 @@
-class User {
-  String fullName;
-  String email;
+class DeliveryPoint {
+  String Address;
+  String PhoneNumber;
 
-  User({this.fullName = '', this.email = ''});
+  DeliveryPoint({this.Address = '', this.PhoneNumber = ''});
 }
