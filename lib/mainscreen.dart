@@ -26,8 +26,8 @@ class _HomePageState extends State<HomePage> {
   final pages = [
     const orders(),
 
-    // const NewOrders(),
-    NewOrderFromButton(),
+    const NewOrders(),
+    // NewOrderFromButton(),
     const chat(),
     const Profile(),
   ];
