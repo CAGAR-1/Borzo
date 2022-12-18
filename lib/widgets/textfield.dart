@@ -4,9 +4,9 @@ import 'package:flutter/src/widgets/framework.dart';
 
 class CustomTextField extends StatelessWidget {
   final String label;
-  final Icon sicon;
+  Icon? sicon;
 
-  const CustomTextField({super.key, required this.label, required this.sicon});
+  CustomTextField({super.key, required this.label,  this.sicon});
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,6 @@
 import 'package:borzo/constant.dart';
 import 'package:borzo/deliveryPoint.dart';
+import 'package:borzo/widgets/switch.dart';
 import 'package:borzo/widgets/textfield.dart';
 import 'package:flutter/material.dart';
 
@@ -33,21 +34,6 @@ class _NewOrdersState extends State<NewOrders> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: Container(
-        height: 49,
-        width: 200,
-        decoration: BoxDecoration(
-          color: bluecolor,
-          borderRadius: BorderRadius.circular(70),
-        ),
-        child: Center(
-          child: Text(
-            "Create Order",
-            style: TextStyle(
-                color: Colors.white, fontSize: 20, fontWeight: FontWeight.w400),
-          ),
-        ),
-      ),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: EdgeInsets.symmetric(horizontal: 20),
@@ -465,7 +451,7 @@ class _NewOrdersState extends State<NewOrders> {
               SizedBox(
                 height: 50,
               ),
-              deliveryPoint(),
+              // deliveryPoint(),
               ListView.builder(
                   physics: NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
@@ -474,6 +460,78 @@ class _NewOrdersState extends State<NewOrders> {
                     print("this is inside listview $index");
                     return deliveryPoint();
                   })),
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        height: 50,
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 20),
+                              child: Icon(
+                                Icons.add,
+                                color: Colors.grey,
+                                size: 40,
+                              ),
+                            ),
+                            Text(
+                              "Add Delivery Point",
+                              style: TextStyle(
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black.withOpacity(0.5)),
+                            )
+                          ],
+                        ),
+                        decoration: BoxDecoration(
+                            color: Colors.grey[300],
+                            borderRadius: BorderRadius.circular(50)),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              CustomSwitch(
+                texts: "Optimize the route",
+              ),
+
+              Text(
+                "Our algorithm will optimize the route points ensuring the route is more convenient for the courier and cheaper",
+                style: TextStyle(fontSize: 15, color: Colors.grey),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(0.0),
+                child: Divider(
+                  color: Colors.grey[300],
+                  thickness: 20,
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Row(
+                children: [
+                  Text(
+                    "Package",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  ),
+                ],
+              ),
+              CustomTextField(label:"What are you sending?",)
+
+              // Container(
+              //   child: Expanded(
+              //       child: Container(
+              //     width: 40,
+              //     color: Colors.pink,
+              //   )),
+              // )
               // Row(
               //   children: [
               //     CircleAvatar(
@@ -581,6 +639,54 @@ class _NewOrdersState extends State<NewOrders> {
           ),
         ),
       ),
+      bottomNavigationBar: BottomAppBar(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  Container(
+                    height: 30,
+                    width: 110,
+                    child: Row(
+                      children: [
+                        Text(
+                          "RS",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                        SizedBox(
+                          width: 8,
+                        ),
+                        Text(
+                          "45",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                        SizedBox(
+                          width: 13,
+                        ),
+                        Icon(Icons.keyboard_arrow_down)
+                      ],
+                    ),
+                  )
+                ],
+              ),
+              Container(
+                child: Center(
+                    child: Text(
+                  "Create Order",
+                  style: TextStyle(fontSize: 20),
+                )),
+                height: 50,
+                width: 180,
+                decoration: BoxDecoration(
+                    color: bluecolor, borderRadius: BorderRadius.circular(30)),
+              )
+            ],
+          ),
+        ),
+      ),
     );
 
     // Container(
@@ -651,7 +757,6 @@ class _NewOrdersState extends State<NewOrders> {
                 ),
                 Expanded(
                   child: Column(
- 
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(

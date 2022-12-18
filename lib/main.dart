@@ -8,6 +8,6 @@ void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     theme: ThemeData(fontFamily: GoogleFonts.lato().fontFamily),
-    home: HomePage(),
+    home: NewOrders(),
   ));
 }
