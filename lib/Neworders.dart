@@ -12,8 +12,18 @@ class NewOrders extends StatefulWidget {
 }
 
 class _NewOrdersState extends State<NewOrders> {
+  TextEditingController addes = TextEditingController();
+
+  updatevalues() {
+    setState(() {
+      addes = packge[index];
+    });
+  }
+
   int index = 1;
   int? currentIndex;
+
+  List packge = ['Documents', 'Food', 'Cloth', 'Groceries', 'Flowers', 'Cake'];
 
   addDeliveryPoint() {
     setState(() {
@@ -523,7 +533,43 @@ class _NewOrdersState extends State<NewOrders> {
                   ),
                 ],
               ),
-              CustomTextField(label:"What are you sending?",)
+              // CustomTextField(
+              //   label: "What are you sending?",
+              // ),
+              InkWell(
+                onTap: () {},
+                child: TextFormField(
+                  controller: addes,
+                ),
+              ),
+              Container(
+                height: MediaQuery.of(context).size.height * 0.07,
+                // width: 100,
+                child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    physics: BouncingScrollPhysics(),
+                    itemCount: packge.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          // height: MediaQuery.of(context).size.height / 1,
+                          width: MediaQuery.of(context).size.width / 4,
+                          child: InkWell(
+                              onTap: () {
+                                print(packge[index]);
+                                setState(() {
+                                  addes.text = packge[index];
+                                });
+                              },
+                              child: Center(child: Text(packge[index]))),
+                          decoration: BoxDecoration(
+                              color: Colors.grey[300],
+                              borderRadius: BorderRadius.circular(20)),
+                        ),
+                      );
+                    }),
+              )
 
               // Container(
               //   child: Expanded(
