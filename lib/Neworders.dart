@@ -14,16 +14,30 @@ class NewOrders extends StatefulWidget {
 class _NewOrdersState extends State<NewOrders> {
   TextEditingController addes = TextEditingController();
 
-  updatevalues() {
-    setState(() {
-      addes = packge[index];
-    });
-  }
+  String Kg = 'Up to 1 Kg';
+  // UpdatesKg() {
+  //   setState(() {
+  //     Kg = weight[index];
+  //   });
+  // }
+
+  // updatevalues() {
+  //   setState(() {
+  //     addes = packge[index];
+  //   });
+  // }
 
   int index = 1;
   int? currentIndex;
 
   List packge = ['Documents', 'Food', 'Cloth', 'Groceries', 'Flowers', 'Cake'];
+  List weight = [
+    'Up to 1 Kg',
+    'Up to 5 Kg',
+    'Up to 10 Kg',
+    'Up to 15 Kg',
+    'Up to 20 Kg'
+  ];
 
   addDeliveryPoint() {
     setState(() {
@@ -260,14 +274,77 @@ class _NewOrdersState extends State<NewOrders> {
                         children: [
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Text(
-                                  "Up to 1 kg",
-                                  style: TextStyle(fontSize: 20),
-                                ),
-                              ],
+                            child: InkWell(
+                              onTap: () {
+                                showModalBottomSheet(
+                                    context: context,
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.vertical(
+                                            top: Radius.circular(20))),
+                                    builder: (context) => Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                "Parcel Weight",
+                                                style: TextStyle(
+                                                    fontSize: 20,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                              Container(
+                                                height: 200,
+                                                width: 200,
+                                                child: ListView.builder(
+                                                    itemCount: 4,
+                                                    scrollDirection:
+                                                        Axis.vertical,
+                                                    itemBuilder:
+                                                        ((context, index) {
+                                                      return Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(12.0),
+                                                        child: Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            InkWell(
+                                                                onTap: () {
+                                                                  setState(() {
+                                                                    Kg = weight[
+                                                                        index];
+                                                                    Navigator.pop(
+                                                                        context);
+                                                                    // print(Kg);
+                                                                  });
+                                                                },
+                                                                child: Text(
+                                                                    weight[
+                                                                        index]))
+                                                          ],
+                                                        ),
+                                                      );
+                                                    })),
+                                              )
+                                            ],
+                                          ),
+                                        ));
+                              },
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Text(
+                                    "$Kg",
+                                    style: TextStyle(fontSize: 20),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                           Row(
@@ -293,6 +370,7 @@ class _NewOrdersState extends State<NewOrders> {
                 "Huperlocal is km based tariff. it is the best option short distance deliveries under 5 km.",
                 style: TextStyle(color: Colors.grey, fontSize: 15),
               ),
+
               SizedBox(
                 height: 20,
               ),
@@ -467,7 +545,6 @@ class _NewOrdersState extends State<NewOrders> {
                   shrinkWrap: true,
                   itemCount: index,
                   itemBuilder: ((context, index) {
-                    print("this is inside listview $index");
                     return deliveryPoint();
                   })),
               Padding(
@@ -515,12 +592,9 @@ class _NewOrdersState extends State<NewOrders> {
               SizedBox(
                 height: 10,
               ),
-              Padding(
-                padding: const EdgeInsets.all(0.0),
-                child: Divider(
-                  color: Colors.grey[300],
-                  thickness: 20,
-                ),
+              Divider(
+                color: Colors.grey[300],
+                thickness: 20,
               ),
               SizedBox(
                 height: 10,
@@ -533,15 +607,11 @@ class _NewOrdersState extends State<NewOrders> {
                   ),
                 ],
               ),
-              // CustomTextField(
-              //   label: "What are you sending?",
-              // ),
-              InkWell(
-                onTap: () {},
-                child: TextFormField(
-                  controller: addes,
-                ),
+              CustomTextField(
+                controller: addes,
+                label: "What are you sending?",
               ),
+
               Container(
                 height: MediaQuery.of(context).size.height * 0.07,
                 // width: 100,
@@ -569,6 +639,81 @@ class _NewOrdersState extends State<NewOrders> {
                         ),
                       );
                     }),
+              ),
+              CustomTextField(
+                label: "Parcel Value(Amount, Rs)",
+              ),
+              SizedBox(height: 10),
+              Text(
+                "We will compensate the value of lost items within three working days according to the rules. Maximum compensation -30000",
+                style: TextStyle(color: Colors.grey, fontSize: 13),
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              CustomTextField(label: "Your Phone"),
+              SizedBox(
+                height: 20,
+              ),
+
+              Divider(
+                color: Colors.grey[300],
+                thickness: 20,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                children: [
+                  Text(
+                    "Additional Services",
+                    style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+              CustomSwitch(texts: "Prefer Courier with Delivery bag"),
+              SizedBox(
+                height: 10,
+              ),
+              CustomSwitch(texts: "Notify recipients by SMS"),
+              SizedBox(
+                height: 10,
+              ),
+
+              Divider(
+                color: Colors.grey[300],
+                thickness: 20,
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Row(
+                children: [
+                  Text(
+                    "Payment",
+                    style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  Expanded(
+                      child: CustomTextField(
+                    label: "Promo Code",
+                  )),
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.06,
+                    width: 100,
+                    child: Center(
+                        child: Text(
+                      "Apply",
+                      style: TextStyle(color: Colors.grey),
+                    )),
+                    decoration: BoxDecoration(
+                        color: Colors.grey[300],
+                        borderRadius: BorderRadius.circular(80)),
+                  ),
+                ],
               )
 
               // Container(
