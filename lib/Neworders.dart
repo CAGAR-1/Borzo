@@ -1,5 +1,6 @@
 import 'package:borzo/constant.dart';
 import 'package:borzo/deliveryPoint.dart';
+import 'package:borzo/main.dart';
 import 'package:borzo/widgets/switch.dart';
 import 'package:borzo/widgets/textfield.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,18 @@ class NewOrders extends StatefulWidget {
 
 class _NewOrdersState extends State<NewOrders> {
   TextEditingController addes = TextEditingController();
+  bool is_visible = true;
+  bool showtext = true;
+
+  bool pressed = true;
+
+  showHideText() {
+    if (is_visible = true) {
+      return Visibility(visible: is_visible, child: Text("dsf"));
+    } else {
+      return Text("sorry");
+    }
+  }
 
   String Kg = 'Up to 1 Kg';
   // UpdatesKg() {
@@ -29,6 +42,8 @@ class _NewOrdersState extends State<NewOrders> {
 
   int index = 1;
   int? currentIndex;
+  int currentpage = 0;
+  Color _color = Colors.red;
 
   List packge = ['Documents', 'Food', 'Cloth', 'Groceries', 'Flowers', 'Cake'];
   List weight = [
@@ -99,129 +114,781 @@ class _NewOrdersState extends State<NewOrders> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Icon(
-                            Icons.timer,
-                            size: 30,
-                            color: Colors.blue,
-                          ),
-                          Text(
-                            "Deliver Now",
-                            style: TextStyle(
-                                fontSize: 14, fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Row(
-                            children: [
-                              Text(
-                                "From Rs 47",
-                                style: TextStyle(
-                                    fontSize: 19, fontWeight: FontWeight.bold),
-                              ),
-                              SizedBox(
-                                width: 5,
-                              ),
-                              Container(
-                                child: Center(
-                                    child: Padding(
-                                  padding: const EdgeInsets.all(0.1),
-                                  child: Icon(
-                                    Icons.keyboard_arrow_right,
-                                    size: 18,
-                                    color: Colors.black.withOpacity(0.5),
+                  InkWell(
+                    onTap: () {
+                      print("Clicked");
+                      setState(() {
+                        is_visible = true;
+                        showtext = true;
+                        _color = Colors.black;
+                      });
+                    },
+                    onDoubleTap: () {
+                      print("Double Clicked");
+                      showModalBottomSheet(
+                          isScrollControlled: true,
+                          context: context,
+                          // shape: RoundedRectangleBorder(),
+                          builder: (context) => PageView(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 25, top: 50),
+                                    child: Column(
+                                      // mainAxisSize: MainAxisSize.min,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          children: [
+                                            InkWell(
+                                              onTap: () {
+                                                Navigator.pop(context);
+                                              },
+                                              child: Icon(
+                                                Icons.close,
+                                                color: Colors.grey,
+                                                size: 30,
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                        Icon(
+                                          Icons.timer,
+                                          size: 30,
+                                          color: Colors.blue,
+                                        ),
+                                        Text(
+                                          "Deliver Now",
+                                          style: TextStyle(
+                                              fontSize: 25,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        SizedBox(
+                                          height: 8,
+                                        ),
+                                        Text(
+                                          "We will assign the nearest courier to pick-up\nand deliver as soon as possible",
+                                          style: TextStyle(
+                                              fontSize: 15, color: Colors.grey),
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        Text(
+                                          "From RS 45",
+                                          style: TextStyle(fontSize: 20),
+                                        ),
+                                        Divider(
+                                          thickness: 1,
+                                          color: Colors.grey,
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        Row(
+                                          children: [
+                                            Container(
+                                              child: Center(
+                                                  child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(0.1),
+                                                child: Icon(
+                                                  Icons.run_circle_outlined,
+                                                  size: 18,
+                                                  color: Colors.blue,
+                                                ),
+                                              )),
+                                              height: 25,
+                                              width: 25,
+                                              decoration: BoxDecoration(
+                                                  color: Colors.blue
+                                                      .withOpacity(0.2),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          20)),
+                                            ),
+                                            Container(
+                                              child: Center(
+                                                  child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(0.1),
+                                                child: Icon(
+                                                  Icons.cyclone,
+                                                  size: 18,
+                                                  color: Colors.blue,
+                                                ),
+                                              )),
+                                              height: 25,
+                                              width: 25,
+                                              decoration: BoxDecoration(
+                                                  color: Colors.blue
+                                                      .withOpacity(0.2),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          20)),
+                                            ),
+                                          ],
+                                        ),
+                                        Text(
+                                          "Delivery by 2-wheelers or public transport",
+                                          style: TextStyle(fontSize: 15),
+                                        ),
+                                        Divider(
+                                          thickness: 1,
+                                          color: Colors.grey,
+                                        ),
+                                        SizedBox(
+                                          height: 8,
+                                        ),
+                                        Container(
+                                          child: Center(
+                                              child: Padding(
+                                            padding: const EdgeInsets.all(0.1),
+                                            child: Icon(
+                                              Icons.cyclone,
+                                              size: 18,
+                                              color: Colors.grey,
+                                            ),
+                                          )),
+                                          height: 30,
+                                          width: 30,
+                                          decoration: BoxDecoration(
+                                              color: Colors.grey[300],
+                                              borderRadius:
+                                                  BorderRadius.circular(20)),
+                                        ),
+                                        Text(
+                                          "Up to 20 Kg",
+                                          style: TextStyle(),
+                                        ),
+                                        Divider(
+                                          thickness: 1,
+                                          color: Colors.grey,
+                                        ),
+                                        SizedBox(
+                                          height: 8,
+                                        ),
+                                        Container(
+                                          child: Center(
+                                              child: Padding(
+                                            padding: const EdgeInsets.all(0.1),
+                                            child: Icon(
+                                              Icons.health_and_safety,
+                                              size: 18,
+                                              color: Colors.grey,
+                                            ),
+                                          )),
+                                          height: 30,
+                                          width: 30,
+                                          decoration: BoxDecoration(
+                                              color: Colors.grey[300],
+                                              borderRadius:
+                                                  BorderRadius.circular(20)),
+                                        ),
+                                        Text("You can choose insurance amount"),
+                                        Divider(
+                                          thickness: 1,
+                                          color: Colors.grey,
+                                        ),
+                                        Expanded(
+                                            child: Align(
+                                          alignment:
+                                              FractionalOffset.bottomCenter,
+                                          child: Padding(
+                                              padding:
+                                                  EdgeInsets.only(bottom: 50.0),
+                                              child: Row(
+                                                children: [
+                                                  Expanded(
+                                                      child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            right: 25),
+                                                    child: Container(
+                                                      child: Center(
+                                                          child: Text(
+                                                        "Confirm",
+                                                        style: TextStyle(
+                                                            fontSize: 18,
+                                                            color:
+                                                                Colors.white),
+                                                      )),
+                                                      height: 50,
+                                                      decoration: BoxDecoration(
+                                                          color: Colors.blue,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      50)),
+                                                    ),
+                                                  )),
+                                                ],
+                                              )),
+                                        )),
+                                      ],
+                                    ),
                                   ),
-                                )),
-                                height: 20,
-                                width: 20,
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(20)),
-                              )
-                            ],
-                          )
-                        ],
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 25, top: 50),
+                                    child: Column(
+                                      // mainAxisSize: MainAxisSize.min,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          children: [
+                                            InkWell(
+                                              onTap: () {
+                                                Navigator.pop(context);
+                                              },
+                                              child: Icon(
+                                                Icons.close,
+                                                color: Colors.grey,
+                                                size: 30,
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                        Icon(
+                                          Icons.calendar_month,
+                                          size: 30,
+                                          color: Colors.blue,
+                                        ),
+                                        Text(
+                                          "Schedule",
+                                          style: TextStyle(
+                                              fontSize: 25,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        SizedBox(
+                                          height: 8,
+                                        ),
+                                        Text(
+                                          "We will assign the nearest courier to pick-up\nand deliver as soon as possible",
+                                          style: TextStyle(
+                                              fontSize: 15, color: Colors.grey),
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        Text(
+                                          "From RS 45",
+                                          style: TextStyle(fontSize: 20),
+                                        ),
+                                        Divider(
+                                          thickness: 1,
+                                          color: Colors.grey,
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        Row(
+                                          children: [
+                                            Container(
+                                              child: Center(
+                                                  child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(0.1),
+                                                child: Icon(
+                                                  Icons.run_circle_outlined,
+                                                  size: 18,
+                                                  color: Colors.blue,
+                                                ),
+                                              )),
+                                              height: 25,
+                                              width: 25,
+                                              decoration: BoxDecoration(
+                                                  color: Colors.blue
+                                                      .withOpacity(0.2),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          20)),
+                                            ),
+                                            Container(
+                                              child: Center(
+                                                  child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(0.1),
+                                                child: Icon(
+                                                  Icons.cyclone,
+                                                  size: 18,
+                                                  color: Colors.blue,
+                                                ),
+                                              )),
+                                              height: 25,
+                                              width: 25,
+                                              decoration: BoxDecoration(
+                                                  color: Colors.blue
+                                                      .withOpacity(0.2),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          20)),
+                                            ),
+                                          ],
+                                        ),
+                                        Text(
+                                          "Delivery by 2-wheelers or public transport",
+                                          style: TextStyle(fontSize: 15),
+                                        ),
+                                        Divider(
+                                          thickness: 1,
+                                          color: Colors.grey,
+                                        ),
+                                        SizedBox(
+                                          height: 8,
+                                        ),
+                                        Container(
+                                          child: Center(
+                                              child: Padding(
+                                            padding: const EdgeInsets.all(0.1),
+                                            child: Icon(
+                                              Icons.cyclone,
+                                              size: 18,
+                                              color: Colors.grey,
+                                            ),
+                                          )),
+                                          height: 30,
+                                          width: 30,
+                                          decoration: BoxDecoration(
+                                              color: Colors.grey[300],
+                                              borderRadius:
+                                                  BorderRadius.circular(20)),
+                                        ),
+                                        Text(
+                                          "Up to 20 Kg",
+                                          style: TextStyle(),
+                                        ),
+                                        Divider(
+                                          thickness: 1,
+                                          color: Colors.grey,
+                                        ),
+                                        SizedBox(
+                                          height: 8,
+                                        ),
+                                        Container(
+                                          child: Center(
+                                              child: Padding(
+                                            padding: const EdgeInsets.all(0.1),
+                                            child: Icon(
+                                              Icons.health_and_safety,
+                                              size: 18,
+                                              color: Colors.grey,
+                                            ),
+                                          )),
+                                          height: 30,
+                                          width: 30,
+                                          decoration: BoxDecoration(
+                                              color: Colors.grey[300],
+                                              borderRadius:
+                                                  BorderRadius.circular(20)),
+                                        ),
+                                        Text("You can choose insurance amount"),
+                                        Divider(
+                                          thickness: 1,
+                                          color: Colors.grey,
+                                        ),
+                                        Expanded(
+                                            child: Align(
+                                          alignment:
+                                              FractionalOffset.bottomCenter,
+                                          child: Padding(
+                                              padding:
+                                                  EdgeInsets.only(bottom: 50.0),
+                                              child: Row(
+                                                children: [
+                                                  Expanded(
+                                                      child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            right: 25),
+                                                    child: Container(
+                                                      child: Center(
+                                                          child: Text(
+                                                        "Confirm",
+                                                        style: TextStyle(
+                                                            fontSize: 18,
+                                                            color:
+                                                                Colors.white),
+                                                      )),
+                                                      height: 50,
+                                                      decoration: BoxDecoration(
+                                                          color: Colors.blue,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      50)),
+                                                    ),
+                                                  )),
+                                                ],
+                                              )),
+                                        )),
+                                      ],
+                                    ),
+                                  )
+                                ],
+                                // itemBuilder: ((context, index) {
+                                //   return
+                                //   Padding(
+                                //     padding: const EdgeInsets.only(
+                                //         left: 25, top: 50),
+                                //     child: Column(
+                                //       // mainAxisSize: MainAxisSize.min,
+                                //       crossAxisAlignment:
+                                //           CrossAxisAlignment.start,
+                                //       children: [
+                                //         Row(
+                                //           mainAxisAlignment:
+                                //               MainAxisAlignment.end,
+                                //           children: [
+                                //             InkWell(
+                                //               onTap: () {
+                                //                 Navigator.pop(context);
+                                //               },
+                                //               child: Icon(
+                                //                 Icons.close,
+                                //                 color: Colors.grey,
+                                //                 size: 30,
+                                //               ),
+                                //             )
+                                //           ],
+                                //         ),
+                                //         Icon(
+                                //           Icons.timer,
+                                //           size: 30,
+                                //           color: Colors.blue,
+                                //         ),
+                                //         Text(
+                                //           "Deliver Now",
+                                //           style: TextStyle(
+                                //               fontSize: 25,
+                                //               fontWeight: FontWeight.bold),
+                                //         ),
+                                //         SizedBox(
+                                //           height: 8,
+                                //         ),
+                                //         Text(
+                                //           "We will assign the nearest courier to pick-up\nand deliver as soon as possible",
+                                //           style: TextStyle(
+                                //               fontSize: 15, color: Colors.grey),
+                                //         ),
+                                //         SizedBox(
+                                //           height: 10,
+                                //         ),
+                                //         Text(
+                                //           "From RS 45",
+                                //           style: TextStyle(fontSize: 20),
+                                //         ),
+                                //         Divider(
+                                //           thickness: 1,
+                                //           color: Colors.grey,
+                                //         ),
+                                //         SizedBox(
+                                //           height: 10,
+                                //         ),
+                                //         Row(
+                                //           children: [
+                                //             Container(
+                                //               child: Center(
+                                //                   child: Padding(
+                                //                 padding:
+                                //                     const EdgeInsets.all(0.1),
+                                //                 child: Icon(
+                                //                   Icons.run_circle_outlined,
+                                //                   size: 18,
+                                //                   color: Colors.blue,
+                                //                 ),
+                                //               )),
+                                //               height: 25,
+                                //               width: 25,
+                                //               decoration: BoxDecoration(
+                                //                   color: Colors.blue
+                                //                       .withOpacity(0.2),
+                                //                   borderRadius:
+                                //                       BorderRadius.circular(
+                                //                           20)),
+                                //             ),
+                                //             Container(
+                                //               child: Center(
+                                //                   child: Padding(
+                                //                 padding:
+                                //                     const EdgeInsets.all(0.1),
+                                //                 child: Icon(
+                                //                   Icons.cyclone,
+                                //                   size: 18,
+                                //                   color: Colors.blue,
+                                //                 ),
+                                //               )),
+                                //               height: 25,
+                                //               width: 25,
+                                //               decoration: BoxDecoration(
+                                //                   color: Colors.blue
+                                //                       .withOpacity(0.2),
+                                //                   borderRadius:
+                                //                       BorderRadius.circular(
+                                //                           20)),
+                                //             ),
+                                //           ],
+                                //         ),
+                                //         Text(
+                                //           "Delivery by 2-wheelers or public transport",
+                                //           style: TextStyle(fontSize: 15),
+                                //         ),
+                                //         Divider(
+                                //           thickness: 1,
+                                //           color: Colors.grey,
+                                //         ),
+                                //         SizedBox(
+                                //           height: 8,
+                                //         ),
+                                //         Container(
+                                //           child: Center(
+                                //               child: Padding(
+                                //             padding: const EdgeInsets.all(0.1),
+                                //             child: Icon(
+                                //               Icons.cyclone,
+                                //               size: 18,
+                                //               color: Colors.grey,
+                                //             ),
+                                //           )),
+                                //           height: 30,
+                                //           width: 30,
+                                //           decoration: BoxDecoration(
+                                //               color: Colors.grey[300],
+                                //               borderRadius:
+                                //                   BorderRadius.circular(20)),
+                                //         ),
+                                //         Text(
+                                //           "Up to 20 Kg",
+                                //           style: TextStyle(),
+                                //         ),
+                                //         Divider(
+                                //           thickness: 1,
+                                //           color: Colors.grey,
+                                //         ),
+                                //         SizedBox(
+                                //           height: 8,
+                                //         ),
+                                //         Container(
+                                //           child: Center(
+                                //               child: Padding(
+                                //             padding: const EdgeInsets.all(0.1),
+                                //             child: Icon(
+                                //               Icons.health_and_safety,
+                                //               size: 18,
+                                //               color: Colors.grey,
+                                //             ),
+                                //           )),
+                                //           height: 30,
+                                //           width: 30,
+                                //           decoration: BoxDecoration(
+                                //               color: Colors.grey[300],
+                                //               borderRadius:
+                                //                   BorderRadius.circular(20)),
+                                //         ),
+                                //         Text("You can choose insurance amount"),
+                                //         Divider(
+                                //           thickness: 1,
+                                //           color: Colors.grey,
+                                //         ),
+                                //         Expanded(
+                                //             child: Align(
+                                //           alignment:
+                                //               FractionalOffset.bottomCenter,
+                                //           child: Padding(
+                                //               padding:
+                                //                   EdgeInsets.only(bottom: 50.0),
+                                //               child: Row(
+                                //                 children: [
+                                //                   Expanded(
+                                //                       child: Padding(
+                                //                     padding:
+                                //                         const EdgeInsets.only(
+                                //                             right: 25),
+                                //                     child: Container(
+                                //                       child: Center(
+                                //                           child: Text(
+                                //                         "Confirm",
+                                //                         style: TextStyle(
+                                //                             fontSize: 18,
+                                //                             color:
+                                //                                 Colors.white),
+                                //                       )),
+                                //                       height: 50,
+                                //                       decoration: BoxDecoration(
+                                //                           color: Colors.blue,
+                                //                           borderRadius:
+                                //                               BorderRadius
+                                //                                   .circular(
+                                //                                       50)),
+                                //                     ),
+                                //                   )),
+                                //                 ],
+                                //               )),
+                                //         )),
+                                //       ],
+                                //     ),
+                                //   );
+                                // }
+
+                                // ),
+                                // itemCount: 2,
+                                // scrollDirection: Axis.horizontal,
+                                // physics: BouncingScrollPhysics(),
+                              ));
+                    },
+                    child: Container(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Icon(
+                              Icons.timer,
+                              size: 30,
+                              color: Colors.blue,
+                            ),
+                            Text(
+                              "Deliver Now",
+                              style: TextStyle(
+                                  fontSize: 14, fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  "From Rs 47",
+                                  style: TextStyle(
+                                      fontSize: 19,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Container(
+                                  child: Center(
+                                      child: Padding(
+                                    padding: const EdgeInsets.all(0.1),
+                                    child: Icon(
+                                      Icons.keyboard_arrow_right,
+                                      size: 18,
+                                      color: Colors.black.withOpacity(0.5),
+                                    ),
+                                  )),
+                                  height: 20,
+                                  width: 20,
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(20)),
+                                )
+                              ],
+                            )
+                          ],
+                        ),
                       ),
+                      height: 110,
+                      width: MediaQuery.of(context).size.width * 0.44,
+                      decoration: BoxDecoration(
+                          color: Colors.black.withOpacity(0.08),
+                          borderRadius: BorderRadius.circular(30)),
                     ),
-                    height: 110,
-                    width: MediaQuery.of(context).size.width * 0.44,
-                    decoration: BoxDecoration(
-                        color: Colors.black.withOpacity(0.08),
-                        borderRadius: BorderRadius.circular(30)),
                   ),
-                  Container(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Icon(
-                            Icons.calendar_month,
-                            size: 30,
-                            color: Colors.black.withOpacity(0.5),
-                          ),
-                          Text(
-                            "Schedule",
-                            style: TextStyle(
-                                fontSize: 14, fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Row(
-                            children: [
-                              Text(
-                                "From Rs 47",
-                                style: TextStyle(
-                                    fontSize: 19, fontWeight: FontWeight.bold),
-                              ),
-                              SizedBox(
-                                width: 5,
-                              ),
-                              Container(
-                                child: Center(
-                                    child: Padding(
-                                  padding: const EdgeInsets.all(0.1),
-                                  child: Icon(
-                                    Icons.keyboard_arrow_right,
-                                    size: 18,
-                                    color: Colors.black.withOpacity(0.5),
-                                  ),
-                                )),
-                                height: 20,
-                                width: 20,
-                                decoration: BoxDecoration(
-                                    color: Colors.black.withOpacity(0.2),
-                                    borderRadius: BorderRadius.circular(20)),
-                              )
-                            ],
-                          )
-                        ],
+                  InkWell(
+                    onTap: () {
+                      print("Second one is clcked");
+                      setState(() {
+                        is_visible = false;
+                        showtext = false;
+                      });
+                    },
+                    child: Container(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Icon(
+                              Icons.calendar_month,
+                              size: 30,
+                              color: Colors.black.withOpacity(0.5),
+                            ),
+                            Text(
+                              "Schedule",
+                              style: TextStyle(
+                                  fontSize: 14, fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  "From Rs 47",
+                                  style: TextStyle(
+                                      fontSize: 19,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Container(
+                                  child: Center(
+                                      child: Padding(
+                                    padding: const EdgeInsets.all(0.1),
+                                    child: Icon(
+                                      Icons.keyboard_arrow_right,
+                                      size: 18,
+                                      color: Colors.black.withOpacity(0.5),
+                                    ),
+                                  )),
+                                  height: 20,
+                                  width: 20,
+                                  decoration: BoxDecoration(
+                                      color: Colors.black.withOpacity(0.2),
+                                      borderRadius: BorderRadius.circular(20)),
+                                )
+                              ],
+                            )
+                          ],
+                        ),
                       ),
+                      height: 110,
+                      width: MediaQuery.of(context).size.width * 0.44,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(30),
+                          border:
+                              Border.all(color: Colors.black.withOpacity(0.2))),
                     ),
-                    height: 110,
-                    width: MediaQuery.of(context).size.width * 0.44,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(30),
-                        border:
-                            Border.all(color: Colors.black.withOpacity(0.2))),
                   ),
                 ],
               ),
               SizedBox(
                 height: 10,
               ),
-              Text(
-                "We will assign the nearest courier to pick-up and deliver as soon as possible",
-                style: TextStyle(color: Colors.grey, fontSize: 15),
+
+              Visibility(
+                visible: showtext,
+                child: Text(
+                  "We will assign the nearest courier to pick-up and deliver as soon as possible",
+                  style: TextStyle(color: Colors.grey, fontSize: 15),
+                ),
               ),
+              Visibility(
+                visible: !showtext,
+                child: Text(
+                  "We will  arrive at each address at specified times",
+                  style: TextStyle(color: Colors.grey, fontSize: 15),
+                ),
+              ),
+
               SizedBox(
                 height: 30,
               ),
@@ -424,49 +1091,52 @@ class _NewOrdersState extends State<NewOrders> {
                           SizedBox(
                             height: 10,
                           ),
-                          Container(
-                            child: Row(
-                              children: [
-                                Row(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Row(
+                          Visibility(
+                            visible: is_visible,
+                            child: Container(
+                              child: Row(
+                                children: [
+                                  Row(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Row(
+                                          children: [
+                                            Icon(
+                                              Icons.timer,
+                                              color: Colors.blue,
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         children: [
-                                          Icon(
-                                            Icons.timer,
-                                            color: Colors.blue,
+                                          Text(
+                                            "Enter the address to find out",
+                                            style: TextStyle(fontSize: 18),
+                                          ),
+                                          Text(
+                                            "When the courier will arrive",
+                                            style: TextStyle(fontSize: 18),
                                           )
                                         ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          "Enter the address to find out",
-                                          style: TextStyle(fontSize: 18),
-                                        ),
-                                        Text(
-                                          "When the courier will arrive",
-                                          style: TextStyle(fontSize: 18),
-                                        )
-                                      ],
-                                    )
-                                  ],
-                                ),
-                              ],
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              width: MediaQuery.of(context).size.width * 0.8,
+                              height: MediaQuery.of(context).size.height * 0.08,
+                              decoration: BoxDecoration(
+                                  color: Colors.blue.withOpacity(0.3),
+                                  borderRadius: BorderRadius.circular(12)),
                             ),
-                            width: MediaQuery.of(context).size.width * 0.8,
-                            height: MediaQuery.of(context).size.height * 0.08,
-                            decoration: BoxDecoration(
-                                color: Colors.blue.withOpacity(0.3),
-                                borderRadius: BorderRadius.circular(12)),
                           ),
                           CustomTextField(
                             sicon: Icon(Icons.person),
@@ -958,30 +1628,33 @@ class _NewOrdersState extends State<NewOrders> {
                       const SizedBox(
                         height: 10,
                       ),
-                      Container(
-                        padding: EdgeInsets.all(8),
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            // color: blueColor.withOpacity(0.15)
-                            color: Colors.blue.withOpacity(0.5)),
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.timer,
-                              // color: blueColor,
-                              color: Colors.blue,
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            const Text(
-                              'Enter the address to find out\nwhen the courier will arrive',
-                              style: TextStyle(
-                                fontSize: 15,
+                      Visibility(
+                        visible: is_visible,
+                        child: Container(
+                          padding: EdgeInsets.all(8),
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              // color: blueColor.withOpacity(0.15)
+                              color: Colors.blue.withOpacity(0.5)),
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.timer,
+                                // color: blueColor,
+                                color: Colors.blue,
                               ),
-                            )
-                          ],
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              const Text(
+                                'Enter the address to find out\nwhen the courier will arrive',
+                                style: TextStyle(
+                                  fontSize: 15,
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                       const SizedBox(
