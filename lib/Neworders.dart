@@ -18,11 +18,16 @@ class _NewOrdersState extends State<NewOrders> {
   bool is_visible = true;
   bool showtext = true;
 
-
-
   bool pressed = true;
 
   String tick = "Cash";
+
+  updatePayment(val) {
+    setState(() {
+      PaymentMethod = val;
+    });
+  }
+
   String PaymentMethod = "Cash";
   List payment = ['Cash', 'Bank card'];
 
@@ -1425,6 +1430,7 @@ class _NewOrdersState extends State<NewOrders> {
                                     setState(() {
                                       tick = Value.toString();
                                       // Navigator.pop(context);
+                                      updatePayment(Value);
                                       PaymentMethod = tick;
                                     });
                                   },
@@ -1441,6 +1447,7 @@ class _NewOrdersState extends State<NewOrders> {
                                     setState(() {
                                       tick = Value.toString();
                                       // Navigator.pop(context);
+                                      updatePayment(Value);
                                       PaymentMethod = tick;
                                     });
                                   },
@@ -1452,6 +1459,8 @@ class _NewOrdersState extends State<NewOrders> {
                                 InkWell(
                                   onTap: () {
                                     Navigator.pop(context);
+
+                                    // PaymentMethod = "okz";
                                   },
                                   child: Container(
                                     height: 100,
