@@ -4,6 +4,7 @@ import 'package:borzo/main.dart';
 import 'package:borzo/widgets/switch.dart';
 import 'package:borzo/widgets/textfield.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class NewOrders extends StatefulWidget {
   const NewOrders({Key? key}) : super(key: key);
@@ -17,7 +18,13 @@ class _NewOrdersState extends State<NewOrders> {
   bool is_visible = true;
   bool showtext = true;
 
+
+
   bool pressed = true;
+
+  String tick = "Cash";
+  String PaymentMethod = "Cash";
+  List payment = ['Cash', 'Bank card'];
 
   showHideText() {
     if (is_visible = true) {
@@ -120,7 +127,7 @@ class _NewOrdersState extends State<NewOrders> {
                       setState(() {
                         is_visible = true;
                         showtext = true;
-                        _color = Colors.black;
+                        pressed = !pressed;
                       });
                     },
                     onDoubleTap: () {
@@ -796,7 +803,7 @@ class _NewOrdersState extends State<NewOrders> {
                       height: 110,
                       width: MediaQuery.of(context).size.width * 0.44,
                       decoration: BoxDecoration(
-                          color: Colors.black.withOpacity(0.08),
+                          color: pressed ? Colors.grey : Colors.white,
                           borderRadius: BorderRadius.circular(30)),
                     ),
                   ),
@@ -985,14 +992,21 @@ class _NewOrdersState extends State<NewOrders> {
                                                                   setState(() {
                                                                     Kg = weight[
                                                                         index];
+                                                                    print(Kg);
+                                                                    weight[
+                                                                        index];
+
                                                                     Navigator.pop(
                                                                         context);
                                                                     // print(Kg);
                                                                   });
                                                                 },
                                                                 child: Text(
-                                                                    weight[
-                                                                        index]))
+                                                                  weight[index],
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                          .pink),
+                                                                ))
                                                           ],
                                                         ),
                                                       );
@@ -1384,6 +1398,153 @@ class _NewOrdersState extends State<NewOrders> {
                         borderRadius: BorderRadius.circular(80)),
                   ),
                 ],
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              InkWell(
+                onTap: () {
+                  showModalBottomSheet(
+                      context: context,
+                      builder: ((context) {
+                        return StatefulBuilder(
+                          builder: (BuildContext context, setState) {
+                            return Column(
+                              children: [
+                                Text(
+                                  "Payment Methods",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20),
+                                ),
+                                RadioListTile(
+                                  value: "Cash",
+                                  groupValue: tick,
+                                  title: Text("Cash"),
+                                  onChanged: (Value) {
+                                    setState(() {
+                                      tick = Value.toString();
+                                      // Navigator.pop(context);
+                                      PaymentMethod = tick;
+                                    });
+                                  },
+                                  activeColor: Colors.red,
+                                  controlAffinity:
+                                      ListTileControlAffinity.trailing,
+                                  secondary: Icon(Icons.money),
+                                ),
+                                RadioListTile(
+                                  value: "Bank Card",
+                                  groupValue: tick,
+                                  title: Text("Bank Card"),
+                                  onChanged: (Value) {
+                                    setState(() {
+                                      tick = Value.toString();
+                                      // Navigator.pop(context);
+                                      PaymentMethod = tick;
+                                    });
+                                  },
+                                  activeColor: Colors.red,
+                                  controlAffinity:
+                                      ListTileControlAffinity.trailing,
+                                  secondary: Icon(Icons.card_membership),
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: Container(
+                                    height: 100,
+                                    width: 100,
+                                    color: Colors.pink,
+                                  ),
+                                )
+                              ],
+                            );
+                          },
+                          // child:
+                          // Column(
+                          //   children: [
+                          //     Text(
+                          //       "Payment Methods",
+                          //       style: TextStyle(
+                          //           fontWeight: FontWeight.bold, fontSize: 20),
+                          //     ),
+                          //     RadioListTile(
+                          //       value: "Cash",
+                          //       groupValue: tick,
+                          //       title: Text("Cash"),
+                          //       onChanged: (Value) {
+                          //         setState(() {
+                          //           tick = Value.toString();
+                          //           Navigator.pop(context);
+                          //           PaymentMethod = tick;
+                          //         });
+                          //       },
+                          //       activeColor: Colors.red,
+                          //       controlAffinity: ListTileControlAffinity.trailing,
+                          //       secondary: Icon(Icons.money),
+                          //     ),
+                          //     RadioListTile(
+                          //       value: "Bank Card",
+                          //       groupValue: tick,
+                          //       title: Text("Bank Card"),
+                          //       onChanged: (Value) {
+                          //         setState(() {
+                          //           tick = Value.toString();
+                          //           Navigator.pop(context);
+                          //           PaymentMethod = tick;
+                          //         });
+                          //       },
+                          //       activeColor: Colors.red,
+                          //       controlAffinity: ListTileControlAffinity.trailing,
+                          //       secondary: Icon(Icons.card_membership),
+                          //     )
+                          //   ],
+                          // ),
+                        );
+                      }));
+                },
+                child: Row(
+                  children: [
+                    Expanded(
+                        child: Container(
+                      height: 60,
+                      decoration: BoxDecoration(
+                          color: Colors.grey[300],
+                          borderRadius: BorderRadius.circular(80)),
+                      child: Padding(
+                        padding: EdgeInsets.all(10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Icon(Icons.money),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Text(
+                                  PaymentMethod,
+                                  style: TextStyle(fontSize: 20),
+                                )
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Icon(
+                                  Icons.keyboard_arrow_down,
+                                  color: Colors.grey,
+                                  size: 29,
+                                )
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                    ))
+                  ],
+                ),
               )
 
               // Container(
@@ -1543,7 +1704,7 @@ class _NewOrdersState extends State<NewOrders> {
                 width: 180,
                 decoration: BoxDecoration(
                     color: bluecolor, borderRadius: BorderRadius.circular(30)),
-              )
+              ),
             ],
           ),
         ),
@@ -1574,11 +1735,11 @@ class _NewOrdersState extends State<NewOrders> {
               CircleAvatar(
                 backgroundColor: Colors.black,
                 radius: 12,
-                child: Text(
-                  index == 1 ? '2' : currentIndex.toString(),
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold, color: Colors.white),
-                ),
+                // child: Text(
+                //   index == 1 ? '2' : currentIndex.toString(),
+                //   style: TextStyle(
+                //       fontWeight: FontWeight.bold, color: Colors.white),
+                // ),
               ),
               SizedBox(
                 width: 20,
