@@ -7,6 +7,7 @@ class orders extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      
       body: Column(
         // mainAxisAlignment: MainAxisAlignment.center,
         children: [

@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:borzo/constant.dart';
 import 'package:borzo/deliveryPoint.dart';
 import 'package:borzo/main.dart';
@@ -17,8 +19,28 @@ class _NewOrdersState extends State<NewOrders> {
   TextEditingController addes = TextEditingController();
   bool is_visible = true;
   bool showtext = true;
+  bool showicon = true;
+
+  changedicon() {
+    setState(() {
+      showicon = !showicon;
+    });
+  }
+
+  weightValue(updateweight) {
+    setState(() {
+      Kg = updateweight;
+    });
+  }
 
   bool pressed = true;
+  Color press_color = Colors.pink;
+
+  changeColor(inde) {
+    setState(() {
+      press_color = inde;
+    });
+  }
 
   String tick = "Cash";
 
@@ -85,44 +107,40 @@ class _NewOrdersState extends State<NewOrders> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: false,
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: InkWell(
+          onTap: (() {
+            Navigator.pop(context);
+          }),
+          child: Icon(
+            Icons.clear,
+            color: Colors.black,
+          ),
+        ),
+        title: Text(
+          "New Order",
+          style: TextStyle(color: Colors.black),
+        ),
+        actions: [
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                "Clear",
+                style: TextStyle(color: Colors.black, fontSize: 20),
+              ),
+            ),
+          )
+        ],
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.clear,
-                        size: 35,
-                      ),
-                      SizedBox(
-                        width: 29,
-                      ),
-                      Text(
-                        "New Order",
-                        style: TextStyle(
-                            fontSize: 25, fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        "Clear",
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  )
-                ],
-              ),
-              SizedBox(
-                height: 40,
-              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -902,7 +920,7 @@ class _NewOrdersState extends State<NewOrders> {
               ),
 
               SizedBox(
-                height: 30,
+                height: 20,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -917,13 +935,9 @@ class _NewOrdersState extends State<NewOrders> {
                           child: Column(
                             children: [
                               Text(
-                                "Book a",
-                                style: TextStyle(fontSize: 20),
+                                "Book a\nCourier",
+                                style: TextStyle(fontSize: 18),
                               ),
-                              Text(
-                                "Courier",
-                                style: TextStyle(fontSize: 20),
-                              )
                             ],
                           ),
                         ),
@@ -932,17 +946,17 @@ class _NewOrdersState extends State<NewOrders> {
                           children: [
                             Icon(
                               Icons.keyboard_arrow_down,
-                              size: 39,
+                              size: 32,
                               color: Colors.black.withOpacity(0.5),
                             )
                           ],
                         )
                       ],
                     ),
-                    height: 80,
+                    height: 65,
                     width: MediaQuery.of(context).size.width * 0.44,
                     decoration: BoxDecoration(
-                        color: Colors.black.withOpacity(0.1),
+                        color: Colors.grey[200],
                         borderRadius: BorderRadius.circular(20),
                         border:
                             Border.all(color: Colors.black.withOpacity(0.08))),
@@ -960,65 +974,100 @@ class _NewOrdersState extends State<NewOrders> {
                                     shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.vertical(
                                             top: Radius.circular(20))),
-                                    builder: (context) => Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.min,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                "Parcel Weight",
-                                                style: TextStyle(
-                                                    fontSize: 20,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                              Container(
-                                                height: 200,
-                                                width: 200,
-                                                child: ListView.builder(
-                                                    itemCount: 4,
-                                                    scrollDirection:
-                                                        Axis.vertical,
-                                                    itemBuilder:
-                                                        ((context, index) {
-                                                      return Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(12.0),
-                                                        child: Column(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            InkWell(
-                                                                onTap: () {
-                                                                  setState(() {
-                                                                    Kg = weight[
-                                                                        index];
-                                                                    print(Kg);
-                                                                    weight[
-                                                                        index];
+                                    builder: (context) => StatefulBuilder(
+                                          builder:
+                                              (BuildContext context, setState) {
+                                            // bool showicon = true;
 
-                                                                    Navigator.pop(
-                                                                        context);
-                                                                    // print(Kg);
-                                                                  });
-                                                                },
-                                                                child: Text(
-                                                                  weight[index],
-                                                                  style: TextStyle(
-                                                                      color: Colors
-                                                                          .pink),
-                                                                ))
-                                                          ],
-                                                        ),
-                                                      );
-                                                    })),
-                                              )
-                                            ],
-                                          ),
+                                            return Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.min,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    "Parcel Weight",
+                                                    style: TextStyle(
+                                                        fontSize: 20,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                  Container(
+                                                    height: 200,
+                                                    // width: 500,
+                                                    child: ListView.builder(
+                                                        itemCount: 4,
+                                                        scrollDirection:
+                                                            Axis.vertical,
+                                                        itemBuilder:
+                                                            ((context, index) {
+                                                          return Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .all(12.0),
+                                                            child: Column(
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                InkWell(
+                                                                    onTap: () {
+                                                                      setState(
+                                                                          () {
+                                                                        weightValue(
+                                                                            weight[index]);
+                                                                        Navigator.pop(
+                                                                            context);
+                                                                      });
+                                                                    },
+                                                                    child: Row(
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .spaceBetween,
+                                                                      children: [
+                                                                        Row(
+                                                                          mainAxisAlignment:
+                                                                              MainAxisAlignment.spaceBetween,
+                                                                          children: [
+                                                                            RichText(
+                                                                              text: TextSpan(children: [
+                                                                                TextSpan(
+                                                                                  text: weight[index],
+                                                                                  style: TextStyle(color: Kg == weight[index] ? Colors.blue : Colors.black),
+                                                                                ),
+                                                                                // WidgetSpan(child: Icon(Icons.app_blocking))
+                                                                              ]),
+                                                                            )
+                                                                          ],
+                                                                        ),
+                                                                        Visibility(
+                                                                          visible:
+                                                                              // showicon,
+                                                                              true,
+                                                                          child:
+                                                                              Row(
+                                                                            children: [
+                                                                              Icon(
+                                                                                Icons.check,
+                                                                                color: Kg == weight[index] ? Colors.blue : Colors.white,
+                                                                              )
+                                                                            ],
+                                                                          ),
+                                                                        ),
+                                                                      ],
+                                                                    ))
+                                                              ],
+                                                            ),
+                                                          );
+                                                        })),
+                                                  )
+                                                ],
+                                              ),
+                                            );
+                                          },
+                                          // child:
                                         ));
                               },
                               child: Row(
@@ -1027,7 +1076,7 @@ class _NewOrdersState extends State<NewOrders> {
                                 children: [
                                   Text(
                                     "$Kg",
-                                    style: TextStyle(fontSize: 20),
+                                    style: TextStyle(fontSize: 18),
                                   ),
                                 ],
                               ),
@@ -1045,12 +1094,15 @@ class _NewOrdersState extends State<NewOrders> {
                     height: 50,
                     width: MediaQuery.of(context).size.width * 0.44,
                     decoration: BoxDecoration(
-                        color: Colors.black.withOpacity(0.1),
+                        color: Colors.grey[200],
                         borderRadius: BorderRadius.circular(30),
                         border:
                             Border.all(color: Colors.black.withOpacity(0.08))),
                   ),
                 ],
+              ),
+              SizedBox(
+                height: 10,
               ),
               Text(
                 "Huperlocal is km based tariff. it is the best option short distance deliveries under 5 km.",
@@ -1362,7 +1414,7 @@ class _NewOrdersState extends State<NewOrders> {
               ),
               CustomSwitch(texts: "Prefer Courier with Delivery bag"),
               SizedBox(
-                height: 10,
+                height: 1,
               ),
               CustomSwitch(texts: "Notify recipients by SMS"),
               SizedBox(

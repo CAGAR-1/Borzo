@@ -26,11 +26,8 @@ class _HomePageState extends State<HomePage> {
   final pages = [
     const orders(),
 
-    const NewOrders(),
-    // NewOrderFromButton(),
-    const chat(),
-    const Profile(),
-  ];
+
+   const Profile()];
 
   @override
   Widget build(BuildContext context) {
@@ -77,10 +74,12 @@ class _HomePageState extends State<HomePage> {
             enableFeedback: false,
             onPressed: () {
               setState(() {
-                pageIndex = 1;
+                // pageIndex = 1;
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => NewOrders()));
               });
             },
-            icon: pageIndex == 1
+            icon: pageIndex == ''
                 ? const Icon(
                     Icons.work_rounded,
                     color: Colors.black,
@@ -96,7 +95,8 @@ class _HomePageState extends State<HomePage> {
             enableFeedback: false,
             onPressed: () {
               setState(() {
-                pageIndex = 2;
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => chat()));
               });
             },
             icon: pageIndex == 2
@@ -115,10 +115,10 @@ class _HomePageState extends State<HomePage> {
             enableFeedback: false,
             onPressed: () {
               setState(() {
-                pageIndex = 3;
+                pageIndex = 1;
               });
             },
-            icon: pageIndex == 3
+            icon: pageIndex == 1
                 ? const Icon(
                     Icons.person,
                     color: Colors.black,
