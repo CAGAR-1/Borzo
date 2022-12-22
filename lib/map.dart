@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:borzo/Pages/Neworders.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_geocoder/geocoder.dart';
 import 'package:flutter_geocoder/geocoder.dart';
@@ -14,7 +15,10 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class BrozoMap extends StatefulWidget {
-  const BrozoMap({super.key});
+  TextEditingController controller;
+  //  BrozoMap({super.key,required });
+
+  BrozoMap({super.key, required this.controller});
 
   @override
   State<BrozoMap> createState() => _BrozoMapState();
@@ -23,21 +27,12 @@ class BrozoMap extends StatefulWidget {
 class _BrozoMapState extends State<BrozoMap> {
   Completer<GoogleMapController> _controller = Completer();
 
-  TextEditingController AddressController = TextEditingController();
+  // TextEditingController AddressController = TextEditingController();
 
   static const CameraPosition _kLake = CameraPosition(
-    // bearing: 192.8334901395799,
     target: LatLng(28.209620, 83.985523),
-    // tilt: 59.440717697143555,
     zoom: 14,
   );
-
-  @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //   _marker.addAll(_list);
-  // }
 
   dynamic finalvalue = "";
 
@@ -52,6 +47,10 @@ class _BrozoMapState extends State<BrozoMap> {
         position: LatLng(28.209628, 83.985529),
         infoWindow: InfoWindow(title: "My position"))
   ];
+
+
+
+
 
   int id = 1;
   Set<Polyline> _polylines = Set<Polyline>();
@@ -87,8 +86,9 @@ class _BrozoMapState extends State<BrozoMap> {
                   first.addressLine.toString());
 
               setState(() {
-                AddressController.text =
+                widget.controller.text =
                     first.featureName.toString() + first.addressLine.toString();
+                Navigator.pop(context);
               });
             },
 
@@ -104,11 +104,11 @@ class _BrozoMapState extends State<BrozoMap> {
             myLocationButtonEnabled: true,
           ),
         ),
-        Center(
-          child: TextFormField(
-            controller: AddressController,
-          ),
-        )
+        // Center(
+        //   child: TextFormField(
+        //     controller: AddressController,
+        //   ),
+        // )
         // Text(finalvalue)
       ],
     ));

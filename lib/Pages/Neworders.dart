@@ -2,9 +2,11 @@ import 'package:borzo/constant.dart';
 
 import 'package:borzo/Swap/DeliverNow.dart';
 import 'package:borzo/Swap/Schedule.dart';
+import 'package:borzo/map.dart';
 import 'package:borzo/widgets/switch.dart';
 import 'package:borzo/widgets/textfield.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class NewOrders extends StatefulWidget {
   const NewOrders({Key? key}) : super(key: key);
@@ -15,6 +17,7 @@ class NewOrders extends StatefulWidget {
 
 class _NewOrdersState extends State<NewOrders> {
   TextEditingController addes = TextEditingController();
+  TextEditingController PickUpAddress = TextEditingController();
   bool is_visible = true;
   bool showtext = true;
 
@@ -514,9 +517,15 @@ class _NewOrdersState extends State<NewOrders> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           TextFormField(
+                            controller: PickUpAddress,
                             decoration: InputDecoration(
                                 label: Text("Address"),
-                                suffixIcon: Icon(Icons.add_location)),
+                                suffixIcon: InkWell(
+                                    onTap: () {
+                                      Get.to(
+                                          BrozoMap(controller: PickUpAddress));
+                                    },
+                                    child: Icon(Icons.add_location))),
                             textAlign: TextAlign.start,
                           ),
                           SizedBox(
@@ -799,7 +808,7 @@ class _NewOrdersState extends State<NewOrders> {
                     label: "Promo Code",
                   )),
                   Container(
-                    height: MediaQuery.of(context).size.height * 0.06,
+                    height: MediaQuery.of(context).size.height * 0.05,
                     width: 100,
                     child: Center(
                         child: Text(
@@ -902,7 +911,7 @@ class _NewOrdersState extends State<NewOrders> {
                   children: [
                     Expanded(
                         child: Container(
-                      height: 60,
+                      height: 45,
                       decoration: BoxDecoration(
                           color: Colors.grey[300],
                           borderRadius: BorderRadius.circular(80)),
@@ -938,6 +947,9 @@ class _NewOrdersState extends State<NewOrders> {
                     ))
                   ],
                 ),
+              ),
+              SizedBox(
+                height: 30,
               )
             ],
           ),
@@ -1003,11 +1015,12 @@ class _NewOrdersState extends State<NewOrders> {
               CircleAvatar(
                 backgroundColor: Colors.black,
                 radius: 12,
-                // child: Text(
-                //   index == 1 ? '2' : currentIndex.toString(),
-                //   style: TextStyle(
-                //       fontWeight: FontWeight.bold, color: Colors.white),
-                // ),
+                child: Text(
+                  index == 1 ? '2' : currentIndex.toString(),
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, color: Colors.white),
+                
+                ),
               ),
               SizedBox(
                 width: 20,

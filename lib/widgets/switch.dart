@@ -18,11 +18,11 @@ class _CustomSwitchState extends State<CustomSwitch> {
     return ListTile(
       title: Text(
         widget.texts,
-        style: TextStyle(fontSize: 18, color: Colors.grey[600]),
+        style: TextStyle(fontSize: 15, color: Colors.grey[600]),
       ),
       trailing: Container(
         child: Transform.scale(
-          scale: 1.5,
+          scale: 1.2,
           child: SizedBox(
               child: FittedBox(
             fit: BoxFit.fill,
