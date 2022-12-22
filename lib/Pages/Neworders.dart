@@ -1,12 +1,10 @@
-import 'dart:ui';
-
 import 'package:borzo/constant.dart';
-import 'package:borzo/deliveryPoint.dart';
-import 'package:borzo/main.dart';
+
+import 'package:borzo/Swap/DeliverNow.dart';
+import 'package:borzo/Swap/Schedule.dart';
 import 'package:borzo/widgets/switch.dart';
 import 'package:borzo/widgets/textfield.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class NewOrders extends StatefulWidget {
   const NewOrders({Key? key}) : super(key: key);
@@ -19,13 +17,6 @@ class _NewOrdersState extends State<NewOrders> {
   TextEditingController addes = TextEditingController();
   bool is_visible = true;
   bool showtext = true;
-  bool showicon = true;
-
-  changedicon() {
-    setState(() {
-      showicon = !showicon;
-    });
-  }
 
   weightValue(updateweight) {
     setState(() {
@@ -42,42 +33,22 @@ class _NewOrdersState extends State<NewOrders> {
     });
   }
 
-  String tick = "Cash";
-
   updatePayment(val) {
     setState(() {
       PaymentMethod = val;
     });
   }
 
+  String tick = "Cash";
+
   String PaymentMethod = "Cash";
   List payment = ['Cash', 'Bank card'];
 
-  showHideText() {
-    if (is_visible = true) {
-      return Visibility(visible: is_visible, child: Text("dsf"));
-    } else {
-      return Text("sorry");
-    }
-  }
-
   String Kg = 'Up to 1 Kg';
-  // UpdatesKg() {
-  //   setState(() {
-  //     Kg = weight[index];
-  //   });
-  // }
-
-  // updatevalues() {
-  //   setState(() {
-  //     addes = packge[index];
-  //   });
-  // }
 
   int index = 1;
   int? currentIndex;
   int currentpage = 0;
-  Color _color = Colors.red;
 
   List packge = ['Documents', 'Food', 'Cloth', 'Groceries', 'Flowers', 'Cake'];
   List weight = [
@@ -155,621 +126,12 @@ class _NewOrdersState extends State<NewOrders> {
                     },
                     onDoubleTap: () {
                       print("Double Clicked");
+
                       showModalBottomSheet(
                           isScrollControlled: true,
                           context: context,
-                          // shape: RoundedRectangleBorder(),
                           builder: (context) => PageView(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 25, top: 50),
-                                    child: Column(
-                                      // mainAxisSize: MainAxisSize.min,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                          children: [
-                                            InkWell(
-                                              onTap: () {
-                                                Navigator.pop(context);
-                                              },
-                                              child: Icon(
-                                                Icons.close,
-                                                color: Colors.grey,
-                                                size: 30,
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                        Icon(
-                                          Icons.timer,
-                                          size: 30,
-                                          color: Colors.blue,
-                                        ),
-                                        Text(
-                                          "Deliver Now",
-                                          style: TextStyle(
-                                              fontSize: 25,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        SizedBox(
-                                          height: 8,
-                                        ),
-                                        Text(
-                                          "We will assign the nearest courier to pick-up\nand deliver as soon as possible",
-                                          style: TextStyle(
-                                              fontSize: 15, color: Colors.grey),
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        Text(
-                                          "From RS 45",
-                                          style: TextStyle(fontSize: 20),
-                                        ),
-                                        Divider(
-                                          thickness: 1,
-                                          color: Colors.grey,
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        Row(
-                                          children: [
-                                            Container(
-                                              child: Center(
-                                                  child: Padding(
-                                                padding:
-                                                    const EdgeInsets.all(0.1),
-                                                child: Icon(
-                                                  Icons.run_circle_outlined,
-                                                  size: 18,
-                                                  color: Colors.blue,
-                                                ),
-                                              )),
-                                              height: 25,
-                                              width: 25,
-                                              decoration: BoxDecoration(
-                                                  color: Colors.blue
-                                                      .withOpacity(0.2),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          20)),
-                                            ),
-                                            Container(
-                                              child: Center(
-                                                  child: Padding(
-                                                padding:
-                                                    const EdgeInsets.all(0.1),
-                                                child: Icon(
-                                                  Icons.cyclone,
-                                                  size: 18,
-                                                  color: Colors.blue,
-                                                ),
-                                              )),
-                                              height: 25,
-                                              width: 25,
-                                              decoration: BoxDecoration(
-                                                  color: Colors.blue
-                                                      .withOpacity(0.2),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          20)),
-                                            ),
-                                          ],
-                                        ),
-                                        Text(
-                                          "Delivery by 2-wheelers or public transport",
-                                          style: TextStyle(fontSize: 15),
-                                        ),
-                                        Divider(
-                                          thickness: 1,
-                                          color: Colors.grey,
-                                        ),
-                                        SizedBox(
-                                          height: 8,
-                                        ),
-                                        Container(
-                                          child: Center(
-                                              child: Padding(
-                                            padding: const EdgeInsets.all(0.1),
-                                            child: Icon(
-                                              Icons.cyclone,
-                                              size: 18,
-                                              color: Colors.grey,
-                                            ),
-                                          )),
-                                          height: 30,
-                                          width: 30,
-                                          decoration: BoxDecoration(
-                                              color: Colors.grey[300],
-                                              borderRadius:
-                                                  BorderRadius.circular(20)),
-                                        ),
-                                        Text(
-                                          "Up to 20 Kg",
-                                          style: TextStyle(),
-                                        ),
-                                        Divider(
-                                          thickness: 1,
-                                          color: Colors.grey,
-                                        ),
-                                        SizedBox(
-                                          height: 8,
-                                        ),
-                                        Container(
-                                          child: Center(
-                                              child: Padding(
-                                            padding: const EdgeInsets.all(0.1),
-                                            child: Icon(
-                                              Icons.health_and_safety,
-                                              size: 18,
-                                              color: Colors.grey,
-                                            ),
-                                          )),
-                                          height: 30,
-                                          width: 30,
-                                          decoration: BoxDecoration(
-                                              color: Colors.grey[300],
-                                              borderRadius:
-                                                  BorderRadius.circular(20)),
-                                        ),
-                                        Text("You can choose insurance amount"),
-                                        Divider(
-                                          thickness: 1,
-                                          color: Colors.grey,
-                                        ),
-                                        Expanded(
-                                            child: Align(
-                                          alignment:
-                                              FractionalOffset.bottomCenter,
-                                          child: Padding(
-                                              padding:
-                                                  EdgeInsets.only(bottom: 50.0),
-                                              child: Row(
-                                                children: [
-                                                  Expanded(
-                                                      child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            right: 25),
-                                                    child: Container(
-                                                      child: Center(
-                                                          child: Text(
-                                                        "Confirm",
-                                                        style: TextStyle(
-                                                            fontSize: 18,
-                                                            color:
-                                                                Colors.white),
-                                                      )),
-                                                      height: 50,
-                                                      decoration: BoxDecoration(
-                                                          color: Colors.blue,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      50)),
-                                                    ),
-                                                  )),
-                                                ],
-                                              )),
-                                        )),
-                                      ],
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 25, top: 50),
-                                    child: Column(
-                                      // mainAxisSize: MainAxisSize.min,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                          children: [
-                                            InkWell(
-                                              onTap: () {
-                                                Navigator.pop(context);
-                                              },
-                                              child: Icon(
-                                                Icons.close,
-                                                color: Colors.grey,
-                                                size: 30,
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                        Icon(
-                                          Icons.calendar_month,
-                                          size: 30,
-                                          color: Colors.blue,
-                                        ),
-                                        Text(
-                                          "Schedule",
-                                          style: TextStyle(
-                                              fontSize: 25,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        SizedBox(
-                                          height: 8,
-                                        ),
-                                        Text(
-                                          "We will assign the nearest courier to pick-up\nand deliver as soon as possible",
-                                          style: TextStyle(
-                                              fontSize: 15, color: Colors.grey),
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        Text(
-                                          "From RS 45",
-                                          style: TextStyle(fontSize: 20),
-                                        ),
-                                        Divider(
-                                          thickness: 1,
-                                          color: Colors.grey,
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        Row(
-                                          children: [
-                                            Container(
-                                              child: Center(
-                                                  child: Padding(
-                                                padding:
-                                                    const EdgeInsets.all(0.1),
-                                                child: Icon(
-                                                  Icons.run_circle_outlined,
-                                                  size: 18,
-                                                  color: Colors.blue,
-                                                ),
-                                              )),
-                                              height: 25,
-                                              width: 25,
-                                              decoration: BoxDecoration(
-                                                  color: Colors.blue
-                                                      .withOpacity(0.2),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          20)),
-                                            ),
-                                            Container(
-                                              child: Center(
-                                                  child: Padding(
-                                                padding:
-                                                    const EdgeInsets.all(0.1),
-                                                child: Icon(
-                                                  Icons.cyclone,
-                                                  size: 18,
-                                                  color: Colors.blue,
-                                                ),
-                                              )),
-                                              height: 25,
-                                              width: 25,
-                                              decoration: BoxDecoration(
-                                                  color: Colors.blue
-                                                      .withOpacity(0.2),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          20)),
-                                            ),
-                                          ],
-                                        ),
-                                        Text(
-                                          "Delivery by 2-wheelers or public transport",
-                                          style: TextStyle(fontSize: 15),
-                                        ),
-                                        Divider(
-                                          thickness: 1,
-                                          color: Colors.grey,
-                                        ),
-                                        SizedBox(
-                                          height: 8,
-                                        ),
-                                        Container(
-                                          child: Center(
-                                              child: Padding(
-                                            padding: const EdgeInsets.all(0.1),
-                                            child: Icon(
-                                              Icons.cyclone,
-                                              size: 18,
-                                              color: Colors.grey,
-                                            ),
-                                          )),
-                                          height: 30,
-                                          width: 30,
-                                          decoration: BoxDecoration(
-                                              color: Colors.grey[300],
-                                              borderRadius:
-                                                  BorderRadius.circular(20)),
-                                        ),
-                                        Text(
-                                          "Up to 20 Kg",
-                                          style: TextStyle(),
-                                        ),
-                                        Divider(
-                                          thickness: 1,
-                                          color: Colors.grey,
-                                        ),
-                                        SizedBox(
-                                          height: 8,
-                                        ),
-                                        Container(
-                                          child: Center(
-                                              child: Padding(
-                                            padding: const EdgeInsets.all(0.1),
-                                            child: Icon(
-                                              Icons.health_and_safety,
-                                              size: 18,
-                                              color: Colors.grey,
-                                            ),
-                                          )),
-                                          height: 30,
-                                          width: 30,
-                                          decoration: BoxDecoration(
-                                              color: Colors.grey[300],
-                                              borderRadius:
-                                                  BorderRadius.circular(20)),
-                                        ),
-                                        Text("You can choose insurance amount"),
-                                        Divider(
-                                          thickness: 1,
-                                          color: Colors.grey,
-                                        ),
-                                        Expanded(
-                                            child: Align(
-                                          alignment:
-                                              FractionalOffset.bottomCenter,
-                                          child: Padding(
-                                              padding:
-                                                  EdgeInsets.only(bottom: 50.0),
-                                              child: Row(
-                                                children: [
-                                                  Expanded(
-                                                      child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            right: 25),
-                                                    child: Container(
-                                                      child: Center(
-                                                          child: Text(
-                                                        "Confirm",
-                                                        style: TextStyle(
-                                                            fontSize: 18,
-                                                            color:
-                                                                Colors.white),
-                                                      )),
-                                                      height: 50,
-                                                      decoration: BoxDecoration(
-                                                          color: Colors.blue,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      50)),
-                                                    ),
-                                                  )),
-                                                ],
-                                              )),
-                                        )),
-                                      ],
-                                    ),
-                                  )
-                                ],
-                                // itemBuilder: ((context, index) {
-                                //   return
-                                //   Padding(
-                                //     padding: const EdgeInsets.only(
-                                //         left: 25, top: 50),
-                                //     child: Column(
-                                //       // mainAxisSize: MainAxisSize.min,
-                                //       crossAxisAlignment:
-                                //           CrossAxisAlignment.start,
-                                //       children: [
-                                //         Row(
-                                //           mainAxisAlignment:
-                                //               MainAxisAlignment.end,
-                                //           children: [
-                                //             InkWell(
-                                //               onTap: () {
-                                //                 Navigator.pop(context);
-                                //               },
-                                //               child: Icon(
-                                //                 Icons.close,
-                                //                 color: Colors.grey,
-                                //                 size: 30,
-                                //               ),
-                                //             )
-                                //           ],
-                                //         ),
-                                //         Icon(
-                                //           Icons.timer,
-                                //           size: 30,
-                                //           color: Colors.blue,
-                                //         ),
-                                //         Text(
-                                //           "Deliver Now",
-                                //           style: TextStyle(
-                                //               fontSize: 25,
-                                //               fontWeight: FontWeight.bold),
-                                //         ),
-                                //         SizedBox(
-                                //           height: 8,
-                                //         ),
-                                //         Text(
-                                //           "We will assign the nearest courier to pick-up\nand deliver as soon as possible",
-                                //           style: TextStyle(
-                                //               fontSize: 15, color: Colors.grey),
-                                //         ),
-                                //         SizedBox(
-                                //           height: 10,
-                                //         ),
-                                //         Text(
-                                //           "From RS 45",
-                                //           style: TextStyle(fontSize: 20),
-                                //         ),
-                                //         Divider(
-                                //           thickness: 1,
-                                //           color: Colors.grey,
-                                //         ),
-                                //         SizedBox(
-                                //           height: 10,
-                                //         ),
-                                //         Row(
-                                //           children: [
-                                //             Container(
-                                //               child: Center(
-                                //                   child: Padding(
-                                //                 padding:
-                                //                     const EdgeInsets.all(0.1),
-                                //                 child: Icon(
-                                //                   Icons.run_circle_outlined,
-                                //                   size: 18,
-                                //                   color: Colors.blue,
-                                //                 ),
-                                //               )),
-                                //               height: 25,
-                                //               width: 25,
-                                //               decoration: BoxDecoration(
-                                //                   color: Colors.blue
-                                //                       .withOpacity(0.2),
-                                //                   borderRadius:
-                                //                       BorderRadius.circular(
-                                //                           20)),
-                                //             ),
-                                //             Container(
-                                //               child: Center(
-                                //                   child: Padding(
-                                //                 padding:
-                                //                     const EdgeInsets.all(0.1),
-                                //                 child: Icon(
-                                //                   Icons.cyclone,
-                                //                   size: 18,
-                                //                   color: Colors.blue,
-                                //                 ),
-                                //               )),
-                                //               height: 25,
-                                //               width: 25,
-                                //               decoration: BoxDecoration(
-                                //                   color: Colors.blue
-                                //                       .withOpacity(0.2),
-                                //                   borderRadius:
-                                //                       BorderRadius.circular(
-                                //                           20)),
-                                //             ),
-                                //           ],
-                                //         ),
-                                //         Text(
-                                //           "Delivery by 2-wheelers or public transport",
-                                //           style: TextStyle(fontSize: 15),
-                                //         ),
-                                //         Divider(
-                                //           thickness: 1,
-                                //           color: Colors.grey,
-                                //         ),
-                                //         SizedBox(
-                                //           height: 8,
-                                //         ),
-                                //         Container(
-                                //           child: Center(
-                                //               child: Padding(
-                                //             padding: const EdgeInsets.all(0.1),
-                                //             child: Icon(
-                                //               Icons.cyclone,
-                                //               size: 18,
-                                //               color: Colors.grey,
-                                //             ),
-                                //           )),
-                                //           height: 30,
-                                //           width: 30,
-                                //           decoration: BoxDecoration(
-                                //               color: Colors.grey[300],
-                                //               borderRadius:
-                                //                   BorderRadius.circular(20)),
-                                //         ),
-                                //         Text(
-                                //           "Up to 20 Kg",
-                                //           style: TextStyle(),
-                                //         ),
-                                //         Divider(
-                                //           thickness: 1,
-                                //           color: Colors.grey,
-                                //         ),
-                                //         SizedBox(
-                                //           height: 8,
-                                //         ),
-                                //         Container(
-                                //           child: Center(
-                                //               child: Padding(
-                                //             padding: const EdgeInsets.all(0.1),
-                                //             child: Icon(
-                                //               Icons.health_and_safety,
-                                //               size: 18,
-                                //               color: Colors.grey,
-                                //             ),
-                                //           )),
-                                //           height: 30,
-                                //           width: 30,
-                                //           decoration: BoxDecoration(
-                                //               color: Colors.grey[300],
-                                //               borderRadius:
-                                //                   BorderRadius.circular(20)),
-                                //         ),
-                                //         Text("You can choose insurance amount"),
-                                //         Divider(
-                                //           thickness: 1,
-                                //           color: Colors.grey,
-                                //         ),
-                                //         Expanded(
-                                //             child: Align(
-                                //           alignment:
-                                //               FractionalOffset.bottomCenter,
-                                //           child: Padding(
-                                //               padding:
-                                //                   EdgeInsets.only(bottom: 50.0),
-                                //               child: Row(
-                                //                 children: [
-                                //                   Expanded(
-                                //                       child: Padding(
-                                //                     padding:
-                                //                         const EdgeInsets.only(
-                                //                             right: 25),
-                                //                     child: Container(
-                                //                       child: Center(
-                                //                           child: Text(
-                                //                         "Confirm",
-                                //                         style: TextStyle(
-                                //                             fontSize: 18,
-                                //                             color:
-                                //                                 Colors.white),
-                                //                       )),
-                                //                       height: 50,
-                                //                       decoration: BoxDecoration(
-                                //                           color: Colors.blue,
-                                //                           borderRadius:
-                                //                               BorderRadius
-                                //                                   .circular(
-                                //                                       50)),
-                                //                     ),
-                                //                   )),
-                                //                 ],
-                                //               )),
-                                //         )),
-                                //       ],
-                                //     ),
-                                //   );
-                                // }
-
-                                // ),
-                                // itemCount: 2,
-                                // scrollDirection: Axis.horizontal,
-                                // physics: BouncingScrollPhysics(),
+                                children: [DeliverNow(), Schedule()],
                               ));
                     },
                     child: Container(
@@ -826,7 +188,7 @@ class _NewOrdersState extends State<NewOrders> {
                       height: 110,
                       width: MediaQuery.of(context).size.width * 0.44,
                       decoration: BoxDecoration(
-                          color: pressed ? Colors.grey : Colors.white,
+                          color: pressed ? Colors.grey[200] : Colors.white,
                           borderRadius: BorderRadius.circular(30)),
                     ),
                   ),
@@ -977,8 +339,6 @@ class _NewOrdersState extends State<NewOrders> {
                                     builder: (context) => StatefulBuilder(
                                           builder:
                                               (BuildContext context, setState) {
-                                            // bool showicon = true;
-
                                             return Padding(
                                               padding:
                                                   const EdgeInsets.all(8.0),
@@ -1117,11 +477,11 @@ class _NewOrdersState extends State<NewOrders> {
                 children: [
                   CircleAvatar(
                     backgroundColor: Colors.black,
-                    maxRadius: 22,
+                    maxRadius: 13,
                     child: Text(
                       "1",
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
                     ),
                   ),
                   SizedBox(
@@ -1130,7 +490,7 @@ class _NewOrdersState extends State<NewOrders> {
                   Expanded(
                       child: Text(
                     "Pick Up point",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
                   )),
                 ],
               ),
@@ -1142,10 +502,10 @@ class _NewOrdersState extends State<NewOrders> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
                     child: Container(
                       height: 330,
-                      width: 3,
+                      width: 2,
                       color: Colors.black,
                     ),
                   ),
@@ -1189,13 +549,9 @@ class _NewOrdersState extends State<NewOrders> {
                                             MainAxisAlignment.center,
                                         children: [
                                           Text(
-                                            "Enter the address to find out",
-                                            style: TextStyle(fontSize: 18),
+                                            "Enter the address to find out\nWhen the courier will arrive",
+                                            style: TextStyle(fontSize: 15),
                                           ),
-                                          Text(
-                                            "When the courier will arrive",
-                                            style: TextStyle(fontSize: 18),
-                                          )
                                         ],
                                       )
                                     ],
@@ -1203,7 +559,7 @@ class _NewOrdersState extends State<NewOrders> {
                                 ],
                               ),
                               width: MediaQuery.of(context).size.width * 0.8,
-                              height: MediaQuery.of(context).size.height * 0.08,
+                              height: MediaQuery.of(context).size.height * 0.07,
                               decoration: BoxDecoration(
                                   color: Colors.blue.withOpacity(0.3),
                                   borderRadius: BorderRadius.circular(12)),
@@ -1514,55 +870,31 @@ class _NewOrdersState extends State<NewOrders> {
 
                                     // PaymentMethod = "okz";
                                   },
-                                  child: Container(
-                                    height: 100,
-                                    width: 100,
-                                    color: Colors.pink,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(15.0),
+                                    child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Expanded(
+                                          child: Container(
+                                            child:
+                                                Center(child: Text("Select")),
+                                            height: 50,
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(15),
+                                                color: Colors.grey[400]),
+                                          ),
+                                        )
+                                      ],
+                                    ),
                                   ),
                                 )
                               ],
                             );
                           },
-                          // child:
-                          // Column(
-                          //   children: [
-                          //     Text(
-                          //       "Payment Methods",
-                          //       style: TextStyle(
-                          //           fontWeight: FontWeight.bold, fontSize: 20),
-                          //     ),
-                          //     RadioListTile(
-                          //       value: "Cash",
-                          //       groupValue: tick,
-                          //       title: Text("Cash"),
-                          //       onChanged: (Value) {
-                          //         setState(() {
-                          //           tick = Value.toString();
-                          //           Navigator.pop(context);
-                          //           PaymentMethod = tick;
-                          //         });
-                          //       },
-                          //       activeColor: Colors.red,
-                          //       controlAffinity: ListTileControlAffinity.trailing,
-                          //       secondary: Icon(Icons.money),
-                          //     ),
-                          //     RadioListTile(
-                          //       value: "Bank Card",
-                          //       groupValue: tick,
-                          //       title: Text("Bank Card"),
-                          //       onChanged: (Value) {
-                          //         setState(() {
-                          //           tick = Value.toString();
-                          //           Navigator.pop(context);
-                          //           PaymentMethod = tick;
-                          //         });
-                          //       },
-                          //       activeColor: Colors.red,
-                          //       controlAffinity: ListTileControlAffinity.trailing,
-                          //       secondary: Icon(Icons.card_membership),
-                          //     )
-                          //   ],
-                          // ),
                         );
                       }));
                 },
@@ -1607,117 +939,6 @@ class _NewOrdersState extends State<NewOrders> {
                   ],
                 ),
               )
-
-              // Container(
-              //   child: Expanded(
-              //       child: Container(
-              //     width: 40,
-              //     color: Colors.pink,
-              //   )),
-              // )
-              // Row(
-              //   children: [
-              //     CircleAvatar(
-              //       backgroundColor: Colors.black,
-              //       maxRadius: 22,
-              //       child: Text(
-              //         "1",
-              //         style:
-              //             TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-              //       ),
-              //     ),
-              //     SizedBox(
-              //       width: 20,
-              //     ),
-              //     Text(
-              //       "Pickup Point",
-              // style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-              //     )
-              //   ],
-              // ),
-              // SizedBox(
-              //   height: 15,
-              // ),
-              // Padding(
-              //   padding: EdgeInsets.symmetric(horizontal: 20),
-              //   child: Row(
-              //     crossAxisAlignment: CrossAxisAlignment.start,
-              //     children: [
-              //       Row(
-              //         children: [
-              //           Container(
-              //             height: 500,
-              //             width: 3,
-              //             color: Colors.black,
-              //           ),
-              //         ],
-              //       ),
-              //       SizedBox(
-              //         width: 50,
-              //       ),
-              //       Expanded(
-              // child: Column(
-              //   crossAxisAlignment: CrossAxisAlignment.start,
-              //   children: [
-              //     TextFormField(
-              //       decoration: InputDecoration(
-              //           label: Text("Address"),
-              //           suffixIcon: Icon(Icons.add_location)),
-              //       textAlign: TextAlign.start,
-              //     ),
-              //             SizedBox(
-              //               height: 10,
-              //             ),
-              //             Container(
-              //               child: Row(
-              //                 children: [
-              //                   Row(
-              //                     children: [
-              //                       Padding(
-              //                         padding: const EdgeInsets.all(8.0),
-              //                         child: Row(
-              //                           children: [
-              //                             Icon(
-              //                               Icons.timer,
-              //                               color: Colors.blue,
-              //                             )
-              //                           ],
-              //                         ),
-              //                       ),
-              //                     ],
-              //                   ),
-              //                   Row(
-              //                     children: [
-              //                       Column(
-              //                         mainAxisAlignment:
-              //                             MainAxisAlignment.center,
-              //                         children: [
-              //                           Text(
-              //                             "Enter the address to find out",
-              //                             style: TextStyle(fontSize: 18),
-              //                           ),
-              //                           Text(
-              //                             "When the courier will arrive",
-              //                             style: TextStyle(fontSize: 18),
-              //                           )
-              //                         ],
-              //                       )
-              //                     ],
-              //                   )
-              //                 ],
-              //               ),
-              //               width: MediaQuery.of(context).size.width * 0.8,
-              //               height: MediaQuery.of(context).size.height * 0.08,
-              //               decoration: BoxDecoration(
-              //                   color: Colors.blue.withOpacity(0.3),
-              //                   borderRadius: BorderRadius.circular(12)),
-              //             )
-              //           ],
-              //         ),
-              //       ),
-              //     ],
-              //   ),
-              // )
             ],
           ),
         ),
@@ -1771,20 +992,6 @@ class _NewOrdersState extends State<NewOrders> {
         ),
       ),
     );
-
-    // Container(
-    //   color: Colors.white,
-    //   child: Center(
-    //     child: Text(
-    //       "NewOrders",
-    //       style: TextStyle(
-    //         color: Colors.black,
-    //         fontSize: 45,
-    //         fontWeight: FontWeight.w500,
-    //       ),
-    //     ),
-    //   ),
-    // );
   }
 
   Widget deliveryPoint() {

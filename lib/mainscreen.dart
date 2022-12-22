@@ -1,17 +1,12 @@
-import 'package:borzo/someWidgets/Chat.dart';
-import 'package:borzo/Neworders.dart';
-import 'package:borzo/Profile.dart';
-import 'package:borzo/orders.dart';
+import 'package:borzo/Pages/Chat.dart';
+
+import 'package:borzo/Pages/Neworders.dart';
+import 'package:borzo/Pages/Profile.dart';
+import 'package:borzo/Pages/orders.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-// class _mainScreenState extends State<mainScreen> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return
-//   }
-// }
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -23,11 +18,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int pageIndex = 0;
 
-  final pages = [
-    const orders(),
-
-
-   const Profile()];
+  final pages = [const orders(), const Profile()];
 
   @override
   Widget build(BuildContext context) {
@@ -96,7 +87,7 @@ class _HomePageState extends State<HomePage> {
             onPressed: () {
               setState(() {
                 Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => chat()));
+                    context, MaterialPageRoute(builder: (context) => Chat()));
               });
             },
             icon: pageIndex == 2
