@@ -1,5 +1,12 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter_geocoder/geocoder.dart';
+import 'package:flutter_geocoder/geocoder.dart';
+import 'package:flutter_geocoder/geocoder.dart';
+import 'package:flutter_geocoder/model.dart';
+import 'package:geolocator/geolocator.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -15,6 +22,8 @@ class BrozoMap extends StatefulWidget {
 
 class _BrozoMapState extends State<BrozoMap> {
   Completer<GoogleMapController> _controller = Completer();
+
+  TextEditingController AddressController = TextEditingController();
 
   static const CameraPosition _kLake = CameraPosition(
     // bearing: 192.8334901395799,
@@ -61,12 +70,26 @@ class _BrozoMapState extends State<BrozoMap> {
       children: [
         Positioned.fill(
           child: GoogleMap(
-            onTap: (LatLng latlang) {
+            onTap: (LatLng latlang) async {
               // print('or lat and long is: $latlang');
               var valuess = latlang;
 
               print(valuess);
-             
+
+              final coordinates =
+                  new Coordinates(latlang.latitude, latlang.longitude);
+              var address = await Geocoder.local
+                  .findAddressesFromCoordinates(coordinates);
+
+              var first = address.first;
+              print("Address: " +
+                  first.featureName.toString() +
+                  first.addressLine.toString());
+
+              setState(() {
+                AddressController.text =
+                    first.featureName.toString() + first.addressLine.toString();
+              });
             },
 
             onMapCreated: (GoogleMapController controller) {
@@ -82,11 +105,10 @@ class _BrozoMapState extends State<BrozoMap> {
           ),
         ),
         Center(
-          child: Icon(
-            Icons.location_city,
-            size: 40,
+          child: TextFormField(
+            controller: AddressController,
           ),
-        ),
+        )
         // Text(finalvalue)
       ],
     ));
