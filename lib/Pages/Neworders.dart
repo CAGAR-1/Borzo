@@ -19,6 +19,8 @@ class _NewOrdersState extends State<NewOrders> {
   TextEditingController addes = TextEditingController();
   TextEditingController PickUpAddress = TextEditingController();
   bool is_visible = true;
+
+  
   bool showtext = true;
 
   weightValue(updateweight) {

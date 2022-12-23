@@ -83,7 +83,7 @@ class _ChatState extends State<Chat> {
           Positioned.fill(
               child: Padding(
             padding: const EdgeInsets.only(
-                bottom: 425, left: 20, right: 20, top: 180),
+                bottom: 425, left: 20, right: 20, top: 150),
             child: Container(
               child: Padding(
                 padding: EdgeInsets.all(20),

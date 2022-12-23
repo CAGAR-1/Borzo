@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:borzo/Pages/Neworders.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_geocoder/geocoder.dart';
@@ -48,10 +47,6 @@ class _BrozoMapState extends State<BrozoMap> {
         infoWindow: InfoWindow(title: "My position"))
   ];
 
-
-
-
-
   int id = 1;
   Set<Polyline> _polylines = Set<Polyline>();
   List<LatLng> polylineCoordinates = [];
@@ -88,7 +83,7 @@ class _BrozoMapState extends State<BrozoMap> {
               setState(() {
                 widget.controller.text =
                     first.featureName.toString() + first.addressLine.toString();
-                Navigator.pop(context);
+                Get.to(NewOrders);
               });
             },
 
@@ -104,12 +99,15 @@ class _BrozoMapState extends State<BrozoMap> {
             myLocationButtonEnabled: true,
           ),
         ),
-        // Center(
-        //   child: TextFormField(
-        //     controller: AddressController,
-        //   ),
-        // )
-        // Text(finalvalue)
+        Center(
+          child: Image(
+            image: AssetImage(
+              "images/marker.png",
+            ),
+            height: 30,
+            width: 30,
+          ),
+        )
       ],
     ));
   }
