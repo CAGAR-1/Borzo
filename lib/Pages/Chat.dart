@@ -29,8 +29,6 @@ class _ChatState extends State<Chat> {
               child: Padding(
             padding: const EdgeInsets.only(bottom: 500),
             child: Container(
-              // height: 100,
-              // width: 100,
               color: Colors.blue,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -41,10 +39,15 @@ class _ChatState extends State<Chat> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Icon(
-                          Icons.clear,
-                          color: Colors.white,
-                          size: 30,
+                        InkWell(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: Icon(
+                            Icons.clear,
+                            color: Colors.white,
+                            size: 30,
+                          ),
                         )
                       ],
                     ),
@@ -83,7 +86,7 @@ class _ChatState extends State<Chat> {
           Positioned.fill(
               child: Padding(
             padding: const EdgeInsets.only(
-                bottom: 425, left: 20, right: 20, top: 150),
+                bottom: 435, left: 20, right: 20, top: 225),
             child: Container(
               child: Padding(
                 padding: EdgeInsets.all(20),
