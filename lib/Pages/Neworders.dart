@@ -20,8 +20,12 @@ class _NewOrdersState extends State<NewOrders> {
   TextEditingController PickUpAddress = TextEditingController();
   bool is_visible = true;
 
-  
+  bool isChecked = false;
+
   bool showtext = true;
+  bool selected = true;
+
+  bool AddtionalService = false;
 
   weightValue(updateweight) {
     setState(() {
@@ -478,172 +482,8 @@ class _NewOrdersState extends State<NewOrders> {
                 height: 20,
               ),
 
-              Row(
-                children: [
-                  CircleAvatar(
-                    backgroundColor: Colors.black,
-                    maxRadius: 13,
-                    child: Text(
-                      "1",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Expanded(
-                      child: Text(
-                    "Pick Up point",
-                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
-                  )),
-                ],
-              ),
+              PickUpPoint(),
 
-              SizedBox(
-                height: 20,
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12),
-                    child: Container(
-                      height: 330,
-                      width: 2,
-                      color: Colors.black,
-                    ),
-                  ),
-                  Expanded(
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          TextFormField(
-                            controller: PickUpAddress,
-                            decoration: InputDecoration(
-                                label: Text("Address"),
-                                suffixIcon: InkWell(
-                                    onTap: () {
-                                      Get.to(
-                                          BrozoMap(controller: PickUpAddress));
-                                    },
-                                    child: Icon(Icons.add_location))),
-                            textAlign: TextAlign.start,
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Visibility(
-                            visible: is_visible,
-                            child: Container(
-                              child: Row(
-                                children: [
-                                  Row(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Row(
-                                          children: [
-                                            Icon(
-                                              Icons.timer,
-                                              color: Colors.blue,
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            "Enter the address to find out\nWhen the courier will arrive",
-                                            style: TextStyle(fontSize: 15),
-                                          ),
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              width: MediaQuery.of(context).size.width * 0.8,
-                              height: MediaQuery.of(context).size.height * 0.07,
-                              decoration: BoxDecoration(
-                                  color: Colors.blue.withOpacity(0.3),
-                                  borderRadius: BorderRadius.circular(12)),
-                            ),
-                          ),
-                          CustomTextField(
-                            sicon: Icon(Icons.person),
-                            label: 'Phone Number',
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Container(
-                            child: Column(
-                              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Icon(Icons.nordic_walking),
-                                        Text(
-                                          "Instruction for the courier",
-                                          style: TextStyle(
-                                            fontSize: 18,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Row(
-                                      children: [
-                                        Icon(Icons.keyboard_arrow_down)
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Text(
-                                  "The courier will buy out the goods or carry out other instructions",
-                                  style: TextStyle(color: Colors.grey),
-                                )
-                              ],
-                            ),
-                            height: MediaQuery.of(context).size.height * 0.08,
-                            decoration: BoxDecoration(
-                                color: Colors.white.withOpacity(0.3),
-                                borderRadius: BorderRadius.circular(12)),
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Row(
-                            children: [
-                              Text("Additional Services ",
-                                  style: TextStyle(
-                                      fontSize: 20, color: Colors.grey)),
-                              Icon(Icons.keyboard_arrow_down)
-                            ],
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                        ]),
-                  ),
-                ],
-              ),
               SizedBox(
                 height: 50,
               ),
@@ -657,36 +497,42 @@ class _NewOrdersState extends State<NewOrders> {
                   })),
               Padding(
                 padding: const EdgeInsets.all(12.0),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Container(
-                        height: 50,
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 20),
-                              child: Icon(
-                                Icons.add,
-                                color: Colors.grey,
-                                size: 40,
+                child: InkWell(
+                  onTap: () {
+                    print("Clicke sucessfully");
+                    addDeliveryPoint();
+                  },
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          height: 50,
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 20),
+                                child: Icon(
+                                  Icons.add,
+                                  color: Colors.grey,
+                                  size: 40,
+                                ),
                               ),
-                            ),
-                            Text(
-                              "Add Delivery Point",
-                              style: TextStyle(
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black.withOpacity(0.5)),
-                            )
-                          ],
+                              Text(
+                                "Add Delivery Point",
+                                style: TextStyle(
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black.withOpacity(0.5)),
+                              )
+                            ],
+                          ),
+                          decoration: BoxDecoration(
+                              color: Colors.grey[300],
+                              borderRadius: BorderRadius.circular(50)),
                         ),
-                        decoration: BoxDecoration(
-                            color: Colors.grey[300],
-                            borderRadius: BorderRadius.circular(50)),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
               CustomSwitch(
@@ -757,7 +603,7 @@ class _NewOrdersState extends State<NewOrders> {
                 style: TextStyle(color: Colors.grey, fontSize: 13),
               ),
               SizedBox(
-                height: 30,
+                height: 10,
               ),
               CustomTextField(label: "Your Phone"),
               SizedBox(
@@ -963,32 +809,43 @@ class _NewOrdersState extends State<NewOrders> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                children: [
-                  Container(
-                    height: 30,
-                    width: 110,
-                    child: Row(
-                      children: [
-                        Text(
-                          "RS",
-                          style: TextStyle(fontSize: 20),
-                        ),
-                        SizedBox(
-                          width: 8,
-                        ),
-                        Text(
-                          "45",
-                          style: TextStyle(fontSize: 20),
-                        ),
-                        SizedBox(
-                          width: 13,
-                        ),
-                        Icon(Icons.keyboard_arrow_down)
-                      ],
-                    ),
-                  )
-                ],
+              InkWell(
+                onTap: () {
+                  print("adsf");
+                  showModalBottomSheet(
+                      context: context,
+                      useRootNavigator: true,
+                      builder: (context) {
+                        return Text("asdf");
+                      });
+                },
+                child: Row(
+                  children: [
+                    Container(
+                      height: 30,
+                      width: 110,
+                      child: Row(
+                        children: [
+                          Text(
+                            "RS",
+                            style: TextStyle(fontSize: 20),
+                          ),
+                          SizedBox(
+                            width: 8,
+                          ),
+                          Text(
+                            "45",
+                            style: TextStyle(fontSize: 20),
+                          ),
+                          SizedBox(
+                            width: 13,
+                          ),
+                          Icon(Icons.keyboard_arrow_down)
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ),
               Container(
                 child: Center(
@@ -1021,7 +878,6 @@ class _NewOrdersState extends State<NewOrders> {
                   index == 1 ? '2' : currentIndex.toString(),
                   style: TextStyle(
                       fontWeight: FontWeight.bold, color: Colors.white),
-                
                 ),
               ),
               SizedBox(
@@ -1039,26 +895,14 @@ class _NewOrdersState extends State<NewOrders> {
           IntrinsicHeight(
             child: Row(
               children: [
-                Column(
-                  children: const [
-                    // Container(
-                    //   color: Colors.black,
-                    //   width: 1,
-                    //   height: 335,
-                    // ),
-                    SizedBox(
-                      height: 350,
-                      child: VerticalDivider(
-                        color: Colors.black,
-                        width: 25,
-                        indent: 15,
-                        thickness: 2.2,
-                      ),
-                    ),
-                  ],
+                VerticalDivider(
+                  color: Colors.black,
+                  width: 22,
+                  indent: 20,
+                  thickness: 2,
                 ),
                 const SizedBox(
-                  width: 20,
+                  width: 15,
                 ),
                 Expanded(
                   child: Column(
@@ -1101,9 +945,6 @@ class _NewOrdersState extends State<NewOrders> {
                           ),
                         ),
                       ),
-                      const SizedBox(
-                        height: 10,
-                      ),
                       SizedBox(
                           // height: 50,
                           child: CustomTextField(
@@ -1113,6 +954,281 @@ class _NewOrdersState extends State<NewOrders> {
                       const SizedBox(
                         height: 10,
                       ),
+                      SizedBox(
+                        width: double.infinity,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                print("Clicked");
+                                showModalBottomSheet(
+                                    context: context,
+                                    builder: (context) {
+                                      return StatefulBuilder(
+                                        builder: (context, setState) {
+                                          return Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 10, top: 40),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  "Instruction for the courier",
+                                                  style:
+                                                      TextStyle(fontSize: 20),
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    Container(
+                                                      child: Row(
+                                                        children: [
+                                                          Checkbox(
+                                                            value: isChecked,
+                                                            onChanged: (value) {
+                                                              setState(() {
+                                                                isChecked =
+                                                                    value!;
+                                                              });
+                                                            },
+                                                          ),
+                                                          Text(
+                                                              "Collect Cash on Delivery")
+                                                        ],
+                                                      ),
+                                                      height: 40,
+                                                      width: 200,
+                                                      color: Colors.grey[200],
+                                                    ),
+                                                    SizedBox(
+                                                      width: 6,
+                                                    ),
+                                                    Container(
+                                                      child: Row(
+                                                        children: [
+                                                          SizedBox(
+                                                            height: 2,
+                                                            child: InkWell(
+                                                              onTap: () {
+                                                                Get.snackbar("",
+                                                                    "aslkdfj;lkasdfj;laksfdj");
+                                                              },
+                                                              child: Checkbox(
+                                                                value: !pressed,
+                                                                onChanged:
+                                                                    (value) {
+                                                                  setState(() {
+                                                                    
+                                                                  });
+                                                                },
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          Text(
+                                                            "Buy for me",
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .grey),
+                                                          )
+                                                        ],
+                                                      ),
+                                                      height: 40,
+                                                      width: 150,
+                                                      color: Colors.grey[200],
+                                                    ),
+                                                    Expanded(
+                                                        child: Container(
+                                                      height: 100,
+                                                      color: Colors.white,
+                                                    )),
+                                                  ],
+                                                )
+                                              ],
+                                            ),
+                                          );
+                                        },
+                                      );
+                                    });
+                              },
+                              child: Row(
+                                children: const [
+                                  Icon(Icons.directions_run_rounded),
+                                  Text(
+                                    'Instruction for the courier',
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            // SizedBox(
+                            //   width: MediaQuery.of(context).size.width / 3.99,
+                            // ),
+                            IconButton(
+                              onPressed: () {},
+                              icon: const Icon(
+                                Icons.expand_more_outlined,
+                                color: Colors.grey,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const Text(
+                        'The courier will buy out the goods, recieve cash\nor carry out the instruction.',
+                        style: TextStyle(fontSize: 15, color: Colors.grey),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        children: [
+                          const Text(
+                            'Addtional services',
+                            style: TextStyle(
+                                fontSize: 17,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.grey),
+                          ),
+                          IconButton(
+                            color: Colors.grey,
+                            icon: Icon(selected
+                                ? Icons.expand_more
+                                : Icons.expand_less),
+                            onPressed: () {
+                              setState(() {
+                                selected = !selected;
+                                AddtionalService = !AddtionalService;
+                              });
+                            },
+                          ),
+                        ],
+                      ),
+                      Visibility(
+                        visible: AddtionalService,
+                        child: Column(
+                          children: [
+                            CustomTextField(label: "ads"),
+                            CustomTextField(label: "adsf"),
+                          ],
+                        ),
+                      ),
+                      index >= 2
+                          ? InkWell(
+                              onTap: () {},
+                              child: SizedBox(
+                                child: Align(
+                                  alignment: Alignment.centerRight,
+                                  child: TextButton(
+                                      onPressed: () {
+                                        removeDeliveryPoint();
+                                        print(currentIndex);
+                                      },
+                                      child: Text(
+                                        'Remove address',
+                                        style: TextStyle(
+                                            // color: blueColor,
+                                            color: Colors.blue,
+                                            fontSize: 17),
+                                      )),
+                                ),
+                              ),
+                            )
+                          : SizedBox(),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget PickUpPoint() {
+    return SizedBox(
+      child: Column(
+        children: [
+          Row(
+            children: [
+              CircleAvatar(
+                backgroundColor: Colors.black,
+                radius: 12,
+                child: Text(
+                  "1",
+                ),
+              ),
+              SizedBox(
+                width: 15,
+              ),
+              Text(
+                'Pick Up point',
+                style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
+                    fontSize: 17),
+              ),
+            ],
+          ),
+          IntrinsicHeight(
+            child: Row(
+              children: [
+                VerticalDivider(
+                  color: Colors.black,
+                  width: 22,
+                  indent: 20,
+                  thickness: 2,
+                ),
+                const SizedBox(
+                  width: 15,
+                ),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                          child: CustomTextField(
+                        label: 'asdf', sicon: Icon(Icons.phone),
+                        // suffixIcon: Icons.person_outline_sharp,
+                      )),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Visibility(
+                        visible: is_visible,
+                        child: Container(
+                          padding: EdgeInsets.all(8),
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              // color: blueColor.withOpacity(0.15)
+                              color: Colors.blue.withOpacity(0.5)),
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.timer,
+                                // color: blueColor,
+                                color: Colors.blue,
+                              ),
+                              const Text(
+                                'Enter the address to find out\nwhen the courier will arrive',
+                                style: TextStyle(
+                                  fontSize: 15,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                          // height: 50,
+                          child: CustomTextField(
+                        label: 'asdf', sicon: Icon(Icons.phone),
+                        // suffixIcon: Icons.person_outline_sharp,
+                      )),
                       SizedBox(
                         width: double.infinity,
                         child: Row(
@@ -1152,51 +1268,35 @@ class _NewOrdersState extends State<NewOrders> {
                       Row(
                         children: [
                           const Text(
-                            ' services',
+                            'Addtional services',
                             style: TextStyle(
                                 fontSize: 17,
                                 fontWeight: FontWeight.w500,
                                 color: Colors.grey),
                           ),
                           IconButton(
+                            color: Colors.grey,
+                            icon: Icon(selected
+                                ? Icons.expand_more
+                                : Icons.expand_less),
                             onPressed: () {
-                              print("Clicked");
-                              addDeliveryPoint();
+                              setState(() {
+                                selected = !selected;
+                                AddtionalService = !AddtionalService;
+                              });
                             },
-                            icon: const Icon(
-                              Icons.expand_more,
-                              color: Colors.grey,
-                            ),
-                            style: TextButton.styleFrom(
-                              minimumSize: Size.zero,
-                              padding: EdgeInsets.zero,
-                              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                            ),
-                          )
+                          ),
                         ],
                       ),
-                      index >= 2
-                          ? InkWell(
-                              onTap: () {},
-                              child: SizedBox(
-                                child: Align(
-                                  alignment: Alignment.centerRight,
-                                  child: TextButton(
-                                      onPressed: () {
-                                        removeDeliveryPoint();
-                                        print(currentIndex);
-                                      },
-                                      child: Text(
-                                        'Remove address',
-                                        style: TextStyle(
-                                            // color: blueColor,
-                                            color: Colors.blue,
-                                            fontSize: 17),
-                                      )),
-                                ),
-                              ),
-                            )
-                          : SizedBox(),
+                      Visibility(
+                        visible: AddtionalService,
+                        child: Column(
+                          children: [
+                            CustomTextField(label: "ads"),
+                            CustomTextField(label: "adsf"),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),
