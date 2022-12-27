@@ -6,7 +6,7 @@ import 'package:borzo/map.dart';
 import 'package:borzo/widgets/switch.dart';
 import 'package:borzo/widgets/textfield.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+// import 'package:get/get.dart';
 
 class NewOrders extends StatefulWidget {
   const NewOrders({Key? key}) : super(key: key);
@@ -965,88 +965,176 @@ class _NewOrdersState extends State<NewOrders> {
                                 showModalBottomSheet(
                                     context: context,
                                     builder: (context) {
+                                      Color mainColor = Colors.red;
+                                      bool ccolor = true;
+                                      bool hideText = false;
+
                                       return StatefulBuilder(
                                         builder: (context, setState) {
-                                          return Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 10, top: 40),
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  "Instruction for the courier",
-                                                  style:
-                                                      TextStyle(fontSize: 20),
-                                                ),
-                                                Row(
-                                                  children: [
-                                                    Container(
-                                                      child: Row(
-                                                        children: [
-                                                          Checkbox(
-                                                            value: isChecked,
-                                                            onChanged: (value) {
-                                                              setState(() {
-                                                                isChecked =
-                                                                    value!;
-                                                              });
-                                                            },
-                                                          ),
-                                                          Text(
-                                                              "Collect Cash on Delivery")
-                                                        ],
-                                                      ),
-                                                      height: 40,
-                                                      width: 200,
-                                                      color: Colors.grey[200],
-                                                    ),
-                                                    SizedBox(
-                                                      width: 6,
-                                                    ),
-                                                    Container(
-                                                      child: Row(
-                                                        children: [
-                                                          SizedBox(
-                                                            height: 2,
-                                                            child: InkWell(
-                                                              onTap: () {
-                                                                Get.snackbar("",
-                                                                    "aslkdfj;lkasdfj;laksfdj");
+                                          return Wrap(children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                left: 20,
+                                                bottom: 10,
+                                              ),
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    "Instruction for the courier",
+                                                    style: TextStyle(
+                                                        fontSize: 20,
+                                                        fontWeight:
+                                                            FontWeight.w400),
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      Container(
+                                                        child: Row(
+                                                          children: [
+                                                            Checkbox(
+                                                              activeColor:
+                                                                  Colors.white,
+                                                              checkColor:
+                                                                  Colors.black,
+                                                              value: isChecked,
+                                                              onChanged:
+                                                                  (value) {
+                                                                setState(() {
+                                                                  isChecked =
+                                                                      value!;
+                                                                  hideText =
+                                                                      !hideText;
+
+                                                                  ccolor =
+                                                                      !ccolor;
+                                                                });
                                                               },
-                                                              child: Checkbox(
-                                                                value: !pressed,
-                                                                onChanged:
-                                                                    (value) {
-                                                                  setState(() {
-                                                                    
-                                                                  });
+                                                            ),
+                                                            Text(
+                                                              "Collect Cash on Delivery",
+                                                              style: TextStyle(
+                                                                  color: ccolor
+                                                                      ? Colors
+                                                                          .black
+                                                                      : Colors
+                                                                          .white),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                        height: 40,
+                                                        width: 200,
+                                                        color: ccolor
+                                                            ? Colors.grey[200]
+                                                            : Colors.black,
+                                                      ),
+                                                      SizedBox(
+                                                        width: 6,
+                                                      ),
+                                                      Container(
+                                                        child: Row(
+                                                          children: [
+                                                            SizedBox(
+                                                              height: 2,
+                                                              child: InkWell(
+                                                                onTap: () {
+                                                                  // Get.snackbar(
+                                                                  //     "",
+                                                                  //     "aslkdfj;lkasdfj;laksfdj");
                                                                 },
+                                                                child: Checkbox(
+                                                                  value:
+                                                                      !pressed,
+                                                                  onChanged:
+                                                                      (value) {
+                                                                    setState(
+                                                                        () {});
+                                                                  },
+                                                                ),
                                                               ),
                                                             ),
-                                                          ),
-                                                          Text(
-                                                            "Buy for me",
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .grey),
-                                                          )
-                                                        ],
+                                                            Text(
+                                                              "Buy for me",
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .grey),
+                                                            )
+                                                          ],
+                                                        ),
+                                                        height: 40,
+                                                        width: 150,
+                                                        color: Colors.grey[200],
                                                       ),
-                                                      height: 40,
-                                                      width: 150,
-                                                      color: Colors.grey[200],
+                                                      // Expanded(
+                                                      //     child: Container(
+                                                      //   height: 100,
+                                                      //   color: Colors.white,
+                                                      // )),
+                                                    ],
+                                                  ),
+                                                  Visibility(
+                                                    visible: hideText,
+                                                    child: Column(
+                                                      children: [
+                                                        CustomTextField(
+                                                            label: "Amount"),
+                                                        CustomTextField(
+                                                            label:
+                                                                "Card or Wallet Number"),
+                                                      ],
                                                     ),
-                                                    Expanded(
+                                                  ),
+                                                  Text(
+                                                    "Instruction for Courier",
+                                                    style: TextStyle(
+                                                        fontSize: 15,
+                                                        color: Colors.grey,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                  TextField(
+                                                    decoration: InputDecoration(
+                                                      hintText:
+                                                          "For example call in 30 minutes",
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    height:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height *
+                                                            0.07,
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      Expanded(
                                                         child: Container(
-                                                      height: 100,
-                                                      color: Colors.white,
-                                                    )),
-                                                  ],
-                                                )
-                                              ],
+                                                          child: Center(
+                                                            child: Text(
+                                                              "Confirm",
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .white,
+                                                                  fontSize: 20),
+                                                            ),
+                                                          ),
+                                                          height: 50,
+                                                          decoration: BoxDecoration(
+                                                              color:
+                                                                  Colors.blue,
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          30)),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
                                             ),
-                                          );
+                                          ]);
                                         },
                                       );
                                     });
