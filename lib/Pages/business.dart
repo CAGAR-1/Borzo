@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-class Individual extends StatefulWidget {
-  const Individual({super.key});
+class Business extends StatefulWidget {
+  const Business({super.key});
 
   @override
-  State<Individual> createState() => _IndividualState();
+  State<Business> createState() => _BusinessState();
 }
 
-class _IndividualState extends State<Individual> {
+class _BusinessState extends State<Business> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,8 +21,8 @@ class _IndividualState extends State<Individual> {
         child: Column(
           children: [
             CustomTextField(
-              label: "Phone number",
-              initvalue: "+914",
+              label: "Email",
+            
             ),
             SizedBox(
               height: 10,

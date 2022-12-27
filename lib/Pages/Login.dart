@@ -1,3 +1,5 @@
+import 'package:borzo/Pages/business.dart';
+import 'package:borzo/Pages/individual.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -86,10 +88,7 @@ class _LoginState extends State<Login> {
             backgroundColor: Colors.white, // TabBar
           ), // AppBar
           body: TabBarView(
-            children: [
-              Icon(Icons.holiday_village),
-              Icon(Icons.abc_outlined),
-            ],
+            children: [Individual(), Business()],
           ), // TabBarView
         ), // Scaffold
       ), // Defa,
