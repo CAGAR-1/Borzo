@@ -17,7 +17,12 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int pageIndex = 0;
 
-  final pages = [const orders(), const Profile()];
+  final pages = [
+    const orders(),
+    Profile(
+      locations: "Chennai",
+    )
+  ];
 
   @override
   Widget build(BuildContext context) {

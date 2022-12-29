@@ -1,14 +1,41 @@
 import 'dart:ui';
 
+import 'package:borzo/Pages/Country_Name.dart';
+import 'package:borzo/Pages/Login.dart';
+import 'package:borzo/Pages/Neworders.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 
-class Profile extends StatelessWidget {
-  const Profile({Key? key}) : super(key: key);
+class Profile extends StatefulWidget {
+  String? locations;
+
+  Profile({super.key, this.locations});
+
+  @override
+  State<Profile> createState() => _ProfileState();
+}
+
+class _ProfileState extends State<Profile> {
+  @override
+
+  // weightValue(updateweight) {
+  //   setState(() {
+  //     CurrentLocation = updateweight;
+  //   });
+  // }
+
+  // String locations = "asdf";
+
+  // changeloc() {
+  //   setState(() {
+  //     String CurrentLocation = "sadfasdf";
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Column(
+    return Scaffold(
+      body: Column(
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -36,18 +63,29 @@ class Profile extends StatelessWidget {
                         )
                       ],
                     ),
-                    Row(
-                      children: [
-                        Text("Mumbai"),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Image(
-                          image: AssetImage('images/india.png'),
-                          height: 30,
-                          width: 30,
-                        )
-                      ],
+                    InkWell(
+                      onTap: (() {
+                        setState(() {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => CountryName()),
+                          );
+                        });
+                      }),
+                      child: Row(
+                        children: [
+                          Text(widget.locations.toString()),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Image(
+                            image: AssetImage('images/india.png'),
+                            height: 30,
+                            width: 30,
+                          )
+                        ],
+                      ),
                     ),
                   ],
                 ),
@@ -77,21 +115,31 @@ class Profile extends StatelessWidget {
                           Expanded(
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Container(
-                                child: Center(
-                                    child: Text(
-                                  "Login",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 20),
-                                )),
-                                // width: MediaQuery.of(context).size.width / 1.5,
-                                // height: MediaQuery.of(context).size.height / 0.9,
-                                height: MediaQuery.of(context).size.height / 18,
+                              child: InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => Login()),
+                                  );
+                                },
+                                child: Container(
+                                  child: Center(
+                                      child: Text(
+                                    "Login",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 20),
+                                  )),
+                                  // width: MediaQuery.of(context).size.width / 1.5,
+                                  // height: MediaQuery.of(context).size.height / 0.9,
+                                  height:
+                                      MediaQuery.of(context).size.height / 18,
 
-                                // width: 100,
-                                decoration: BoxDecoration(
-                                    color: Colors.blue,
-                                    borderRadius: BorderRadius.circular(20)),
+                                  // width: 100,
+                                  decoration: BoxDecoration(
+                                      color: Colors.blue,
+                                      borderRadius: BorderRadius.circular(20)),
+                                ),
                               ),
                             ),
                           ),

@@ -25,64 +25,45 @@ class _LoginState extends State<Login> {
             bottom: TabBar(
               indicatorColor: Colors.transparent,
               tabs: [
+                Container(
+                  child: Tab(
+                    child: Container(
+                      height: MediaQuery.of(context).size.height,
+                      width: MediaQuery.of(context).size.width,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                        color: Colors.grey[200],
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Individual",
+                          style: TextStyle(color: Colors.black, fontSize: 20),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
                 Tab(
                   child: Container(
-                    child: Text(
-                      "Individual",
-                      style: TextStyle(color: Colors.black, fontSize: 20),
+                    height: MediaQuery.of(context).size.height,
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      color: Colors.grey[200],
                     ),
-                    // color: Colors.grey[200],
-                  ),
-                  // child: InkWell(
-                  // onTap: (() {
-                  //   setState(() {
-                  //     print(ChangeColor);
-                  //     ChangeColor = !ChangeColor;
-                  //     print(ChangeColor);
-                  //   });
-                  // }),
-                  // child: Container(
-                  //   decoration: BoxDecoration(
-                  //       color: ChangeColor ? Colors.grey[200] : Colors.white,
-                  //       borderRadius: BorderRadius.circular(20)),
-                  //   child: Center(
-                  //     child: Text(
-                  //       "Individual",
-                  //       style: TextStyle(color: Colors.black, fontSize: 20),
-                  //     ),
-                  //   ),
-                  // ),
-                ),
-                Tab(
-                  child: Text(
-                    "Business",
-                    style: TextStyle(color: Colors.black, fontSize: 20),
+                    child: Center(
+                      child: Text(
+                        "Business",
+                        style: TextStyle(color: Colors.black, fontSize: 20),
+                      ),
+                    ),
                   ),
 
                   // child:
-
-                  // InkWell(
-                  // onTap: (() {
-                  //   setState(() {
-                  //     ChangeColor = !ChangeColor;
-                  //   });
-                  // }),
-                  // child:
-
-                  // Container(
-                  //   height: MediaQuery.of(context).size.height,
-                  //   width: MediaQuery.of(context).size.width,
-                  //   decoration: BoxDecoration(
-                  //       color: ChangeColor ? Colors.white : Colors.grey[200],
-                  //       borderRadius: BorderRadius.circular(20)),
-                  //   child: Center(
-                  //     child: Text(
-                  //       "Business",
-                  //       style: TextStyle(color: Colors.black, fontSize: 20),
-                  //     ),
-                  //   ),
-                  // ),
                 ),
+                // SizedBox(
+                //   height: 30,
+                // )
               ],
             ),
             backgroundColor: Colors.white, // TabBar

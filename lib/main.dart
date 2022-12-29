@@ -1,6 +1,8 @@
 import 'package:borzo/Pages/Chat.dart';
+import 'package:borzo/Pages/Country_Name.dart';
 import 'package:borzo/Pages/Login.dart';
 import 'package:borzo/Pages/Neworders.dart';
+import 'package:borzo/Pages/Profile.dart';
 import 'package:borzo/Pages/searchpage.dart';
 
 import 'package:borzo/mainscreen.dart';
@@ -11,9 +13,9 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
-  runApp(GetMaterialApp(
+  runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     theme: ThemeData(fontFamily: GoogleFonts.lato().fontFamily),
-    home: Login(),
+    home: HomePage(),
   ));
 }
