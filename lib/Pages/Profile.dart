@@ -17,22 +17,6 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
   @override
-
-  // weightValue(updateweight) {
-  //   setState(() {
-  //     CurrentLocation = updateweight;
-  //   });
-  // }
-
-  // String locations = "asdf";
-
-  // changeloc() {
-  //   setState(() {
-  //     String CurrentLocation = "sadfasdf";
-  //   });
-  // }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(

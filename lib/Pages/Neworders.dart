@@ -18,6 +18,7 @@ class NewOrders extends StatefulWidget {
 class _NewOrdersState extends State<NewOrders> {
   TextEditingController addes = TextEditingController();
   TextEditingController PickUpAddress = TextEditingController();
+
   bool is_visible = true;
 
   bool isChecked = false;
@@ -908,11 +909,30 @@ class _NewOrdersState extends State<NewOrders> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
-                          child: CustomTextField(
-                        label: 'asdf', sicon: Icon(Icons.phone),
-                        // suffixIcon: Icons.person_outline_sharp,
-                      )),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: CustomTextField(
+                              controller: PickUpAddress,
+                              label: 'location',
+                              // sicon: Icon(Icons.location_on_outlined),
+                              // suffixIcon: Icons.person_outline_sharp,
+                            ),
+                          ),
+                          InkWell(
+                              onTap: () {
+                                print('adsf');
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => BrozoMap(
+                                            controller: PickUpAddress,
+                                          )),
+                                );
+                              },
+                              child: Icon(Icons.location_on_outlined))
+                        ],
+                      ),
                       const SizedBox(
                         height: 10,
                       ),
@@ -1279,8 +1299,8 @@ class _NewOrdersState extends State<NewOrders> {
                     children: [
                       SizedBox(
                           child: CustomTextField(
-                        label: 'asdf', sicon: Icon(Icons.phone),
-                        // suffixIcon: Icons.person_outline_sharp,
+                        label: 'Location',
+                        sicon: Icon(Icons.location_on_outlined),
                       )),
                       const SizedBox(
                         height: 10,
