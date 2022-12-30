@@ -1,3 +1,4 @@
+import 'package:borzo/Pages/NewWidget.dart';
 import 'package:borzo/constant.dart';
 
 import 'package:borzo/Swap/DeliverNow.dart';
@@ -7,7 +8,6 @@ import 'package:borzo/map.dart';
 import 'package:borzo/widgets/switch.dart';
 import 'package:borzo/widgets/textfield.dart';
 import 'package:flutter/material.dart';
-// import 'package:get/get.dart';
 
 class NewOrders extends StatefulWidget {
   const NewOrders({Key? key}) : super(key: key);
@@ -19,6 +19,22 @@ class NewOrders extends StatefulWidget {
 class _NewOrdersState extends State<NewOrders> {
   TextEditingController addes = TextEditingController();
   TextEditingController PickUpAddress = TextEditingController();
+
+  List<NewDeliv> newdeliv = [];
+
+  @override
+  void initState() {
+    addnewDelvPoints(0);
+
+    // TODO: implement initState
+    super.initState();
+  }
+
+  void addnewDelvPoints(int index) {
+    newdeliv.add(NewDeliv(index: index));
+
+    setState(() {});
+  }
 
   List NewValue = [];
 
@@ -90,7 +106,7 @@ class _NewOrdersState extends State<NewOrders> {
     }
   }
 
-  // void _updateSelected(int index) => setState(() => currentIndex = index);
+  bool changingName = true;
 
   @override
   Widget build(BuildContext context) {
@@ -132,13 +148,14 @@ class _NewOrdersState extends State<NewOrders> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  InkWell(
+                  GestureDetector(
                     onTap: () {
-                      print("Clicked");
+                      print("clicked");
                       setState(() {
                         is_visible = true;
                         showtext = true;
-                        pressed = !pressed;
+                        pressed = true;
+                        changingName = !changingName;
                       });
                     },
                     onDoubleTap: () {
@@ -157,11 +174,10 @@ class _NewOrdersState extends State<NewOrders> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Icon(
-                              Icons.timer,
-                              size: 30,
-                              color: Colors.blue,
-                            ),
+                            Icon(Icons.timer,
+                                size: 30,
+                                // color: Colors.blue,
+                                color: pressed ? Colors.blue : Colors.grey),
                             Text(
                               "Deliver Now",
                               style: TextStyle(
@@ -214,7 +230,9 @@ class _NewOrdersState extends State<NewOrders> {
                       print("Second one is clcked");
                       setState(() {
                         is_visible = false;
+
                         showtext = false;
+                        pressed = false;
                       });
                     },
                     child: Container(
@@ -223,11 +241,11 @@ class _NewOrdersState extends State<NewOrders> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Icon(
-                              Icons.calendar_month,
-                              size: 30,
-                              color: Colors.black.withOpacity(0.5),
-                            ),
+                            Icon(Icons.calendar_month,
+                                size: 30,
+                                // color:
+                                //  Colors.black.withOpacity(0.5),
+                                color: pressed ? Colors.grey : Colors.blue),
                             Text(
                               "Schedule",
                               style: TextStyle(
@@ -271,7 +289,7 @@ class _NewOrdersState extends State<NewOrders> {
                       height: 110,
                       width: MediaQuery.of(context).size.width * 0.44,
                       decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: pressed ? Colors.white : Colors.grey[200],
                           borderRadius: BorderRadius.circular(30),
                           border:
                               Border.all(color: Colors.black.withOpacity(0.2))),
@@ -493,20 +511,20 @@ class _NewOrdersState extends State<NewOrders> {
               ListView.builder(
                   physics: NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
-                  itemCount: index,
+                  itemCount: newdeliv.length,
                   itemBuilder: ((context, index) {
-                    return deliveryPoint();
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 20),
+                      child: newdeliv[index],
+                    );
                   })),
               Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: InkWell(
                   onTap: () {
-                    increseNum = increseNum + 1;
                     print("Clicke sucessfully");
-                    addDeliveryPoint();
-
-                    print(increseNum);
-                    // print(currentIndex);
+                    print(newdeliv.length);
+                    addnewDelvPoints(newdeliv.length);
                   },
                   child: Row(
                     children: [
@@ -856,17 +874,25 @@ class _NewOrdersState extends State<NewOrders> {
                     MaterialPageRoute(builder: (context) => HomePage()),
                   );
                 },
-                child: Container(
-                  child: Center(
-                      child: Text(
-                    "Create Order",
-                    style: TextStyle(fontSize: 20),
-                  )),
-                  height: 50,
-                  width: 180,
-                  decoration: BoxDecoration(
-                      color: bluecolor,
-                      borderRadius: BorderRadius.circular(30)),
+                child: InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => NewOrders()),
+                    );
+                  },
+                  child: Container(
+                    child: Center(
+                        child: Text(
+                      "Create Order",
+                      style: TextStyle(fontSize: 20),
+                    )),
+                    height: 50,
+                    width: 180,
+                    decoration: BoxDecoration(
+                        color: bluecolor,
+                        borderRadius: BorderRadius.circular(30)),
+                  ),
                 ),
               ),
             ],
@@ -876,396 +902,396 @@ class _NewOrdersState extends State<NewOrders> {
     );
   }
 
-  Widget deliveryPoint() {
-    return SizedBox(
-      child: Column(
-        children: [
-          Row(
-            children: [
-              CircleAvatar(
-                backgroundColor: Colors.black,
-                radius: 12,
-                child: Text('d'),
-              ),
-              SizedBox(
-                width: 20,
-              ),
-              Text(
-                'Delivery point',
-                style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black,
-                    fontSize: 17),
-              ),
-            ],
-          ),
-          IntrinsicHeight(
-            child: Row(
-              children: [
-                VerticalDivider(
-                  color: Colors.black,
-                  width: 22,
-                  indent: 20,
-                  thickness: 2,
-                ),
-                const SizedBox(
-                  width: 15,
-                ),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Expanded(
-                            child: CustomTextField(
-                              controller: PickUpAddress,
-                              label: 'location',
-                            ),
-                          ),
-                          InkWell(
-                              onTap: () {
-                                print('adsf');
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => BrozoMap(
-                                            controller: PickUpAddress,
-                                          )),
-                                );
-                              },
-                              child: Icon(Icons.location_on_outlined))
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Visibility(
-                        visible: is_visible,
-                        child: Container(
-                          padding: EdgeInsets.all(8),
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              // color: blueColor.withOpacity(0.15)
-                              color: Colors.blue.withOpacity(0.5)),
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.timer,
-                                // color: blueColor,
-                                color: Colors.blue,
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              const Text(
-                                'Enter the address to find out\nwhen the courier will arrive',
-                                style: TextStyle(
-                                  fontSize: 15,
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: CustomTextField(
-                                controller: PickUpAddress,
-                                label: 'Phone Number',
-                              ),
-                            ),
-                            InkWell(
-                                onTap: () {
-                                  print('adsf');
-                                },
-                                child: Icon(Icons.phone))
-                          ],
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      SizedBox(
-                        width: double.infinity,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            InkWell(
-                              onTap: () {
-                                print("Clicked");
-                                showModalBottomSheet(
-                                    context: context,
-                                    builder: (context) {
-                                      Color mainColor = Colors.red;
-                                      bool ccolor = true;
-                                      bool hideText = false;
+  // Widget deliveryPoint() {
+  //   return SizedBox(
+  //     child: Column(
+  //       children: [
+  //         Row(
+  //           children: [
+  //             CircleAvatar(
+  //               backgroundColor: Colors.black,
+  //               radius: 12,
+  //               child: Text('d'),
+  //             ),
+  //             SizedBox(
+  //               width: 20,
+  //             ),
+  //             Text(
+  //               'Delivery point',
+  //               style: TextStyle(
+  //                   fontWeight: FontWeight.w600,
+  //                   color: Colors.black,
+  //                   fontSize: 17),
+  //             ),
+  //           ],
+  //         ),
+  //         IntrinsicHeight(
+  //           child: Row(
+  //             children: [
+  //               VerticalDivider(
+  //                 color: Colors.black,
+  //                 width: 22,
+  //                 indent: 20,
+  //                 thickness: 2,
+  //               ),
+  //               const SizedBox(
+  //                 width: 15,
+  //               ),
+  //               Expanded(
+  //                 child: Column(
+  //                   crossAxisAlignment: CrossAxisAlignment.start,
+  //                   children: [
+  //                     Row(
+  //                       children: [
+  //                         Expanded(
+  //                           child: CustomTextField(
+  //                             controller: PickUpAddress,
+  //                             label: 'location',
+  //                           ),
+  //                         ),
+  //                         InkWell(
+  //                             onTap: () {
+  //                               print('adsf');
+  //                               Navigator.push(
+  //                                 context,
+  //                                 MaterialPageRoute(
+  //                                     builder: (context) => BrozoMap(
+  //                                           controller: PickUpAddress,
+  //                                         )),
+  //                               );
+  //                             },
+  //                             child: Icon(Icons.location_on_outlined))
+  //                       ],
+  //                     ),
+  //                     const SizedBox(
+  //                       height: 10,
+  //                     ),
+  //                     Visibility(
+  //                       visible: is_visible,
+  //                       child: Container(
+  //                         padding: EdgeInsets.all(8),
+  //                         width: double.infinity,
+  //                         decoration: BoxDecoration(
+  //                             borderRadius: BorderRadius.circular(10),
+  //                             // color: blueColor.withOpacity(0.15)
+  //                             color: Colors.blue.withOpacity(0.5)),
+  //                         child: Row(
+  //                           children: [
+  //                             Icon(
+  //                               Icons.timer,
+  //                               // color: blueColor,
+  //                               color: Colors.blue,
+  //                             ),
+  //                             const SizedBox(
+  //                               width: 10,
+  //                             ),
+  //                             const Text(
+  //                               'Enter the address to find out\nwhen the courier will arrive',
+  //                               style: TextStyle(
+  //                                 fontSize: 15,
+  //                               ),
+  //                             )
+  //                           ],
+  //                         ),
+  //                       ),
+  //                     ),
+  //                     SizedBox(
+  //                       child: Row(
+  //                         children: [
+  //                           Expanded(
+  //                             child: CustomTextField(
+  //                               controller: PickUpAddress,
+  //                               label: 'Phone Number',
+  //                             ),
+  //                           ),
+  //                           InkWell(
+  //                               onTap: () {
+  //                                 print('adsf');
+  //                               },
+  //                               child: Icon(Icons.phone))
+  //                         ],
+  //                       ),
+  //                     ),
+  //                     const SizedBox(
+  //                       height: 10,
+  //                     ),
+  //                     SizedBox(
+  //                       width: double.infinity,
+  //                       child: Row(
+  //                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //                         children: [
+  //                           InkWell(
+  //                             onTap: () {
+  //                               print("Clicked");
+  //                               showModalBottomSheet(
+  //                                   context: context,
+  //                                   builder: (context) {
+  //                                     Color mainColor = Colors.red;
+  //                                     bool ccolor = true;
+  //                                     bool hideText = false;
 
-                                      return StatefulBuilder(
-                                        builder: (context, setState) {
-                                          return Wrap(children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                left: 20,
-                                                bottom: 10,
-                                              ),
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    "Instruction for the courier",
-                                                    style: TextStyle(
-                                                        fontSize: 20,
-                                                        fontWeight:
-                                                            FontWeight.w400),
-                                                  ),
-                                                  Row(
-                                                    children: [
-                                                      Container(
-                                                        child: Row(
-                                                          children: [
-                                                            Checkbox(
-                                                              activeColor:
-                                                                  Colors.white,
-                                                              checkColor:
-                                                                  Colors.black,
-                                                              value: isChecked,
-                                                              onChanged:
-                                                                  (value) {
-                                                                setState(() {
-                                                                  isChecked =
-                                                                      value!;
-                                                                  hideText =
-                                                                      !hideText;
+  //                                     return StatefulBuilder(
+  //                                       builder: (context, setState) {
+  //                                         return Wrap(children: [
+  //                                           Padding(
+  //                                             padding: const EdgeInsets.only(
+  //                                               left: 20,
+  //                                               bottom: 10,
+  //                                             ),
+  //                                             child: Column(
+  //                                               crossAxisAlignment:
+  //                                                   CrossAxisAlignment.start,
+  //                                               children: [
+  //                                                 Text(
+  //                                                   "Instruction for the courier",
+  //                                                   style: TextStyle(
+  //                                                       fontSize: 20,
+  //                                                       fontWeight:
+  //                                                           FontWeight.w400),
+  //                                                 ),
+  //                                                 Row(
+  //                                                   children: [
+  //                                                     Container(
+  //                                                       child: Row(
+  //                                                         children: [
+  //                                                           Checkbox(
+  //                                                             activeColor:
+  //                                                                 Colors.white,
+  //                                                             checkColor:
+  //                                                                 Colors.black,
+  //                                                             value: isChecked,
+  //                                                             onChanged:
+  //                                                                 (value) {
+  //                                                               setState(() {
+  //                                                                 isChecked =
+  //                                                                     value!;
+  //                                                                 hideText =
+  //                                                                     !hideText;
 
-                                                                  ccolor =
-                                                                      !ccolor;
-                                                                });
-                                                              },
-                                                            ),
-                                                            Text(
-                                                              "Collect Cash on Delivery",
-                                                              style: TextStyle(
-                                                                  color: ccolor
-                                                                      ? Colors
-                                                                          .black
-                                                                      : Colors
-                                                                          .white),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                        height: 40,
-                                                        width: 200,
-                                                        color: ccolor
-                                                            ? Colors.grey[200]
-                                                            : Colors.black,
-                                                      ),
-                                                      SizedBox(
-                                                        width: 6,
-                                                      ),
-                                                      Container(
-                                                        child: Row(
-                                                          children: [
-                                                            SizedBox(
-                                                              height: 2,
-                                                              child: InkWell(
-                                                                onTap: () {},
-                                                                child: Checkbox(
-                                                                  value:
-                                                                      !pressed,
-                                                                  onChanged:
-                                                                      (value) {
-                                                                    setState(
-                                                                        () {});
-                                                                  },
-                                                                ),
-                                                              ),
-                                                            ),
-                                                            Text(
-                                                              "Buy for me",
-                                                              style: TextStyle(
-                                                                  color: Colors
-                                                                      .grey),
-                                                            )
-                                                          ],
-                                                        ),
-                                                        height: 40,
-                                                        width: 150,
-                                                        color: Colors.grey[200],
-                                                      ),
-                                                      // Expanded(
-                                                      //     child: Container(
-                                                      //   height: 100,
-                                                      //   color: Colors.white,
-                                                      // )),
-                                                    ],
-                                                  ),
-                                                  Visibility(
-                                                    visible: hideText,
-                                                    child: Column(
-                                                      children: [
-                                                        CustomTextField(
-                                                            label: "Amount"),
-                                                        CustomTextField(
-                                                            label:
-                                                                "Card or Wallet Number"),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                  Text(
-                                                    "Instruction for Courier",
-                                                    style: TextStyle(
-                                                        fontSize: 15,
-                                                        color: Colors.grey,
-                                                        fontWeight:
-                                                            FontWeight.bold),
-                                                  ),
-                                                  TextField(
-                                                    decoration: InputDecoration(
-                                                      hintText:
-                                                          "For example call in 30 minutes",
-                                                    ),
-                                                  ),
-                                                  SizedBox(
-                                                    height:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .height *
-                                                            0.07,
-                                                  ),
-                                                  Row(
-                                                    children: [
-                                                      Expanded(
-                                                        child: Container(
-                                                          child: Center(
-                                                            child: Text(
-                                                              "Confirm",
-                                                              style: TextStyle(
-                                                                  color: Colors
-                                                                      .white,
-                                                                  fontSize: 20),
-                                                            ),
-                                                          ),
-                                                          height: 50,
-                                                          decoration: BoxDecoration(
-                                                              color:
-                                                                  Colors.blue,
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          30)),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ]);
-                                        },
-                                      );
-                                    });
-                              },
-                              child: Row(
-                                children: const [
-                                  Icon(Icons.directions_run_rounded),
-                                  Text(
-                                    'Instruction for the courier',
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w500),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            // SizedBox(
-                            //   width: MediaQuery.of(context).size.width / 3.99,
-                            // ),
-                            IconButton(
-                              onPressed: () {},
-                              icon: const Icon(
-                                Icons.expand_more_outlined,
-                                color: Colors.grey,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const Text(
-                        'The courier will buy out the goods, recieve cash\nor carry out the instruction.',
-                        style: TextStyle(fontSize: 15, color: Colors.grey),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        children: [
-                          const Text(
-                            'Addtional services',
-                            style: TextStyle(
-                                fontSize: 17,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.grey),
-                          ),
-                          IconButton(
-                            color: Colors.grey,
-                            icon: Icon(selected
-                                ? Icons.expand_more
-                                : Icons.expand_less),
-                            onPressed: () {
-                              setState(() {
-                                selected = !selected;
-                                AddtionalService = !AddtionalService;
-                              });
-                            },
-                          ),
-                        ],
-                      ),
-                      Visibility(
-                        visible: AddtionalService,
-                        child: Column(
-                          children: [
-                            CustomTextField(label: "ads"),
-                            CustomTextField(label: "adsf"),
-                          ],
-                        ),
-                      ),
-                      index >= 2
-                          ? InkWell(
-                              onTap: () {},
-                              child: SizedBox(
-                                child: Align(
-                                  alignment: Alignment.centerRight,
-                                  child: TextButton(
-                                      onPressed: () {
-                                        removeDeliveryPoint();
-                                        print(currentIndex);
-                                      },
-                                      child: Text(
-                                        'Remove address',
-                                        style: TextStyle(
-                                            // color: blueColor,
-                                            color: Colors.blue,
-                                            fontSize: 17),
-                                      )),
-                                ),
-                              ),
-                            )
-                          : SizedBox(),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  //                                                                 ccolor =
+  //                                                                     !ccolor;
+  //                                                               });
+  //                                                             },
+  //                                                           ),
+  //                                                           Text(
+  //                                                             "Collect Cash on Delivery",
+  //                                                             style: TextStyle(
+  //                                                                 color: ccolor
+  //                                                                     ? Colors
+  //                                                                         .black
+  //                                                                     : Colors
+  //                                                                         .white),
+  //                                                           ),
+  //                                                         ],
+  //                                                       ),
+  //                                                       height: 40,
+  //                                                       width: 200,
+  //                                                       color: ccolor
+  //                                                           ? Colors.grey[200]
+  //                                                           : Colors.black,
+  //                                                     ),
+  //                                                     SizedBox(
+  //                                                       width: 6,
+  //                                                     ),
+  //                                                     Container(
+  //                                                       child: Row(
+  //                                                         children: [
+  //                                                           SizedBox(
+  //                                                             height: 2,
+  //                                                             child: InkWell(
+  //                                                               onTap: () {},
+  //                                                               child: Checkbox(
+  //                                                                 value:
+  //                                                                     !pressed,
+  //                                                                 onChanged:
+  //                                                                     (value) {
+  //                                                                   setState(
+  //                                                                       () {});
+  //                                                                 },
+  //                                                               ),
+  //                                                             ),
+  //                                                           ),
+  //                                                           Text(
+  //                                                             "Buy for me",
+  //                                                             style: TextStyle(
+  //                                                                 color: Colors
+  //                                                                     .grey),
+  //                                                           )
+  //                                                         ],
+  //                                                       ),
+  //                                                       height: 40,
+  //                                                       width: 150,
+  //                                                       color: Colors.grey[200],
+  //                                                     ),
+  //                                                     // Expanded(
+  //                                                     //     child: Container(
+  //                                                     //   height: 100,
+  //                                                     //   color: Colors.white,
+  //                                                     // )),
+  //                                                   ],
+  //                                                 ),
+  //                                                 Visibility(
+  //                                                   visible: hideText,
+  //                                                   child: Column(
+  //                                                     children: [
+  //                                                       CustomTextField(
+  //                                                           label: "Amount"),
+  //                                                       CustomTextField(
+  //                                                           label:
+  //                                                               "Card or Wallet Number"),
+  //                                                     ],
+  //                                                   ),
+  //                                                 ),
+  //                                                 Text(
+  //                                                   "Instruction for Courier",
+  //                                                   style: TextStyle(
+  //                                                       fontSize: 15,
+  //                                                       color: Colors.grey,
+  //                                                       fontWeight:
+  //                                                           FontWeight.bold),
+  //                                                 ),
+  //                                                 TextField(
+  //                                                   decoration: InputDecoration(
+  //                                                     hintText:
+  //                                                         "For example call in 30 minutes",
+  //                                                   ),
+  //                                                 ),
+  //                                                 SizedBox(
+  //                                                   height:
+  //                                                       MediaQuery.of(context)
+  //                                                               .size
+  //                                                               .height *
+  //                                                           0.07,
+  //                                                 ),
+  //                                                 Row(
+  //                                                   children: [
+  //                                                     Expanded(
+  //                                                       child: Container(
+  //                                                         child: Center(
+  //                                                           child: Text(
+  //                                                             "Confirm",
+  //                                                             style: TextStyle(
+  //                                                                 color: Colors
+  //                                                                     .white,
+  //                                                                 fontSize: 20),
+  //                                                           ),
+  //                                                         ),
+  //                                                         height: 50,
+  //                                                         decoration: BoxDecoration(
+  //                                                             color:
+  //                                                                 Colors.blue,
+  //                                                             borderRadius:
+  //                                                                 BorderRadius
+  //                                                                     .circular(
+  //                                                                         30)),
+  //                                                       ),
+  //                                                     ),
+  //                                                   ],
+  //                                                 ),
+  //                                               ],
+  //                                             ),
+  //                                           ),
+  //                                         ]);
+  //                                       },
+  //                                     );
+  //                                   });
+  //                             },
+  //                             child: Row(
+  //                               children: const [
+  //                                 Icon(Icons.directions_run_rounded),
+  //                                 Text(
+  //                                   'Instruction for the courier',
+  //                                   style: TextStyle(
+  //                                       fontSize: 16,
+  //                                       fontWeight: FontWeight.w500),
+  //                                 ),
+  //                               ],
+  //                             ),
+  //                           ),
+  //                           // SizedBox(
+  //                           //   width: MediaQuery.of(context).size.width / 3.99,
+  //                           // ),
+  //                           IconButton(
+  //                             onPressed: () {},
+  //                             icon: const Icon(
+  //                               Icons.expand_more_outlined,
+  //                               color: Colors.grey,
+  //                             ),
+  //                           ),
+  //                         ],
+  //                       ),
+  //                     ),
+  //                     const Text(
+  //                       'The courier will buy out the goods, recieve cash\nor carry out the instruction.',
+  //                       style: TextStyle(fontSize: 15, color: Colors.grey),
+  //                     ),
+  //                     const SizedBox(
+  //                       height: 10,
+  //                     ),
+  //                     Row(
+  //                       children: [
+  //                         const Text(
+  //                           'Addtional services',
+  //                           style: TextStyle(
+  //                               fontSize: 17,
+  //                               fontWeight: FontWeight.w500,
+  //                               color: Colors.grey),
+  //                         ),
+  //                         IconButton(
+  //                           color: Colors.grey,
+  //                           icon: Icon(selected
+  //                               ? Icons.expand_more
+  //                               : Icons.expand_less),
+  //                           onPressed: () {
+  //                             setState(() {
+  //                               selected = !selected;
+  //                               AddtionalService = !AddtionalService;
+  //                             });
+  //                           },
+  //                         ),
+  //                       ],
+  //                     ),
+  //                     Visibility(
+  //                       visible: AddtionalService,
+  //                       child: Column(
+  //                         children: [
+  //                           CustomTextField(label: "ads"),
+  //                           CustomTextField(label: "adsf"),
+  //                         ],
+  //                       ),
+  //                     ),
+  //                     index >= 2
+  //                         ? InkWell(
+  //                             onTap: () {},
+  //                             child: SizedBox(
+  //                               child: Align(
+  //                                 alignment: Alignment.centerRight,
+  //                                 child: TextButton(
+  //                                     onPressed: () {
+  //                                       removeDeliveryPoint();
+  //                                       print(currentIndex);
+  //                                     },
+  //                                     child: Text(
+  //                                       'Remove address',
+  //                                       style: TextStyle(
+  //                                           // color: blueColor,
+  //                                           color: Colors.blue,
+  //                                           fontSize: 17),
+  //                                     )),
+  //                               ),
+  //                             ),
+  //                           )
+  //                         : SizedBox(),
+  //                   ],
+  //                 ),
+  //               ),
+  //             ],
+  //           ),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 
   Widget PickUpPoint() {
     return SizedBox(

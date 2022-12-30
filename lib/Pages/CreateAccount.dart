@@ -20,9 +20,14 @@ class _CreateAccountState extends State<CreateAccount> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Icon(
-                Icons.clear,
-                size: 25,
+              InkWell(
+                onTap: (() {
+                  Navigator.pop(context);
+                }),
+                child: Icon(
+                  Icons.clear,
+                  size: 25,
+                ),
               ),
               SizedBox(
                 height: 10,
