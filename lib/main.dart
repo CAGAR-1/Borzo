@@ -4,6 +4,7 @@ import 'package:borzo/Pages/CreateAccount.dart';
 import 'package:borzo/Pages/Login.dart';
 import 'package:borzo/Pages/Neworders.dart';
 import 'package:borzo/Pages/Profile.dart';
+import 'package:borzo/Pages/onboardWidget.dart';
 import 'package:borzo/Pages/onboarding_screen.dart';
 import 'package:borzo/Pages/searchpage.dart';
 import 'package:borzo/Pages/welcomePage.dart';

@@ -2,6 +2,7 @@ import 'package:borzo/constant.dart';
 
 import 'package:borzo/Swap/DeliverNow.dart';
 import 'package:borzo/Swap/Schedule.dart';
+import 'package:borzo/mainscreen.dart';
 import 'package:borzo/map.dart';
 import 'package:borzo/widgets/switch.dart';
 import 'package:borzo/widgets/textfield.dart';
@@ -18,6 +19,8 @@ class NewOrders extends StatefulWidget {
 class _NewOrdersState extends State<NewOrders> {
   TextEditingController addes = TextEditingController();
   TextEditingController PickUpAddress = TextEditingController();
+
+  List NewValue = [];
 
   bool is_visible = true;
 
@@ -69,6 +72,8 @@ class _NewOrdersState extends State<NewOrders> {
     'Up to 20 Kg'
   ];
 
+  int increseNum = 1;
+
   addDeliveryPoint() {
     setState(() {
       index = index + 1;
@@ -84,6 +89,8 @@ class _NewOrdersState extends State<NewOrders> {
       });
     }
   }
+
+  // void _updateSelected(int index) => setState(() => currentIndex = index);
 
   @override
   Widget build(BuildContext context) {
@@ -275,7 +282,6 @@ class _NewOrdersState extends State<NewOrders> {
               SizedBox(
                 height: 10,
               ),
-
               Visibility(
                 visible: showtext,
                 child: Text(
@@ -290,7 +296,6 @@ class _NewOrdersState extends State<NewOrders> {
                   style: TextStyle(color: Colors.grey, fontSize: 15),
                 ),
               ),
-
               SizedBox(
                 height: 20,
               ),
@@ -388,6 +393,7 @@ class _NewOrdersState extends State<NewOrders> {
                                                                           () {
                                                                         weightValue(
                                                                             weight[index]);
+
                                                                         Navigator.pop(
                                                                             context);
                                                                       });
@@ -405,9 +411,8 @@ class _NewOrdersState extends State<NewOrders> {
                                                                               text: TextSpan(children: [
                                                                                 TextSpan(
                                                                                   text: weight[index],
-                                                                                  style: TextStyle(color: Kg == weight[index] ? Colors.blue : Colors.black),
+                                                                                  style: TextStyle(color: Kg == weight[index] ? Colors.black : Colors.black),
                                                                                 ),
-                                                                                // WidgetSpan(child: Icon(Icons.app_blocking))
                                                                               ]),
                                                                             )
                                                                           ],
@@ -478,17 +483,13 @@ class _NewOrdersState extends State<NewOrders> {
                 "Huperlocal is km based tariff. it is the best option short distance deliveries under 5 km.",
                 style: TextStyle(color: Colors.grey, fontSize: 15),
               ),
-
               SizedBox(
                 height: 20,
               ),
-
               PickUpPoint(),
-
               SizedBox(
                 height: 50,
               ),
-              // deliveryPoint(),
               ListView.builder(
                   physics: NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
@@ -500,8 +501,12 @@ class _NewOrdersState extends State<NewOrders> {
                 padding: const EdgeInsets.all(12.0),
                 child: InkWell(
                   onTap: () {
+                    increseNum = increseNum + 1;
                     print("Clicke sucessfully");
                     addDeliveryPoint();
+
+                    print(increseNum);
+                    // print(currentIndex);
                   },
                   child: Row(
                     children: [
@@ -539,7 +544,6 @@ class _NewOrdersState extends State<NewOrders> {
               CustomSwitch(
                 texts: "Optimize the route",
               ),
-
               Text(
                 "Our algorithm will optimize the route points ensuring the route is more convenient for the courier and cheaper",
                 style: TextStyle(fontSize: 15, color: Colors.grey),
@@ -566,7 +570,6 @@ class _NewOrdersState extends State<NewOrders> {
                 controller: addes,
                 label: "What are you sending?",
               ),
-
               Container(
                 height: MediaQuery.of(context).size.height * 0.07,
                 // width: 100,
@@ -610,7 +613,6 @@ class _NewOrdersState extends State<NewOrders> {
               SizedBox(
                 height: 20,
               ),
-
               Divider(
                 color: Colors.grey[300],
                 thickness: 20,
@@ -634,7 +636,6 @@ class _NewOrdersState extends State<NewOrders> {
               SizedBox(
                 height: 10,
               ),
-
               Divider(
                 color: Colors.grey[300],
                 thickness: 20,
@@ -848,16 +849,25 @@ class _NewOrdersState extends State<NewOrders> {
                   ],
                 ),
               ),
-              Container(
-                child: Center(
-                    child: Text(
-                  "Create Order",
-                  style: TextStyle(fontSize: 20),
-                )),
-                height: 50,
-                width: 180,
-                decoration: BoxDecoration(
-                    color: bluecolor, borderRadius: BorderRadius.circular(30)),
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomePage()),
+                  );
+                },
+                child: Container(
+                  child: Center(
+                      child: Text(
+                    "Create Order",
+                    style: TextStyle(fontSize: 20),
+                  )),
+                  height: 50,
+                  width: 180,
+                  decoration: BoxDecoration(
+                      color: bluecolor,
+                      borderRadius: BorderRadius.circular(30)),
+                ),
               ),
             ],
           ),
@@ -875,11 +885,7 @@ class _NewOrdersState extends State<NewOrders> {
               CircleAvatar(
                 backgroundColor: Colors.black,
                 radius: 12,
-                child: Text(
-                  index == 1 ? '2' : currentIndex.toString(),
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold, color: Colors.white),
-                ),
+                child: Text('d'),
               ),
               SizedBox(
                 width: 20,
@@ -915,8 +921,6 @@ class _NewOrdersState extends State<NewOrders> {
                             child: CustomTextField(
                               controller: PickUpAddress,
                               label: 'location',
-                              // sicon: Icon(Icons.location_on_outlined),
-                              // suffixIcon: Icons.person_outline_sharp,
                             ),
                           ),
                           InkWell(
@@ -966,11 +970,22 @@ class _NewOrdersState extends State<NewOrders> {
                         ),
                       ),
                       SizedBox(
-                          // height: 50,
-                          child: CustomTextField(
-                        label: 'asdf', sicon: Icon(Icons.phone),
-                        // suffixIcon: Icons.person_outline_sharp,
-                      )),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: CustomTextField(
+                                controller: PickUpAddress,
+                                label: 'Phone Number',
+                              ),
+                            ),
+                            InkWell(
+                                onTap: () {
+                                  print('adsf');
+                                },
+                                child: Icon(Icons.phone))
+                          ],
+                        ),
+                      ),
                       const SizedBox(
                         height: 10,
                       ),
@@ -1058,11 +1073,7 @@ class _NewOrdersState extends State<NewOrders> {
                                                             SizedBox(
                                                               height: 2,
                                                               child: InkWell(
-                                                                onTap: () {
-                                                                  // Get.snackbar(
-                                                                  //     "",
-                                                                  //     "aslkdfj;lkasdfj;laksfdj");
-                                                                },
+                                                                onTap: () {},
                                                                 child: Checkbox(
                                                                   value:
                                                                       !pressed,
@@ -1297,11 +1308,29 @@ class _NewOrdersState extends State<NewOrders> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
-                          child: CustomTextField(
-                        label: 'Location',
-                        sicon: Icon(Icons.location_on_outlined),
-                      )),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: CustomTextField(
+                              controller: PickUpAddress,
+                              label: 'location',
+                            ),
+                          ),
+                          InkWell(
+                              onTap: () {
+                                print('adsf');
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => BrozoMap(
+                                            controller: PickUpAddress,
+                                          )),
+                                );
+                              },
+                              child: Icon(Icons.location_on_outlined))
+                        ],
+                      ),
+                      SizedBox(),
                       const SizedBox(
                         height: 10,
                       ),
@@ -1332,11 +1361,32 @@ class _NewOrdersState extends State<NewOrders> {
                         ),
                       ),
                       SizedBox(
-                          // height: 50,
-                          child: CustomTextField(
-                        label: 'asdf', sicon: Icon(Icons.phone),
-                        // suffixIcon: Icons.person_outline_sharp,
-                      )),
+                        // height: 50,
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: CustomTextField(
+                                controller: PickUpAddress,
+                                label: 'Phone Number',
+                              ),
+                            ),
+                            InkWell(
+                                onTap: () {
+                                  print('adsf');
+                                  // Navigator.push(
+                                  //   context,
+                                  //   MaterialPageRoute(
+                                  //       builder: (context) => BrozoMap(
+                                  //             controller: PickUpAddress,
+                                  //           )
+
+                                  //           ),
+                                  // );
+                                },
+                                child: Icon(Icons.phone))
+                          ],
+                        ),
+                      ),
                       SizedBox(
                         width: double.infinity,
                         child: Row(

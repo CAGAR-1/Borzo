@@ -1,3 +1,8 @@
+import 'package:borzo/Pages/OnBordWidget2.dart';
+import 'package:borzo/Pages/OnBordWidget3.dart';
+import 'package:borzo/Pages/onboardWidget.dart';
+import 'package:borzo/Pages/welcomePage.dart';
+import 'package:borzo/mainscreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -34,30 +39,31 @@ class _Onboard_ScreenState extends State<Onboard_Screen> {
               });
             },
             children: [
-              
-              Container(
-                color: Colors.white,
-              ),
-              Container(
-                color: Colors.black,
-              ),
-              Container(
-                color: Colors.red,
-              ),
+              OnBoardWidget(),
+              OnBoardWidget2(),
+              OnBoardWidget3(),
             ],
           ),
         ),
       ),
       bottomSheet: lastPage
-          ? TextButton(
-              style: TextButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20)),
-                  primary: Colors.white,
-                  backgroundColor: Colors.teal.shade700,
-                  minimumSize: Size.fromHeight(80)),
-              onPressed: () {},
-              child: Text("Get Started"))
+          ? Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: TextButton(
+                  style: TextButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                      primary: Colors.white,
+                      backgroundColor: Colors.blue,
+                      minimumSize: Size.fromHeight(60)),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => WelcomePage()),
+                    );
+                  },
+                  child: Text("Get Started")),
+            )
           : Container(
               height: 80,
               child: Padding(

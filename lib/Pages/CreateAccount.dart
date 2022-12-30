@@ -27,10 +27,6 @@ class _CreateAccountState extends State<CreateAccount> {
               SizedBox(
                 height: 10,
               ),
-              // Text(
-              //   "Mobile No",
-              //   style: TextStyle(fontSize: 20),
-              // )
               Text(
                 "Mobile No",
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -38,19 +34,17 @@ class _CreateAccountState extends State<CreateAccount> {
               SizedBox(
                 height: 5,
               ),
-
               Text(
                 "OTP will be sent on this number",
                 style: TextStyle(fontSize: 15, color: Colors.grey),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height / 5,
+                height: MediaQuery.of(context).size.height * 0.08,
               ),
               CustomTextField(
                 label: "",
                 initvalue: '+91',
               ),
-
               Expanded(
                 child: Align(
                     alignment: Alignment.bottomCenter,

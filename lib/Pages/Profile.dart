@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:borzo/Pages/Country_Name.dart';
+import 'package:borzo/Pages/CreateAccount.dart';
 import 'package:borzo/Pages/Login.dart';
 import 'package:borzo/Pages/Neworders.dart';
 import 'package:flutter/material.dart';
@@ -129,9 +130,18 @@ class _ProfileState extends State<Profile> {
                           ),
                         ],
                       ),
-                      Text(
-                        "Create Account",
-                        style: TextStyle(fontSize: 15, color: Colors.blue),
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => CreateAccount()),
+                          );
+                        },
+                        child: Text(
+                          "Create Account",
+                          style: TextStyle(fontSize: 15, color: Colors.blue),
+                        ),
                       )
                     ],
                   ),

@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:borzo/mainscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -80,16 +81,27 @@ class _WelcomePageState extends State<WelcomePage> {
                   child: Row(
                     children: [
                       Expanded(
-                          child: Container(
-                        child: Center(
-                            child: Text(
-                          "Yes",
-                          style: TextStyle(color: Colors.white, fontSize: 20),
-                        )),
-                        decoration: BoxDecoration(
-                            color: Colors.blue,
-                            borderRadius: BorderRadius.circular(20)),
-                        height: 50,
+                          child: InkWell(
+                        onTap: (() {
+                          // print("dsf");
+
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const HomePage()),
+                          );
+                        }),
+                        child: Container(
+                          child: Center(
+                              child: Text(
+                            "Yes",
+                            style: TextStyle(color: Colors.white, fontSize: 20),
+                          )),
+                          decoration: BoxDecoration(
+                              color: Colors.blue,
+                              borderRadius: BorderRadius.circular(20)),
+                          height: 50,
+                        ),
                       ))
                     ],
                   ),
