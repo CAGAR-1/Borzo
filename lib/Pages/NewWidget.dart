@@ -1,8 +1,10 @@
+import 'package:borzo/Pages/Neworders.dart';
 import 'package:borzo/map.dart';
 import 'package:borzo/widgets/textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:http/http.dart';
 
 class NewDeliv extends StatefulWidget {
   int index;
@@ -13,54 +15,26 @@ class NewDeliv extends StatefulWidget {
 }
 
 class _NewDelivState extends State<NewDeliv> {
+  NewOrders newOrders = NewOrders();
   TextEditingController addes = TextEditingController();
   TextEditingController PickUpAddress = TextEditingController();
-
-  // List NewValue = [];
 
   bool is_visible = true;
 
   bool isChecked = false;
-
-  // bool showtext = true;
   bool selected = true;
-
-  bool AddtionalService = false;
-
-  // weightValue(updateweight) {
-  //   setState(() {
-  //     Kg = updateweight;
-  //   });
-  // }
-
   bool pressed = true;
-  // Color press_color = Colors.pink;
-
-  // changeColor(inde) {
-  //   setState(() {
-  //     press_color = inde;
-  //   });
-  // }
-
-  // updatePayment(val) {
-  //   setState(() {
-  //     PaymentMethod = val;
-  //   });
-  // }
-
- 
+  bool AddtionalService = false;
 
   int index = 1;
   int? currentIndex;
   int currentpage = 0;
 
-
-
   removeDeliveryPoint() {
-    if (index >= 2) {
+    if (widget.index >= 2) {
       setState(() {
-        index = index - 1;
-        currentIndex = index;
+        widget.index = widget.index - 1;
+        // currentIndex = index;
       });
     }
   }
@@ -117,6 +91,7 @@ class _NewDelivState extends State<NewDeliv> {
                           ),
                           InkWell(
                               onTap: () {
+                          
                                 print('adsf');
                                 Navigator.push(
                                   context,
@@ -426,6 +401,28 @@ class _NewDelivState extends State<NewDeliv> {
                           ],
                         ),
                       ),
+                      widget.index >= 1
+                          ? InkWell(
+                              onTap: () {},
+                              child: SizedBox(
+                                child: Align(
+                                  alignment: Alignment.centerRight,
+                                  child: TextButton(
+                                      onPressed: () {
+                                    
+                                        widget.index = widget.index + 1;
+                                      },
+                                      child: Text(
+                                        'Remove address',
+                                        style: TextStyle(
+                                            // color: blueColor,
+                                            color: Colors.blue,
+                                            fontSize: 17),
+                                      )),
+                                ),
+                              ),
+                            )
+                          : SizedBox(),
                     ],
                   ),
                 ),
@@ -634,5 +631,7 @@ class _NewDelivState extends State<NewDeliv> {
         ],
       ),
     );
+
+    ;
   }
 }

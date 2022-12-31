@@ -59,7 +59,10 @@ class _Onboard_ScreenState extends State<Onboard_Screen> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => WelcomePage()),
+                      MaterialPageRoute(
+                          builder: (context) => WelcomePage(
+                                names: 'Bhutan',
+                              )),
                     );
                   },
                   child: Text("Get Started")),

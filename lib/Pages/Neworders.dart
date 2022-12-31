@@ -36,6 +36,16 @@ class _NewOrdersState extends State<NewOrders> {
     setState(() {});
   }
 
+  removingthevalue() {
+    setState(() {});
+    newdeliv.removeAt(index);
+  }
+
+  void removenewDelvPoints(int index) {
+    newdeliv.remove(NewDeliv(index: index));
+    setState(() {});
+  }
+
   List NewValue = [];
 
   bool is_visible = true;
@@ -104,6 +114,13 @@ class _NewOrdersState extends State<NewOrders> {
         currentIndex = index;
       });
     }
+  }
+
+  reset(valk) {
+    setState(() {
+      // index=index.remove;
+      bool valvs = newdeliv.remove(valk);
+    });
   }
 
   bool changingName = true;
@@ -514,16 +531,63 @@ class _NewOrdersState extends State<NewOrders> {
                   itemCount: newdeliv.length,
                   itemBuilder: ((context, index) {
                     return Padding(
-                      padding: const EdgeInsets.only(bottom: 20),
-                      child: newdeliv[index],
-                    );
+                        padding: const EdgeInsets.only(bottom: 10),
+                        child: Column(
+                          children: [
+                            newdeliv[index],
+                          ],
+                        ));
                   })),
+
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: InkWell(
+                  onTap: () {
+                    setState(() {});
+                    removingthevalue();
+                  },
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          height: 50,
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 20),
+                                child: Icon(
+                                  Icons.add,
+                                  color: Colors.grey,
+                                  size: 40,
+                                ),
+                              ),
+                              Text(
+                                "Remove delivery point",
+                                style: TextStyle(
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black.withOpacity(0.5)),
+                              )
+                            ],
+                          ),
+                          decoration: BoxDecoration(
+                              color: Colors.grey[300],
+                              borderRadius: BorderRadius.circular(50)),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+
+              //
+
               Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: InkWell(
                   onTap: () {
                     print("Clicke sucessfully");
-                    print(newdeliv.length);
+                    // print(newdeliv.length);
                     addnewDelvPoints(newdeliv.length);
                   },
                   child: Row(

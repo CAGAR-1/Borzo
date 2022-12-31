@@ -1,4 +1,5 @@
 import 'package:borzo/Pages/Chat.dart';
+import 'package:borzo/Pages/Country_Choose.dart';
 import 'package:borzo/Pages/Country_Name.dart';
 import 'package:borzo/Pages/CreateAccount.dart';
 import 'package:borzo/Pages/Login.dart';
@@ -7,6 +8,7 @@ import 'package:borzo/Pages/Profile.dart';
 import 'package:borzo/Pages/onboardWidget.dart';
 import 'package:borzo/Pages/onboarding_screen.dart';
 import 'package:borzo/Pages/searchpage.dart';
+import 'package:borzo/Pages/termsAndCondition.dart';
 import 'package:borzo/Pages/welcomePage.dart';
 
 import 'package:borzo/mainscreen.dart';
@@ -20,6 +22,8 @@ void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     theme: ThemeData(fontFamily: GoogleFonts.lato().fontFamily),
-    home: NewOrders(),
+    home: WelcomePage(
+      names: 'Bhutan',
+    ),
   ));
 }

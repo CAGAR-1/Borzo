@@ -109,7 +109,8 @@ class _CreateAccountState extends State<CreateAccount> {
                           // )
                         ],
                       ),
-                      height: MediaQuery.of(context).size.height / 10,
+                      // height: MediaQuery.of(context).size.height / 10,
+                      height: 200,
                       width: MediaQuery.of(context).size.width,
                       // color: Colors.pink,
                     )),
