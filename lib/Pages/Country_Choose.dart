@@ -72,8 +72,10 @@ class _Country_ChooseState extends State<Country_Choose> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                    WelcomePage(names: CountryName[index])));
+                                builder: (context) => WelcomePage(
+                                      names: CountryName[index],
+                                      flads: images[index],
+                                    )));
                       },
                       child: Row(
                         children: [

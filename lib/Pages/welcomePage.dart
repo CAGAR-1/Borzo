@@ -9,7 +9,8 @@ import 'package:flutter/src/widgets/framework.dart';
 
 class WelcomePage extends StatefulWidget {
   String names;
-  WelcomePage({super.key, required this.names});
+  String flads;
+  WelcomePage({super.key, required this.names, required this.flads});
 
   @override
   State<WelcomePage> createState() => _WelcomePageState();
@@ -61,12 +62,18 @@ class _WelcomePageState extends State<WelcomePage> {
                             "Are you in",
                             style: TextStyle(color: Colors.white, fontSize: 15),
                           ),
+                          SizedBox(
+                            width: 5,
+                          ),
                           Image(
                             image: AssetImage(
-                              'images/india.png',
+                              widget.flads,
                             ),
                             height: 20,
-                            width: 30,
+                            width: 20,
+                          ),
+                          SizedBox(
+                            width: 5,
                           ),
                           Text(
                             // "India?",

@@ -62,6 +62,7 @@ class _Onboard_ScreenState extends State<Onboard_Screen> {
                       MaterialPageRoute(
                           builder: (context) => WelcomePage(
                                 names: 'Bhutan',
+                                flads: '',
                               )),
                     );
                   },

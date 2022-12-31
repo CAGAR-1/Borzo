@@ -1,5 +1,7 @@
 import 'package:borzo/Pages/business.dart';
 import 'package:borzo/Pages/individual.dart';
+import 'package:borzo/Swap/DeliverNow.dart';
+import 'package:borzo/Swap/Schedule.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -12,67 +14,88 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  final controller = PageController(initialPage: 1);
   bool ChangeColor = true;
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: DefaultTabController(
-        length: 2,
-        child: Scaffold(
-          appBar: AppBar(
-            elevation: 0,
-            bottom: TabBar(
-              indicatorColor: Colors.transparent,
-              tabs: [
-                Container(
-                  child: Tab(
+    return Scaffold(
+        backgroundColor: Colors.white,
+        // appBar: AppBar(),
+        body: SafeArea(
+            child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                      child: GestureDetector(
+                    onTap: (() {
+                      controller.animateToPage(0,
+                          duration: Duration(seconds: 1),
+                          curve: Curves.easeInOut);
+                      setState(() {
+                        ChangeColor = true;
+                      });
+                      print("Pinke is slect");
+                    }),
                     child: Container(
-                      height: MediaQuery.of(context).size.height,
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30),
-                        color: Colors.grey[200],
-                      ),
                       child: Center(
-                        child: Text(
-                          "Individual",
-                          style: TextStyle(color: Colors.black, fontSize: 20),
-                        ),
-                      ),
+                          child: Text(
+                        "Employee",
+                        style: TextStyle(fontSize: 20),
+                      )),
+                      decoration: BoxDecoration(
+                          color: ChangeColor ? Colors.grey[200] : Colors.white,
+                          borderRadius: BorderRadius.circular(20)),
+                      height: 60,
                     ),
+                  )),
+                  SizedBox(
+                    width: 10,
                   ),
-                ),
-                Tab(
-                  child: Container(
-                    height: MediaQuery.of(context).size.height,
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
-                      color: Colors.grey[200],
-                    ),
-                    child: Center(
-                      child: Text(
+                  Expanded(
+                      child: GestureDetector(
+                    onTap: (() {
+                      controller.animateToPage(1,
+                          duration: Duration(seconds: 1),
+                          curve: Curves.easeInOut);
+                      setState(() {
+                        ChangeColor = false;
+                      });
+                      print("Yello is tap");
+                    }),
+                    child: Container(
+                      child: Center(
+                          child: Text(
                         "Business",
-                        style: TextStyle(color: Colors.black, fontSize: 20),
-                      ),
+                        style: TextStyle(fontSize: 20),
+                      )),
+                      decoration: BoxDecoration(
+                          color: ChangeColor ? Colors.white : Colors.grey[200],
+                          borderRadius: BorderRadius.circular(20)),
+                      height: 60,
                     ),
-                  ),
-
-                  // child:
+                  )),
+                ],
+              ),
+              Expanded(
+                child: PageView(
+                  controller: controller,
+                  pageSnapping: true,
+                  children: [Individual(), Business()],
                 ),
-                // SizedBox(
-                //   height: 30,
-                // )
-              ],
-            ),
-            backgroundColor: Colors.white, // TabBar
-          ), // AppBar
-          body: TabBarView(
-            children: [Individual(), Business()],
-          ), // TabBarView
-        ), // Scaffold
-      ), // Defa,
-    );
+              ),
+            ],
+          ),
+        )));
+    //  TabBarView(
+    //   children: [
+    //     Individual(
+
+    //   ), Business()],
+    // ), // TabBarView
+    // Defa,
   }
 }

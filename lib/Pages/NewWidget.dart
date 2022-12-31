@@ -91,7 +91,6 @@ class _NewDelivState extends State<NewDeliv> {
                           ),
                           InkWell(
                               onTap: () {
-                          
                                 print('adsf');
                                 Navigator.push(
                                   context,
@@ -141,7 +140,6 @@ class _NewDelivState extends State<NewDeliv> {
                           children: [
                             Expanded(
                               child: CustomTextField(
-                                controller: PickUpAddress,
                                 label: 'Phone Number',
                               ),
                             ),
@@ -409,7 +407,6 @@ class _NewDelivState extends State<NewDeliv> {
                                   alignment: Alignment.centerRight,
                                   child: TextButton(
                                       onPressed: () {
-                                    
                                         widget.index = widget.index + 1;
                                       },
                                       child: Text(

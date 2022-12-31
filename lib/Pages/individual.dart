@@ -15,8 +15,7 @@ class _IndividualState extends State<Individual> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-          child: Padding(
+      body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
@@ -32,7 +31,7 @@ class _IndividualState extends State<Individual> {
             )
           ],
         ),
-      )),
+      ),
       bottomNavigationBar: BottomAppBar(
         child: Padding(
           padding: const EdgeInsets.all(20.0),

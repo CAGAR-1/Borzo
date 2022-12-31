@@ -8,6 +8,7 @@ import 'package:borzo/map.dart';
 import 'package:borzo/widgets/switch.dart';
 import 'package:borzo/widgets/textfield.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class NewOrders extends StatefulWidget {
   const NewOrders({Key? key}) : super(key: key);
@@ -893,43 +894,72 @@ class _NewOrdersState extends State<NewOrders> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              InkWell(
-                onTap: () {
-                  print("adsf");
-                  showModalBottomSheet(
-                      context: context,
-                      useRootNavigator: true,
-                      builder: (context) {
-                        return Text("asdf");
-                      });
-                },
-                child: Row(
-                  children: [
-                    Container(
-                      height: 30,
-                      width: 110,
-                      child: Row(
-                        children: [
-                          Text(
-                            "RS",
-                            style: TextStyle(fontSize: 20),
-                          ),
-                          SizedBox(
-                            width: 8,
-                          ),
-                          Text(
-                            "45",
-                            style: TextStyle(fontSize: 20),
-                          ),
-                          SizedBox(
-                            width: 13,
-                          ),
-                          Icon(Icons.keyboard_arrow_down)
-                        ],
+              Row(
+                children: [
+                  InkWell(
+                    onTap: (() {
+                      print("Clicked");
+                      BottomAppBar(
+                        child: Container(
+                          height: 100,
+                          width: 100,
+                          color: Colors.pink,
+                        ),
+                      );
+                    }),
+                    child: InkWell(
+                      onTap: (() {
+                        showModalBottomSheet(
+                            context: context,
+                            builder: (context) {
+                              return Wrap(
+                                children: const [
+                                  ListTile(
+                                    leading: Icon(Icons.share),
+                                    title: Text('Share'),
+                                  ),
+                                  ListTile(
+                                    leading: Icon(Icons.link),
+                                    title: Text('Get link'),
+                                  ),
+                                  ListTile(
+                                    leading: Icon(Icons.edit),
+                                    title: Text('Edit name'),
+                                  ),
+                                  ListTile(
+                                    leading: Icon(Icons.delete),
+                                    title: Text('Delete collection'),
+                                  ),
+                                ],
+                              );
+                            });
+                      }),
+                      child: Container(
+                        height: 30,
+                        width: 110,
+                        child: Row(
+                          children: [
+                            Text(
+                              "RS",
+                              style: TextStyle(fontSize: 20),
+                            ),
+                            SizedBox(
+                              width: 8,
+                            ),
+                            Text(
+                              "45",
+                              style: TextStyle(fontSize: 20),
+                            ),
+                            SizedBox(
+                              width: 13,
+                            ),
+                            Icon(Icons.keyboard_arrow_down)
+                          ],
+                        ),
                       ),
-                    )
-                  ],
-                ),
+                    ),
+                  )
+                ],
               ),
               InkWell(
                 onTap: () {
@@ -1456,22 +1486,12 @@ class _NewOrdersState extends State<NewOrders> {
                           children: [
                             Expanded(
                               child: CustomTextField(
-                                controller: PickUpAddress,
                                 label: 'Phone Number',
                               ),
                             ),
                             InkWell(
                                 onTap: () {
                                   print('adsf');
-                                  // Navigator.push(
-                                  //   context,
-                                  //   MaterialPageRoute(
-                                  //       builder: (context) => BrozoMap(
-                                  //             controller: PickUpAddress,
-                                  //           )
-
-                                  //           ),
-                                  // );
                                 },
                                 child: Icon(Icons.phone))
                           ],
