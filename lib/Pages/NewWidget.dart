@@ -1,9 +1,13 @@
 import 'package:borzo/Pages/Neworders.dart';
+
 import 'package:borzo/map.dart';
+
 import 'package:borzo/widgets/textfield.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart';
 
 class NewDeliv extends StatefulWidget {
@@ -18,6 +22,8 @@ class _NewDelivState extends State<NewDeliv> {
   NewOrders newOrders = NewOrders();
   TextEditingController addes = TextEditingController();
   TextEditingController PickUpAddress = TextEditingController();
+
+
 
   bool is_visible = true;
 
@@ -40,6 +46,9 @@ class _NewDelivState extends State<NewDeliv> {
   }
 
   bool changingName = true;
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -407,7 +416,8 @@ class _NewDelivState extends State<NewDeliv> {
                                   alignment: Alignment.centerRight,
                                   child: TextButton(
                                       onPressed: () {
-                                        widget.index = widget.index + 1;
+                                        print(widget.index - 1);
+                                        widget.index - 1;
                                       },
                                       child: Text(
                                         'Remove address',
@@ -429,206 +439,5 @@ class _NewDelivState extends State<NewDeliv> {
         ],
       ),
     );
-  }
-
-  Widget PickUpPoint() {
-    return SizedBox(
-      child: Column(
-        children: [
-          Row(
-            children: [
-              CircleAvatar(
-                backgroundColor: Colors.black,
-                radius: 12,
-                child: Text(
-                  "1",
-                ),
-              ),
-              SizedBox(
-                width: 15,
-              ),
-              Text(
-                'Pick Up point',
-                style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black,
-                    fontSize: 17),
-              ),
-            ],
-          ),
-          IntrinsicHeight(
-            child: Row(
-              children: [
-                VerticalDivider(
-                  color: Colors.black,
-                  width: 22,
-                  indent: 20,
-                  thickness: 2,
-                ),
-                const SizedBox(
-                  width: 15,
-                ),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Expanded(
-                            child: CustomTextField(
-                              controller: PickUpAddress,
-                              label: 'location',
-                            ),
-                          ),
-                          InkWell(
-                              onTap: () {
-                                print('adsf');
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => BrozoMap(
-                                            controller: PickUpAddress,
-                                          )),
-                                );
-                              },
-                              child: Icon(Icons.location_on_outlined))
-                        ],
-                      ),
-                      SizedBox(),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Visibility(
-                        visible: is_visible,
-                        child: Container(
-                          padding: EdgeInsets.all(8),
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              // color: blueColor.withOpacity(0.15)
-                              color: Colors.blue.withOpacity(0.5)),
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.timer,
-                                // color: blueColor,
-                                color: Colors.blue,
-                              ),
-                              const Text(
-                                'Enter the address to find out\nwhen the courier will arrive',
-                                style: TextStyle(
-                                  fontSize: 15,
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        // height: 50,
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: CustomTextField(
-                                controller: PickUpAddress,
-                                label: 'Phone Number',
-                              ),
-                            ),
-                            InkWell(
-                                onTap: () {
-                                  print('adsf');
-                                  // Navigator.push(
-                                  //   context,
-                                  //   MaterialPageRoute(
-                                  //       builder: (context) => BrozoMap(
-                                  //             controller: PickUpAddress,
-                                  //           )
-
-                                  //           ),
-                                  // );
-                                },
-                                child: Icon(Icons.phone))
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        width: double.infinity,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: const [
-                                Icon(Icons.directions_run_rounded),
-                                Text(
-                                  'Instruction for the courier',
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                              ],
-                            ),
-                            // SizedBox(
-                            //   width: MediaQuery.of(context).size.width / 3.99,
-                            // ),
-                            IconButton(
-                              onPressed: () {},
-                              icon: const Icon(
-                                Icons.expand_more_outlined,
-                                color: Colors.grey,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const Text(
-                        'The courier will buy out the goods, recieve cash\nor carry out the instruction.',
-                        style: TextStyle(fontSize: 15, color: Colors.grey),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        children: [
-                          const Text(
-                            'Addtional services',
-                            style: TextStyle(
-                                fontSize: 17,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.grey),
-                          ),
-                          // IconButton(
-                          //   color: Colors.grey,
-                          //   icon: Icon(selected
-                          //       ? Icons.expand_more
-                          //       : Icons.expand_less),
-                          //   onPressed: () {
-                          //     setState(() {
-                          //       selected = !selected;
-                          //       AddtionalService = !AddtionalService;
-                          //     });
-                          //   },
-                          // ),
-                        ],
-                      ),
-                      // Visibility(
-                      //   visible: AddtionalService,
-                      //   child: Column(
-                      //     children: [
-                      //       CustomTextField(label: "ads"),
-                      //       CustomTextField(label: "adsf"),
-                      //     ],
-                      //   ),
-                      // ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-
-    ;
   }
 }

@@ -14,7 +14,7 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  final controller = PageController(initialPage: 1);
+  final controller = PageController(initialPage: 0);
   bool ChangeColor = true;
 
   @override
