@@ -61,8 +61,8 @@ class _Onboard_ScreenState extends State<Onboard_Screen> {
                       context,
                       MaterialPageRoute(
                           builder: (context) => WelcomePage(
-                                names: 'Bhutan',
-                                flads: '',
+                                names: 'india',
+                                flads: 'images/india.png',
                               )),
                     );
                   },

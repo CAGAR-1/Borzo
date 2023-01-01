@@ -1,3 +1,6 @@
+import 'package:borzo/Pages/CreateAccount.dart';
+import 'package:borzo/Pages/Login.dart';
+import 'package:borzo/Pages/Neworders.dart';
 import 'package:flutter/material.dart';
 
 class orders extends StatelessWidget {
@@ -7,7 +10,6 @@ class orders extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      
       body: Column(
         // mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -57,12 +59,20 @@ class orders extends StatelessWidget {
               borderRadius: BorderRadius.circular(70),
             ),
             child: Center(
-              child: Text(
-                "Create Order",
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w400),
+              child: InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const NewOrders()),
+                  );
+                },
+                child: Text(
+                  "Create Order",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w400),
+                ),
               ),
             ),
           ),
@@ -72,9 +82,17 @@ class orders extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                "Log in",
-                style: TextStyle(color: Colors.blue, fontSize: 20),
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Login()),
+                  );
+                },
+                child: Text(
+                  "Log in",
+                  style: TextStyle(color: Colors.blue, fontSize: 20),
+                ),
               ),
               SizedBox(
                 width: 5,
@@ -83,9 +101,18 @@ class orders extends StatelessWidget {
               SizedBox(
                 width: 5,
               ),
-              Text(
-                "Signup",
-                style: TextStyle(color: Colors.blue, fontSize: 20),
+              InkWell(
+                onTap: (() {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const CreateAccount()),
+                  );
+                }),
+                child: Text(
+                  "Signup",
+                  style: TextStyle(color: Colors.blue, fontSize: 20),
+                ),
               ),
             ],
           )

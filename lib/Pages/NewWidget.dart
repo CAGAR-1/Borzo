@@ -23,8 +23,6 @@ class _NewDelivState extends State<NewDeliv> {
   TextEditingController addes = TextEditingController();
   TextEditingController PickUpAddress = TextEditingController();
 
-
-
   bool is_visible = true;
 
   bool isChecked = false;
@@ -46,9 +44,6 @@ class _NewDelivState extends State<NewDeliv> {
   }
 
   bool changingName = true;
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -417,7 +412,7 @@ class _NewDelivState extends State<NewDeliv> {
                                   child: TextButton(
                                       onPressed: () {
                                         print(widget.index - 1);
-                                        widget.index - 1;
+                                        // widget.index - 1;
                                       },
                                       child: Text(
                                         'Remove address',

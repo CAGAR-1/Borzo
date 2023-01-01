@@ -24,6 +24,8 @@ class _NewOrdersState extends State<NewOrders> {
 
   List<NewDeliv> newdeliv = [];
 
+ 
+   
   @override
   void initState() {
     addnewDelvPoints(0);
@@ -43,16 +45,7 @@ class _NewOrdersState extends State<NewOrders> {
     newdeliv.removeAt(index);
   }
 
-  void removenewDelvPoints(int index) {
-    newdeliv.remove(NewDeliv(index: index));
-    setState(() {});
-  }
-
-  List NewValue = [];
-
   bool is_visible = true;
-
-  bool isChecked = false;
 
   bool showtext = true;
   bool selected = true;
@@ -99,24 +92,6 @@ class _NewOrdersState extends State<NewOrders> {
     'Up to 15 Kg',
     'Up to 20 Kg'
   ];
-
-  int increseNum = 1;
-
-  addDeliveryPoint() {
-    setState(() {
-      index = index + 1;
-      currentIndex = index;
-    });
-  }
-
-  removeDeliveryPoint() {
-    if (index >= 2) {
-      setState(() {
-        index = index - 1;
-        currentIndex = index;
-      });
-    }
-  }
 
   reset(valk) {
     setState(() {

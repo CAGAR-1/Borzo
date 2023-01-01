@@ -2,6 +2,7 @@ import 'package:borzo/widgets/textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:get/get.dart';
 
 class CreateAccount extends StatefulWidget {
   const CreateAccount({super.key});
@@ -55,29 +56,34 @@ class _CreateAccountState extends State<CreateAccount> {
                     alignment: Alignment.bottomCenter,
                     child: Container(
                       child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Row(
                             children: [
                               Expanded(
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: InkWell(
-                                    onTap: () {},
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Expanded(
-                                          child: Text(
-                                            "By registering or signing in you accept the terms and conditions and confirm that you've read and acknowledged the privacy Policy of wefast India private limited",
-                                            style:
-                                                TextStyle(color: Colors.grey),
-                                          ),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Expanded(
+                                        child: Text(
+                                          "By registering or signing in you accept the terms and conditions and confirm that you've read and acknowledged the privacy Policy of wefast India private limited",
+                                          style: TextStyle(color: Colors.grey),
                                         ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Container(
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      InkWell(
+                                        onTap: (() {
+                                          Get.snackbar(
+                                              "", "Please Enter Valid Number",
+                                              backgroundColor: Colors.grey[200],
+                                              colorText: Colors.black);
+                                        }),
+                                        child: Container(
                                           child: Icon(
                                             Icons.keyboard_arrow_right,
                                             color: Colors.white,
@@ -89,15 +95,15 @@ class _CreateAccountState extends State<CreateAccount> {
                                               borderRadius:
                                                   BorderRadius.circular(20)),
                                         ),
-                                        // Text(
-                                        //   "Login",
-                                        //   style: TextStyle(
-                                        //       color: Colors.blueAccent,
-                                        //       fontSize: 20),
-                                        // ),
-                                      ],
-                                      // child:
-                                    ),
+                                      ),
+                                      // Text(
+                                      //   "Login",
+                                      //   style: TextStyle(
+                                      //       color: Colors.blueAccent,
+                                      //       fontSize: 20),
+                                      // ),
+                                    ],
+                                    // child:
                                   ),
                                 ),
                               ),
@@ -109,10 +115,8 @@ class _CreateAccountState extends State<CreateAccount> {
                           // )
                         ],
                       ),
-                      // height: MediaQuery.of(context).size.height / 10,
-                      height: 200,
+                      height: MediaQuery.of(context).size.height,
                       width: MediaQuery.of(context).size.width,
-                      // color: Colors.pink,
                     )),
               ),
             ],
