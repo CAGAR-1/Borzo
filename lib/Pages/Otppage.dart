@@ -1,8 +1,40 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 
-class OtpScreen extends StatelessWidget {
+class OtpScreen extends StatefulWidget {
   const OtpScreen({Key? key}) : super(key: key);
+
+  @override
+  State<OtpScreen> createState() => _OtpScreenState();
+}
+
+class _OtpScreenState extends State<OtpScreen> {
+  int timeLeft = 20;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    _startCountDown();
+
+    super.initState();
+  }
+
+  void _startCountDown() {
+    Timer.periodic(Duration(seconds: 1), (timer) {
+      setState(() {
+        if (timeLeft > 0) {
+          setState(() {
+            timeLeft--;
+          });
+        } else {
+          timer.cancel();
+        }
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,10 +69,28 @@ class OtpScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: const [
-                Otp(),
-                Otp(),
-                Otp(),
-                Otp(),
+                Expanded(child: Otp()),
+                // CircularProgressIndicator(),
+                SizedBox(
+                  width: 10,
+                ),
+                Expanded(child: Otp()),
+                SizedBox(
+                  width: 10,
+                ),
+                Expanded(child: Otp()),
+                SizedBox(
+                  width: 10,
+                ),
+
+                Expanded(child: Otp()),
+                SizedBox(
+                  width: 10,
+                ),
+                // Otp(),
+                // Otp(),
+                // Otp(),
+                // Otp(),
               ],
             ),
             const SizedBox(
@@ -63,9 +113,20 @@ class OtpScreen extends StatelessWidget {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Expanded(
-                                      child: Text(
-                                        "By registering or signing in you accept the terms and conditions and confirm that you've read and acknowledged the privacy Policy of wefast India private limited",
-                                        style: TextStyle(color: Colors.grey),
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          Get.snackbar(
+                                              "", "Code Resend Successfullt");
+                                        },
+                                        child: Text(
+                                          timeLeft == 0
+                                              ? 'Resend OTP'
+                                              : "Resend In " +
+                                                  timeLeft.toString() +
+                                                  ' ' +
+                                                  'Sec',
+                                          style: TextStyle(color: Colors.blue),
+                                        ),
                                       ),
                                     ),
                                     SizedBox(
@@ -73,10 +134,10 @@ class OtpScreen extends StatelessWidget {
                                     ),
                                     InkWell(
                                       onTap: (() {
-                                        // Get.snackbar(
-                                        //     "", "Please Enter Valid Number",
-                                        //     backgroundColor: Colors.grey[200],
-                                        //     colorText: Colors.black);
+                                        setState(() {
+                                          CircularProgressIndicator();
+                                        });
+                                        // Get.snackbar('', 'OTP code Invalid');
                                       }),
                                       child: Container(
                                         child: Icon(
@@ -91,12 +152,6 @@ class OtpScreen extends StatelessWidget {
                                                 BorderRadius.circular(20)),
                                       ),
                                     ),
-                                    // Text(
-                                    //   "Login",
-                                    //   style: TextStyle(
-                                    //       color: Colors.blueAccent,
-                                    //       fontSize: 20),
-                                    // ),
                                   ],
                                   // child:
                                 ),
@@ -104,10 +159,6 @@ class OtpScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        // Text(
-                        //   "Create Account",
-                        //   style: TextStyle(fontSize: 15, color: Colors.blue),
-                        // )
                       ],
                     ),
                     height: MediaQuery.of(context).size.height,
@@ -150,7 +201,7 @@ class Otp extends StatelessWidget {
         decoration: const InputDecoration(
           hintText: ('0'),
         ),
-        onSaved: (value) {},
+        onSaved: (valuerr) {},
       ),
     );
   }
