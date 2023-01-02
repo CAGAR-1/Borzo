@@ -24,8 +24,6 @@ class _NewOrdersState extends State<NewOrders> {
 
   List<NewDeliv> newdeliv = [];
 
- 
-   
   @override
   void initState() {
     addnewDelvPoints(0);
@@ -35,10 +33,40 @@ class _NewOrdersState extends State<NewOrders> {
   }
 
   void addnewDelvPoints(int index) {
-    newdeliv.add(NewDeliv(index: index));
+    newdeliv.add(NewDeliv(
+      index: index,
+      removing: removeCurrentDeliveryPoint,
+      lastIndex: [newdeliv.toString()],
+    ));
 
     setState(() {});
   }
+
+  removeCurrentDeliveryPoint(int index) {
+    if ((newdeliv.length > 1)) {
+      setState(() {
+        newdeliv.removeAt(index);
+        for (var i = 0; i < newdeliv.length; i++) {
+          newdeliv[i] = NewDeliv(
+            index: i,
+            removing: newdeliv[i].removing,
+            lastIndex: [newdeliv.toString()],
+          );
+        }
+      });
+    }
+  }
+
+  // removeAllDeliveryPoint(int index) {
+  //   if ((newdeliv.length > 1)) {
+  //     setState(() {
+  //       newdeliv.removeAt(index);
+  //       for (var i = 0; i < newdeliv.length; i++) {
+  //         newdeliv[i] = NewDeliv(index: i, removing: newdeliv[i].removing);
+  //       }
+  //     });
+  //   }
+  // }
 
   removingthevalue() {
     setState(() {});
@@ -123,12 +151,17 @@ class _NewOrdersState extends State<NewOrders> {
           style: TextStyle(color: Colors.black),
         ),
         actions: [
-          Center(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                "Clear",
-                style: TextStyle(color: Colors.black, fontSize: 20),
+          InkWell(
+            onTap: (() {
+              removeCurrentDeliveryPoint(index);
+            }),
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  "Clear",
+                  style: TextStyle(color: Colors.black, fontSize: 20),
+                ),
               ),
             ),
           )
@@ -515,56 +548,12 @@ class _NewOrdersState extends State<NewOrders> {
                           ],
                         ));
                   })),
-
-              Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: InkWell(
-                  onTap: () {
-                    setState(() {});
-                    removingthevalue();
-                  },
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          height: 50,
-                          child: Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 20),
-                                child: Icon(
-                                  Icons.add,
-                                  color: Colors.grey,
-                                  size: 40,
-                                ),
-                              ),
-                              Text(
-                                "Remove delivery point",
-                                style: TextStyle(
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black.withOpacity(0.5)),
-                              )
-                            ],
-                          ),
-                          decoration: BoxDecoration(
-                              color: Colors.grey[300],
-                              borderRadius: BorderRadius.circular(50)),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-
-              //
-
               Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: InkWell(
                   onTap: () {
                     print("Clicke sucessfully");
-                    // print(newdeliv.length);
+
                     addnewDelvPoints(newdeliv.length);
                   },
                   child: Row(
@@ -886,25 +875,35 @@ class _NewOrdersState extends State<NewOrders> {
                     child: InkWell(
                       onTap: (() {
                         showModalBottomSheet(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10)),
                             context: context,
                             builder: (context) {
                               return Wrap(
-                                children: const [
-                                  ListTile(
-                                    leading: Icon(Icons.share),
-                                    title: Text('Share'),
-                                  ),
-                                  ListTile(
-                                    leading: Icon(Icons.link),
-                                    title: Text('Get link'),
-                                  ),
-                                  ListTile(
-                                    leading: Icon(Icons.edit),
-                                    title: Text('Edit name'),
-                                  ),
-                                  ListTile(
-                                    leading: Icon(Icons.delete),
-                                    title: Text('Delete collection'),
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        bottom: 30, left: 5, right: 5, top: 10),
+                                    child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "Delivery Fee",
+                                          style: TextStyle(fontSize: 20),
+                                        ),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              'RS 45',
+                                              style: TextStyle(fontSize: 20),
+                                            )
+                                          ],
+                                        )
+                                      ],
+                                    ),
                                   ),
                                 ],
                               );

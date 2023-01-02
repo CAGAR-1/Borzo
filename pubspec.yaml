@@ -53,6 +53,7 @@ dependencies:
   smooth_page_indicator: ^1.0.0+2
   top_snackbar_flutter: ^3.0.0+1
   flutter_countdown_timer: ^4.1.0
+  circular_countdown_timer: ^0.2.2
   # geocode: ^1.0.2
 
 dev_dependencies:

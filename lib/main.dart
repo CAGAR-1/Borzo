@@ -6,6 +6,7 @@ import 'package:borzo/Pages/Login.dart';
 import 'package:borzo/Pages/Neworders.dart';
 import 'package:borzo/Pages/Otppage.dart';
 import 'package:borzo/Pages/Profile.dart';
+import 'package:borzo/Pages/SplashScreen.dart';
 import 'package:borzo/Pages/onboardWidget.dart';
 import 'package:borzo/Pages/onboarding_screen.dart';
 import 'package:borzo/Pages/searchpage.dart';
@@ -23,6 +24,6 @@ void main() {
   runApp(GetMaterialApp(
     debugShowCheckedModeBanner: false,
     theme: ThemeData(fontFamily: GoogleFonts.lato().fontFamily),
-    home: OtpScreen(),
+    home: SplashScreen(),
   ));
 }

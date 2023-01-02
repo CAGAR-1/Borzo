@@ -12,7 +12,16 @@ import 'package:http/http.dart';
 
 class NewDeliv extends StatefulWidget {
   int index;
-  NewDeliv({super.key, required this.index});
+
+  final Function removing;
+
+  List<String> lastIndex;
+
+  NewDeliv(
+      {super.key,
+      required this.index,
+      required this.removing,
+      required this.lastIndex});
 
   @override
   State<NewDeliv> createState() => _NewDelivState();
@@ -411,8 +420,7 @@ class _NewDelivState extends State<NewDeliv> {
                                   alignment: Alignment.centerRight,
                                   child: TextButton(
                                       onPressed: () {
-                                        print(widget.index - 1);
-                                        // widget.index - 1;
+                                        widget.removing(widget.index);
                                       },
                                       child: Text(
                                         'Remove address',
