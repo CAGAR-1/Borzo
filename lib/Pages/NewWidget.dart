@@ -141,7 +141,7 @@ class _NewDelivState extends State<NewDeliv> {
                               const Text(
                                 'Enter the address to find out\nwhen the courier will arrive',
                                 style: TextStyle(
-                                  fontSize: 15,
+                                  fontSize: 13,
                                 ),
                               )
                             ],
@@ -375,7 +375,7 @@ class _NewDelivState extends State<NewDeliv> {
                       ),
                       const Text(
                         'The courier will buy out the goods, recieve cash\nor carry out the instruction.',
-                        style: TextStyle(fontSize: 15, color: Colors.grey),
+                        style: TextStyle(fontSize: 13, color: Colors.grey),
                       ),
                       const SizedBox(
                         height: 10,

@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:borzo/Swap/DeliverNow.dart';
+import 'package:borzo/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -29,7 +30,7 @@ class _ChatState extends State<Chat> {
               child: Padding(
             padding: const EdgeInsets.only(bottom: 500),
             child: Container(
-              color: Colors.blue,
+              color: bluecolor,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 30),
                 child: Column(
@@ -111,7 +112,7 @@ class _ChatState extends State<Chat> {
                               children: [
                                 Icon(
                                   Icons.search,
-                                  color: Colors.blue,
+                                  color: bluecolor,
                                 ),
                                 Text(
                                   "Search articles ...",
@@ -123,7 +124,7 @@ class _ChatState extends State<Chat> {
                           height: 50,
                           decoration: BoxDecoration(
                               color: Colors.white,
-                              border: Border.all(color: Colors.blue),
+                              border: Border.all(color: bluecolor),
                               borderRadius: BorderRadius.circular(20)),
                         )),
                       ],

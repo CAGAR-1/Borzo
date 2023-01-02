@@ -2,6 +2,7 @@ import 'package:borzo/Pages/OnBordWidget2.dart';
 import 'package:borzo/Pages/OnBordWidget3.dart';
 import 'package:borzo/Pages/onboardWidget.dart';
 import 'package:borzo/Pages/welcomePage.dart';
+import 'package:borzo/constant.dart';
 import 'package:borzo/mainscreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -48,13 +49,13 @@ class _Onboard_ScreenState extends State<Onboard_Screen> {
       ),
       bottomSheet: lastPage
           ? Padding(
-              padding: const EdgeInsets.only(bottom: 10),
+              padding: const EdgeInsets.all(15),
               child: TextButton(
                   style: TextButton.styleFrom(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)),
                       primary: Colors.white,
-                      backgroundColor: Colors.blue,
+                      backgroundColor: bluecolor,
                       minimumSize: Size.fromHeight(60)),
                   onPressed: () {
                     Navigator.push(

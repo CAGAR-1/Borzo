@@ -1,6 +1,7 @@
 import 'package:borzo/Pages/CreateAccount.dart';
 import 'package:borzo/Pages/Login.dart';
 import 'package:borzo/Pages/Neworders.dart';
+import 'package:borzo/constant.dart';
 import 'package:flutter/material.dart';
 
 class orders extends StatelessWidget {
@@ -55,7 +56,7 @@ class orders extends StatelessWidget {
             height: 49,
             width: 200,
             decoration: BoxDecoration(
-              color: Colors.blue,
+              color: bluecolor,
               borderRadius: BorderRadius.circular(70),
             ),
             child: Center(
@@ -91,7 +92,7 @@ class orders extends StatelessWidget {
                 },
                 child: Text(
                   "Log in",
-                  style: TextStyle(color: Colors.blue, fontSize: 20),
+                  style: TextStyle(color: bluecolor, fontSize: 20),
                 ),
               ),
               SizedBox(
@@ -111,7 +112,7 @@ class orders extends StatelessWidget {
                 }),
                 child: Text(
                   "Signup",
-                  style: TextStyle(color: Colors.blue, fontSize: 20),
+                  style: TextStyle(color: bluecolor, fontSize: 20),
                 ),
               ),
             ],

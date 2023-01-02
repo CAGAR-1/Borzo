@@ -90,12 +90,5 @@ class _LoginState extends State<Login> {
             ],
           ),
         )));
-    //  TabBarView(
-    //   children: [
-    //     Individual(
-
-    //   ), Business()],
-    // ), // TabBarView
-    // Defa,
   }
 }

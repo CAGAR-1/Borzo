@@ -1,3 +1,4 @@
+import 'package:borzo/Pages/Otppage.dart';
 import 'package:borzo/widgets/textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -83,17 +84,27 @@ class _CreateAccountState extends State<CreateAccount> {
                                               backgroundColor: Colors.grey[200],
                                               colorText: Colors.black);
                                         }),
-                                        child: Container(
-                                          child: Icon(
-                                            Icons.keyboard_arrow_right,
-                                            color: Colors.white,
+                                        child: InkWell(
+                                          onTap: (() {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      OtpScreen()),
+                                            );
+                                          }),
+                                          child: Container(
+                                            child: Icon(
+                                              Icons.keyboard_arrow_right,
+                                              color: Colors.white,
+                                            ),
+                                            height: 50,
+                                            width: 70,
+                                            decoration: BoxDecoration(
+                                                color: Colors.grey,
+                                                borderRadius:
+                                                    BorderRadius.circular(20)),
                                           ),
-                                          height: 50,
-                                          width: 70,
-                                          decoration: BoxDecoration(
-                                              color: Colors.grey,
-                                              borderRadius:
-                                                  BorderRadius.circular(20)),
                                         ),
                                       ),
                                       // Text(

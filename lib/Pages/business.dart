@@ -1,3 +1,5 @@
+import 'package:borzo/Pages/Otppage.dart';
+import 'package:borzo/constant.dart';
 import 'package:borzo/widgets/textfield.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +24,6 @@ class _BusinessState extends State<Business> {
           children: [
             CustomTextField(
               label: "Email",
-            
             ),
             SizedBox(
               height: 10,
@@ -41,14 +42,22 @@ class _BusinessState extends State<Business> {
             children: [
               Row(
                 children: [
-                  Container(
-                    child: Row(
-                      children: [
-                        Text(
-                          "Forgot Password",
-                          style: TextStyle(fontSize: 17, color: Colors.blue),
-                        ),
-                      ],
+                  InkWell(
+                    onTap: (() {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => OtpScreen()),
+                      );
+                    }),
+                    child: Container(
+                      child: Row(
+                        children: [
+                          Text(
+                            "Forgot Password",
+                            style: TextStyle(fontSize: 17, color: bluecolor),
+                          ),
+                        ],
+                      ),
                     ),
                   )
                 ],
@@ -63,8 +72,7 @@ class _BusinessState extends State<Business> {
                 height: 50,
                 width: 90,
                 decoration: BoxDecoration(
-                    color: Colors.blue,
-                    borderRadius: BorderRadius.circular(30)),
+                    color: bluecolor, borderRadius: BorderRadius.circular(30)),
               ),
             ],
           ),

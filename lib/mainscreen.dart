@@ -55,7 +55,7 @@ class _HomePageState extends State<HomePage> {
             },
             icon: pageIndex == 0
                 ? const Icon(
-                    Icons.home_filled,
+                    Icons.home,
                     color: Colors.black,
                     size: 28,
                   )
@@ -76,12 +76,12 @@ class _HomePageState extends State<HomePage> {
             },
             icon: pageIndex == ''
                 ? const Icon(
-                    Icons.work_rounded,
+                    Icons.add_circle_outline,
                     color: Colors.black,
                     size: 28,
                   )
                 : const Icon(
-                    Icons.work_outline_outlined,
+                    Icons.add_circle_outline,
                     color: Colors.black,
                     size: 28,
                   ),
@@ -96,12 +96,12 @@ class _HomePageState extends State<HomePage> {
             },
             icon: pageIndex == 2
                 ? const Icon(
-                    Icons.widgets_rounded,
+                    Icons.message_outlined,
                     color: Colors.black,
                     size: 28,
                   )
                 : const Icon(
-                    Icons.widgets_outlined,
+                    Icons.message_outlined,
                     color: Colors.black,
                     size: 28,
                   ),

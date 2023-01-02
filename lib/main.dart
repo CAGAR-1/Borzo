@@ -24,6 +24,6 @@ void main() {
   runApp(GetMaterialApp(
     debugShowCheckedModeBanner: false,
     theme: ThemeData(fontFamily: GoogleFonts.lato().fontFamily),
-    home: SplashScreen(),
+    home: Onboard_Screen(),
   ));
 }

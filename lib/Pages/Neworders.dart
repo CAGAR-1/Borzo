@@ -155,12 +155,20 @@ class _NewOrdersState extends State<NewOrders> {
             onTap: (() {
               removeCurrentDeliveryPoint(index);
             }),
-            child: Center(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  "Clear",
-                  style: TextStyle(color: Colors.black, fontSize: 20),
+            child: InkWell(
+              onTap: (() {
+                newdeliv.clear();
+                setState(() {
+                  addnewDelvPoints(0);
+                });
+              }),
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    "Clear",
+                    style: TextStyle(color: Colors.black, fontSize: 20),
+                  ),
                 ),
               ),
             ),
@@ -204,11 +212,11 @@ class _NewOrdersState extends State<NewOrders> {
                             Icon(Icons.timer,
                                 size: 30,
                                 // color: Colors.blue,
-                                color: pressed ? Colors.blue : Colors.grey),
+                                color: pressed ? bluecolor : Colors.grey),
                             Text(
                               "Deliver Now",
                               style: TextStyle(
-                                  fontSize: 14, fontWeight: FontWeight.bold),
+                                  fontSize: 11, fontWeight: FontWeight.w600),
                             ),
                             SizedBox(
                               height: 10,
@@ -218,7 +226,7 @@ class _NewOrdersState extends State<NewOrders> {
                                 Text(
                                   "From Rs 47",
                                   style: TextStyle(
-                                      fontSize: 19,
+                                      fontSize: 15,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 SizedBox(
@@ -270,13 +278,11 @@ class _NewOrdersState extends State<NewOrders> {
                           children: [
                             Icon(Icons.calendar_month,
                                 size: 30,
-                                // color:
-                                //  Colors.black.withOpacity(0.5),
-                                color: pressed ? Colors.grey : Colors.blue),
+                                color: pressed ? Colors.grey : bluecolor),
                             Text(
                               "Schedule",
                               style: TextStyle(
-                                  fontSize: 14, fontWeight: FontWeight.bold),
+                                  fontSize: 11, fontWeight: FontWeight.bold),
                             ),
                             SizedBox(
                               height: 10,
@@ -286,7 +292,7 @@ class _NewOrdersState extends State<NewOrders> {
                                 Text(
                                   "From Rs 47",
                                   style: TextStyle(
-                                      fontSize: 19,
+                                      fontSize: 15,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 SizedBox(
@@ -331,14 +337,14 @@ class _NewOrdersState extends State<NewOrders> {
                 visible: showtext,
                 child: Text(
                   "We will assign the nearest courier to pick-up and deliver as soon as possible",
-                  style: TextStyle(color: Colors.grey, fontSize: 15),
+                  style: TextStyle(color: Colors.grey, fontSize: 13),
                 ),
               ),
               Visibility(
                 visible: !showtext,
                 child: Text(
                   "We will  arrive at each address at specified times",
-                  style: TextStyle(color: Colors.grey, fontSize: 15),
+                  style: TextStyle(color: Colors.grey, fontSize: 13),
                 ),
               ),
               SizedBox(
@@ -358,7 +364,6 @@ class _NewOrdersState extends State<NewOrders> {
                             children: [
                               Text(
                                 "Book a\nCourier",
-                                style: TextStyle(fontSize: 18),
                               ),
                             ],
                           ),
@@ -471,7 +476,7 @@ class _NewOrdersState extends State<NewOrders> {
                                                                             children: [
                                                                               Icon(
                                                                                 Icons.check,
-                                                                                color: Kg == weight[index] ? Colors.blue : Colors.white,
+                                                                                color: Kg == weight[index] ? bluecolor : Colors.white,
                                                                               )
                                                                             ],
                                                                           ),
@@ -526,7 +531,7 @@ class _NewOrdersState extends State<NewOrders> {
               ),
               Text(
                 "Huperlocal is km based tariff. it is the best option short distance deliveries under 5 km.",
-                style: TextStyle(color: Colors.grey, fontSize: 15),
+                style: TextStyle(color: Colors.grey, fontSize: 13),
               ),
               SizedBox(
                 height: 20,
@@ -594,7 +599,7 @@ class _NewOrdersState extends State<NewOrders> {
               ),
               Text(
                 "Our algorithm will optimize the route points ensuring the route is more convenient for the courier and cheaper",
-                style: TextStyle(fontSize: 15, color: Colors.grey),
+                style: TextStyle(fontSize: 13, color: Colors.grey),
               ),
               SizedBox(
                 height: 10,
@@ -936,33 +941,16 @@ class _NewOrdersState extends State<NewOrders> {
                   )
                 ],
               ),
-              InkWell(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => HomePage()),
-                  );
-                },
-                child: InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => NewOrders()),
-                    );
-                  },
-                  child: Container(
-                    child: Center(
-                        child: Text(
-                      "Create Order",
-                      style: TextStyle(fontSize: 20),
-                    )),
-                    height: 50,
-                    width: 180,
-                    decoration: BoxDecoration(
-                        color: bluecolor,
-                        borderRadius: BorderRadius.circular(30)),
-                  ),
-                ),
+              Container(
+                child: Center(
+                    child: Text(
+                  "Create Order",
+                  style: TextStyle(fontSize: 20),
+                )),
+                height: 50,
+                width: 180,
+                decoration: BoxDecoration(
+                    color: bluecolor, borderRadius: BorderRadius.circular(30)),
               ),
             ],
           ),
@@ -1437,18 +1425,18 @@ class _NewOrdersState extends State<NewOrders> {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               // color: blueColor.withOpacity(0.15)
-                              color: Colors.blue.withOpacity(0.5)),
+                              color: bluecolor.withOpacity(0.5)),
                           child: Row(
                             children: [
                               Icon(
                                 Icons.timer,
                                 // color: blueColor,
-                                color: Colors.blue,
+                                color: bluecolor,
                               ),
                               const Text(
                                 'Enter the address to find out\nwhen the courier will arrive',
                                 style: TextStyle(
-                                  fontSize: 15,
+                                  fontSize: 13,
                                 ),
                               )
                             ],
@@ -1488,9 +1476,6 @@ class _NewOrdersState extends State<NewOrders> {
                                 ),
                               ],
                             ),
-                            // SizedBox(
-                            //   width: MediaQuery.of(context).size.width / 3.99,
-                            // ),
                             IconButton(
                               onPressed: () {},
                               icon: const Icon(
@@ -1503,7 +1488,7 @@ class _NewOrdersState extends State<NewOrders> {
                       ),
                       const Text(
                         'The courier will buy out the goods, recieve cash\nor carry out the instruction.',
-                        style: TextStyle(fontSize: 15, color: Colors.grey),
+                        style: TextStyle(fontSize: 13, color: Colors.grey),
                       ),
                       const SizedBox(
                         height: 10,

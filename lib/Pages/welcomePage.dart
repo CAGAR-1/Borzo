@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:borzo/Pages/Country_Choose.dart';
 import 'package:borzo/Pages/Country_Name.dart';
+import 'package:borzo/constant.dart';
 import 'package:borzo/mainscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -117,7 +118,7 @@ class _WelcomePageState extends State<WelcomePage> {
                             style: TextStyle(color: Colors.white, fontSize: 20),
                           )),
                           decoration: BoxDecoration(
-                              color: Colors.blue,
+                              color: bluecolor,
                               borderRadius: BorderRadius.circular(20)),
                           height: 50,
                         ),

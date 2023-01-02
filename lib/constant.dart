@@ -1,4 +1,4 @@
 import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
 
-const bluecolor = Colors.blue;
+Color bluecolor = Color(0xff0048ff);

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:borzo/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -43,7 +44,9 @@ class _OtpScreenState extends State<OtpScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pop(context);
+            },
             icon: const Icon(Icons.arrow_back_ios_new),
             color: Colors.black),
       ),
@@ -125,7 +128,7 @@ class _OtpScreenState extends State<OtpScreen> {
                                                   timeLeft.toString() +
                                                   ' ' +
                                                   'Sec',
-                                          style: TextStyle(color: Colors.blue),
+                                          style: TextStyle(color: bluecolor),
                                         ),
                                       ),
                                     ),
@@ -135,21 +138,26 @@ class _OtpScreenState extends State<OtpScreen> {
                                     InkWell(
                                       onTap: (() {
                                         setState(() {
-                                          CircularProgressIndicator();
+                                          // CircularProgressIndicator();
                                         });
                                         // Get.snackbar('', 'OTP code Invalid');
                                       }),
-                                      child: Container(
-                                        child: Icon(
-                                          Icons.keyboard_arrow_right,
-                                          color: Colors.white,
+                                      child: GestureDetector(
+                                        onTap: (() {
+                                          Get.snackbar('', 'Enter OTP Error');
+                                        }),
+                                        child: Container(
+                                          child: Icon(
+                                            Icons.keyboard_arrow_right,
+                                            color: Colors.white,
+                                          ),
+                                          height: 50,
+                                          width: 70,
+                                          decoration: BoxDecoration(
+                                              color: Colors.grey,
+                                              borderRadius:
+                                                  BorderRadius.circular(20)),
                                         ),
-                                        height: 50,
-                                        width: 70,
-                                        decoration: BoxDecoration(
-                                            color: Colors.grey,
-                                            borderRadius:
-                                                BorderRadius.circular(20)),
                                       ),
                                     ),
                                   ],

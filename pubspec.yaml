@@ -54,7 +54,12 @@ dependencies:
   top_snackbar_flutter: ^3.0.0+1
   flutter_countdown_timer: ^4.1.0
   circular_countdown_timer: ^0.2.2
-  # geocode: ^1.0.2
+  flutter_native_splash: ^2.2.9
+
+
+
+flutter_native_splash:
+  image: images/borzo.png
 
 dev_dependencies:
   flutter_test:
