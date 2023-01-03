@@ -1,12 +1,7 @@
-import 'dart:ui';
-
 import 'package:borzo/Pages/Country_Choose.dart';
-import 'package:borzo/Pages/Country_Name.dart';
-import 'package:borzo/constant.dart';
+import 'package:borzo/widgets/constant.dart';
 import 'package:borzo/mainscreen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class WelcomePage extends StatefulWidget {
   String names;
@@ -77,7 +72,6 @@ class _WelcomePageState extends State<WelcomePage> {
                             width: 5,
                           ),
                           Text(
-                            // "India?",
                             widget.names,
                             style: TextStyle(color: Colors.white, fontSize: 15),
                           )
@@ -103,8 +97,6 @@ class _WelcomePageState extends State<WelcomePage> {
                       Expanded(
                           child: InkWell(
                         onTap: (() {
-                          // print("dsf");
-
                           Navigator.push(
                             context,
                             MaterialPageRoute(

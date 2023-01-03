@@ -5,7 +5,7 @@ import 'package:borzo/Pages/CreateAccount.dart';
 import 'package:borzo/Pages/Login.dart';
 import 'package:borzo/Pages/Neworders.dart';
 import 'package:borzo/Pages/termsAndCondition.dart';
-import 'package:borzo/constant.dart';
+import 'package:borzo/widgets/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
 
@@ -127,12 +127,11 @@ class _ProfileState extends State<Profile> {
                                       style: TextStyle(
                                           color: Colors.white, fontSize: 20),
                                     )),
-                                    // width: MediaQuery.of(context).size.width / 1.5,
-                                    // height: MediaQuery.of(context).size.height / 0.9,
+                                   
                                     height:
                                         MediaQuery.of(context).size.height / 18,
 
-                                    // width: 100,
+                                 
                                     decoration: BoxDecoration(
                                         color: bluecolor,
                                         borderRadius:
@@ -160,7 +159,7 @@ class _ProfileState extends State<Profile> {
                     ),
                     height: MediaQuery.of(context).size.height / 6,
                     width: MediaQuery.of(context).size.width,
-                    // color: Colors.pink,
+           
                   )),
             ),
           ],

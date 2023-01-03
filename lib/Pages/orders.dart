@@ -1,7 +1,7 @@
 import 'package:borzo/Pages/CreateAccount.dart';
 import 'package:borzo/Pages/Login.dart';
 import 'package:borzo/Pages/Neworders.dart';
-import 'package:borzo/constant.dart';
+import 'package:borzo/widgets/constant.dart';
 import 'package:flutter/material.dart';
 
 class orders extends StatelessWidget {
@@ -13,7 +13,6 @@ class orders extends StatelessWidget {
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(
-          // mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
               height: 140,
@@ -24,21 +23,15 @@ class orders extends StatelessWidget {
                   height: 200,
                   width: 200,
                   child: Image(image: AssetImage('images/logo.png')),
-                  decoration: BoxDecoration(
-                      // color: Colors.yellow,
-                      borderRadius: BorderRadius.circular(40)),
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(40)),
                 ),
               ),
             ),
             SizedBox(
               height: 10,
             ),
-
             Image(image: AssetImage("images/package.png")),
-            // Text(
-            //   "Send a package",
-            //   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28),
-            // ),
             Text(
               "A Courier will pick up and",
               style:

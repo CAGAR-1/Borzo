@@ -1,6 +1,6 @@
 import 'package:borzo/Pages/NewWidget.dart';
 
-import 'package:borzo/constant.dart';
+import 'package:borzo/widgets/constant.dart';
 
 import 'package:borzo/Swap/DeliverNow.dart';
 import 'package:borzo/Swap/Schedule.dart';

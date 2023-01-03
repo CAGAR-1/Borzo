@@ -1,5 +1,5 @@
 import 'package:borzo/Pages/Neworders.dart';
-import 'package:borzo/constant.dart';
+import 'package:borzo/widgets/constant.dart';
 
 import 'package:borzo/map.dart';
 

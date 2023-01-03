@@ -1,7 +1,6 @@
 import 'dart:async';
 
-import 'package:borzo/Pages/NewPassword.dart';
-import 'package:borzo/constant.dart';
+import 'package:borzo/widgets/constant.dart';
 import 'package:borzo/mainscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -110,10 +109,6 @@ class _LoginOtpState extends State<LoginOtp> {
                 SizedBox(
                   width: 10,
                 ),
-                // Otp(),
-                // Otp(),
-                // Otp(),
-                // Otp(),
               ],
             ),
             SizedBox(
@@ -157,10 +152,7 @@ class _LoginOtpState extends State<LoginOtp> {
                                     ),
                                     InkWell(
                                       onTap: (() {
-                                        setState(() {
-                                          // CircularProgressIndicator();
-                                        });
-                                        // Get.snackbar('', 'OTP code Invalid');
+                                        setState(() {});
                                       }),
                                       child: GestureDetector(
                                         onTap: (() {
@@ -227,10 +219,8 @@ class Otp extends StatefulWidget {
 }
 
 class _OtpState extends State<Otp> {
-  // final Key? formsss;
   final OtpForm = GlobalKey<FormState>();
 
-  // final OtpForm = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return SizedBox(

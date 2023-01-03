@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
 
 class OnBoardWidget2 extends StatefulWidget {
   const OnBoardWidget2({super.key});

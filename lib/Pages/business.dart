@@ -1,5 +1,5 @@
 import 'package:borzo/Pages/Otppage.dart';
-import 'package:borzo/constant.dart';
+import 'package:borzo/widgets/constant.dart';
 import 'package:borzo/mainscreen.dart';
 import 'package:borzo/widgets/textfield.dart';
 

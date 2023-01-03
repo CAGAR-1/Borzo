@@ -2,7 +2,7 @@ import 'package:borzo/Pages/OnBordWidget2.dart';
 import 'package:borzo/Pages/OnBordWidget3.dart';
 import 'package:borzo/Pages/onboardWidget.dart';
 import 'package:borzo/Pages/welcomePage.dart';
-import 'package:borzo/constant.dart';
+import 'package:borzo/widgets/constant.dart';
 
 import 'package:flutter/material.dart';
 

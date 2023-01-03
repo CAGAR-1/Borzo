@@ -1,4 +1,4 @@
-import 'package:borzo/constant.dart';
+import 'package:borzo/widgets/constant.dart';
 import 'package:flutter/material.dart';
 
 class Chat extends StatefulWidget {
