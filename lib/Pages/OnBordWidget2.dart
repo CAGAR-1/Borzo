@@ -19,7 +19,11 @@ class _OnBoardWidgetState extends State<OnBoardWidget2> {
           children: [
             Expanded(
                 child: Container(
-              child: Image(image: AssetImage('images/page2.jpg')),
+              child: Image(
+                image: AssetImage('images/page2.jpg'),
+                height: 200,
+                width: 200,
+              ),
               color: Colors.white,
             )),
             Container(
@@ -27,8 +31,8 @@ class _OnBoardWidgetState extends State<OnBoardWidget2> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Wefaset is a same-day delivery service",
-                    style: TextStyle(fontSize: 25),
+                    "Its affordable: pricing starts from Rs 45",
+                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
                     height: 10,

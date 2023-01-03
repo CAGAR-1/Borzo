@@ -1,4 +1,5 @@
 import 'package:borzo/Pages/Neworders.dart';
+import 'package:borzo/constant.dart';
 
 import 'package:borzo/map.dart';
 
@@ -318,24 +319,36 @@ class _NewDelivState extends State<NewDeliv> {
                                                   Row(
                                                     children: [
                                                       Expanded(
-                                                        child: Container(
-                                                          child: Center(
-                                                            child: Text(
-                                                              "Confirm",
-                                                              style: TextStyle(
-                                                                  color: Colors
-                                                                      .white,
-                                                                  fontSize: 20),
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(8.0),
+                                                          child: InkWell(
+                                                            onTap: () {
+                                                              Navigator.pop(
+                                                                  context);
+                                                            },
+                                                            child: Container(
+                                                              child: Center(
+                                                                child: Text(
+                                                                  "Confirm",
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                          .white,
+                                                                      fontSize:
+                                                                          20),
+                                                                ),
+                                                              ),
+                                                              height: 50,
+                                                              decoration: BoxDecoration(
+                                                                  color:
+                                                                      bluecolor,
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              30)),
                                                             ),
                                                           ),
-                                                          height: 50,
-                                                          decoration: BoxDecoration(
-                                                              color:
-                                                                  Colors.blue,
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          30)),
                                                         ),
                                                       ),
                                                     ],
@@ -380,28 +393,31 @@ class _NewDelivState extends State<NewDeliv> {
                       const SizedBox(
                         height: 10,
                       ),
-                      Row(
-                        children: [
-                          const Text(
-                            'Addtional services',
-                            style: TextStyle(
-                                fontSize: 17,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.grey),
-                          ),
-                          IconButton(
-                            color: Colors.grey,
-                            icon: Icon(selected
-                                ? Icons.expand_more
-                                : Icons.expand_less),
-                            onPressed: () {
-                              setState(() {
-                                selected = !selected;
-                                AddtionalService = !AddtionalService;
-                              });
-                            },
-                          ),
-                        ],
+                      InkWell(
+                        onTap: (() {
+                          setState(() {
+                            selected = !selected;
+                            AddtionalService = !AddtionalService;
+                          });
+                        }),
+                        child: Row(
+                          children: [
+                            const Text(
+                              'Addtional services',
+                              style: TextStyle(
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.grey),
+                            ),
+                            IconButton(
+                              color: Colors.grey,
+                              icon: Icon(selected
+                                  ? Icons.expand_more
+                                  : Icons.expand_less),
+                              onPressed: () {},
+                            ),
+                          ],
+                        ),
                       ),
                       Visibility(
                         visible: AddtionalService,

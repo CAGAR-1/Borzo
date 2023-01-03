@@ -3,6 +3,7 @@ import 'package:borzo/Pages/Country_Choose.dart';
 import 'package:borzo/Pages/Country_Name.dart';
 import 'package:borzo/Pages/CreateAccount.dart';
 import 'package:borzo/Pages/Login.dart';
+import 'package:borzo/Pages/NewPassword.dart';
 import 'package:borzo/Pages/Neworders.dart';
 import 'package:borzo/Pages/Otppage.dart';
 import 'package:borzo/Pages/Profile.dart';
@@ -24,6 +25,6 @@ void main() {
   runApp(GetMaterialApp(
     debugShowCheckedModeBanner: false,
     theme: ThemeData(fontFamily: GoogleFonts.lato().fontFamily),
-    home: Onboard_Screen(),
+    home: NewPassword(),
   ));
 }

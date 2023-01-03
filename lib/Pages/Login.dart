@@ -20,6 +20,24 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          backgroundColor: Colors.white,
+          elevation: 0,
+          leading: InkWell(
+            onTap: (() {
+              Navigator.pop(context);
+            }),
+            child: Icon(
+              Icons.clear,
+              color: Colors.black,
+            ),
+          ),
+          title: Text(
+            "Login",
+            style: TextStyle(color: Colors.black),
+          ),
+        ),
         backgroundColor: Colors.white,
         // appBar: AppBar(),
         body: SafeArea(

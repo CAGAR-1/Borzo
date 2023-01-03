@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:get/get.dart';
 
 class Individual extends StatefulWidget {
   const Individual({super.key});
@@ -14,6 +15,9 @@ class Individual extends StatefulWidget {
 }
 
 class _IndividualState extends State<Individual> {
+  final Forming_ = GlobalKey<FormState>();
+  final phoneForm = GlobalKey<FormState>();
+  TextEditingController number = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,13 +26,14 @@ class _IndividualState extends State<Individual> {
         child: Column(
           children: [
             CustomTextField(
+              // formsss: Forming_,
               label: "Phone number",
+              errorText: 'Please enter valid Phone Number',
               initvalue: "+914",
             ),
-            SizedBox(
-              height: 10,
-            ),
             CustomTextField(
+              formsss: Forming_,
+              errorText: "Please Enter Password",
               label: "Password",
             )
           ],
@@ -62,17 +67,26 @@ class _IndividualState extends State<Individual> {
                   )
                 ],
               ),
-              Container(
-                child: Center(
-                    child: Icon(
-                  Icons.arrow_forward,
-                  size: 20,
-                  color: Colors.white,
-                )),
-                height: 50,
-                width: 90,
-                decoration: BoxDecoration(
-                    color: bluecolor, borderRadius: BorderRadius.circular(30)),
+              GestureDetector(
+                onTap: (() {
+                  if (Forming_.currentState!.validate()) {
+                    Get.snackbar('', 'You login successfull');
+                    number.clear();
+                  } else {}
+                }),
+                child: Container(
+                  child: Center(
+                      child: Icon(
+                    Icons.arrow_forward,
+                    size: 20,
+                    color: Colors.white,
+                  )),
+                  height: 50,
+                  width: 90,
+                  decoration: BoxDecoration(
+                      color: bluecolor,
+                      borderRadius: BorderRadius.circular(30)),
+                ),
               ),
             ],
           ),

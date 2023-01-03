@@ -25,7 +25,6 @@ class _ChatState extends State<Chat> {
               child: Container(
             color: Colors.white.withOpacity(0.5),
           )),
-
           Positioned.fill(
               child: Padding(
             padding: const EdgeInsets.only(bottom: 500),

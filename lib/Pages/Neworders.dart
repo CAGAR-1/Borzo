@@ -151,11 +151,11 @@ class _NewOrdersState extends State<NewOrders> {
           style: TextStyle(color: Colors.black),
         ),
         actions: [
-          InkWell(
+          GestureDetector(
             onTap: (() {
               removeCurrentDeliveryPoint(index);
             }),
-            child: InkWell(
+            child: GestureDetector(
               onTap: (() {
                 newdeliv.clear();
                 setState(() {
@@ -213,6 +213,9 @@ class _NewOrdersState extends State<NewOrders> {
                                 size: 30,
                                 // color: Colors.blue,
                                 color: pressed ? bluecolor : Colors.grey),
+                            SizedBox(
+                              height: 5,
+                            ),
                             Text(
                               "Deliver Now",
                               style: TextStyle(
@@ -257,10 +260,12 @@ class _NewOrdersState extends State<NewOrders> {
                       width: MediaQuery.of(context).size.width * 0.44,
                       decoration: BoxDecoration(
                           color: pressed ? Colors.grey[200] : Colors.white,
-                          borderRadius: BorderRadius.circular(30)),
+                          borderRadius: BorderRadius.circular(20),
+                          border:
+                              Border.all(color: Colors.black.withOpacity(0.2))),
                     ),
                   ),
-                  InkWell(
+                  GestureDetector(
                     onTap: () {
                       print("Second one is clcked");
                       setState(() {
@@ -279,6 +284,9 @@ class _NewOrdersState extends State<NewOrders> {
                             Icon(Icons.calendar_month,
                                 size: 30,
                                 color: pressed ? Colors.grey : bluecolor),
+                            SizedBox(
+                              height: 5,
+                            ),
                             Text(
                               "Schedule",
                               style: TextStyle(
@@ -311,7 +319,7 @@ class _NewOrdersState extends State<NewOrders> {
                                   height: 20,
                                   width: 20,
                                   decoration: BoxDecoration(
-                                      color: Colors.black.withOpacity(0.2),
+                                      color: Colors.white,
                                       borderRadius: BorderRadius.circular(20)),
                                 )
                               ],
@@ -323,7 +331,7 @@ class _NewOrdersState extends State<NewOrders> {
                       width: MediaQuery.of(context).size.width * 0.44,
                       decoration: BoxDecoration(
                           color: pressed ? Colors.white : Colors.grey[200],
-                          borderRadius: BorderRadius.circular(30),
+                          borderRadius: BorderRadius.circular(20),
                           border:
                               Border.all(color: Colors.black.withOpacity(0.2))),
                     ),
@@ -342,9 +350,14 @@ class _NewOrdersState extends State<NewOrders> {
               ),
               Visibility(
                 visible: !showtext,
-                child: Text(
-                  "We will  arrive at each address at specified times",
-                  style: TextStyle(color: Colors.grey, fontSize: 13),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      "We will  arrive at each address at specified times",
+                      style: TextStyle(color: Colors.grey, fontSize: 13),
+                    ),
+                  ],
                 ),
               ),
               SizedBox(
@@ -371,16 +384,16 @@ class _NewOrdersState extends State<NewOrders> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            Icon(
-                              Icons.keyboard_arrow_down,
-                              size: 32,
-                              color: Colors.black.withOpacity(0.5),
-                            )
+                            // Icon(
+                            //   Icons.keyboard_arrow_down,
+                            //   size: 22,
+                            //   color: Colors.black.withOpacity(0.5),
+                            // )
                           ],
                         )
                       ],
                     ),
-                    height: 65,
+                    height: 55,
                     width: MediaQuery.of(context).size.width * 0.44,
                     decoration: BoxDecoration(
                         color: Colors.grey[200],
@@ -394,7 +407,7 @@ class _NewOrdersState extends State<NewOrders> {
                         children: [
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: InkWell(
+                            child: GestureDetector(
                               onTap: () {
                                 showModalBottomSheet(
                                     context: context,
@@ -437,7 +450,7 @@ class _NewOrdersState extends State<NewOrders> {
                                                                   CrossAxisAlignment
                                                                       .start,
                                                               children: [
-                                                                InkWell(
+                                                                GestureDetector(
                                                                     onTap: () {
                                                                       setState(
                                                                           () {
@@ -501,7 +514,6 @@ class _NewOrdersState extends State<NewOrders> {
                                 children: [
                                   Text(
                                     "$Kg",
-                                    style: TextStyle(fontSize: 18),
                                   ),
                                 ],
                               ),
@@ -511,6 +523,7 @@ class _NewOrdersState extends State<NewOrders> {
                             children: [
                               Icon(
                                 Icons.keyboard_arrow_down,
+                                size: 24,
                                 color: Colors.black.withOpacity(0.5),
                               )
                             ],
@@ -555,7 +568,7 @@ class _NewOrdersState extends State<NewOrders> {
                   })),
               Padding(
                 padding: const EdgeInsets.all(12.0),
-                child: InkWell(
+                child: GestureDetector(
                   onTap: () {
                     print("Clicke sucessfully");
 
@@ -636,7 +649,7 @@ class _NewOrdersState extends State<NewOrders> {
                         child: Container(
                           // height: MediaQuery.of(context).size.height / 1,
                           width: MediaQuery.of(context).size.width / 4,
-                          child: InkWell(
+                          child: GestureDetector(
                               onTap: () {
                                 print(packge[index]);
                                 setState(() {
@@ -727,7 +740,7 @@ class _NewOrdersState extends State<NewOrders> {
               SizedBox(
                 height: 10,
               ),
-              InkWell(
+              GestureDetector(
                 onTap: () {
                   showModalBottomSheet(
                       context: context,
@@ -776,7 +789,7 @@ class _NewOrdersState extends State<NewOrders> {
                                       ListTileControlAffinity.trailing,
                                   secondary: Icon(Icons.card_membership),
                                 ),
-                                InkWell(
+                                GestureDetector(
                                   onTap: () {
                                     Navigator.pop(context);
 
@@ -866,7 +879,7 @@ class _NewOrdersState extends State<NewOrders> {
             children: [
               Row(
                 children: [
-                  InkWell(
+                  GestureDetector(
                     onTap: (() {
                       print("Clicked");
                       BottomAppBar(
@@ -877,7 +890,7 @@ class _NewOrdersState extends State<NewOrders> {
                         ),
                       );
                     }),
-                    child: InkWell(
+                    child: GestureDetector(
                       onTap: (() {
                         showModalBottomSheet(
                             shape: RoundedRectangleBorder(
@@ -897,13 +910,13 @@ class _NewOrdersState extends State<NewOrders> {
                                       children: [
                                         Text(
                                           "Delivery Fee",
-                                          style: TextStyle(fontSize: 20),
+                                          style: TextStyle(fontSize: 15),
                                         ),
                                         Row(
                                           children: [
                                             Text(
-                                              'RS 45',
-                                              style: TextStyle(fontSize: 20),
+                                              'Rs 45',
+                                              style: TextStyle(fontSize: 15),
                                             )
                                           ],
                                         )
@@ -920,18 +933,18 @@ class _NewOrdersState extends State<NewOrders> {
                         child: Row(
                           children: [
                             Text(
-                              "RS",
+                              "Rs",
                               style: TextStyle(fontSize: 20),
                             ),
                             SizedBox(
-                              width: 8,
+                              width: 6,
                             ),
                             Text(
                               "45",
                               style: TextStyle(fontSize: 20),
                             ),
                             SizedBox(
-                              width: 13,
+                              width: 8,
                             ),
                             Icon(Icons.keyboard_arrow_down)
                           ],
@@ -1399,7 +1412,7 @@ class _NewOrdersState extends State<NewOrders> {
                               label: 'location',
                             ),
                           ),
-                          InkWell(
+                          GestureDetector(
                               onTap: () {
                                 print('adsf');
                                 Navigator.push(
@@ -1452,7 +1465,7 @@ class _NewOrdersState extends State<NewOrders> {
                                 label: 'Phone Number',
                               ),
                             ),
-                            InkWell(
+                            GestureDetector(
                                 onTap: () {
                                   print('adsf');
                                 },
@@ -1493,28 +1506,31 @@ class _NewOrdersState extends State<NewOrders> {
                       const SizedBox(
                         height: 10,
                       ),
-                      Row(
-                        children: [
-                          const Text(
-                            'Addtional services',
-                            style: TextStyle(
-                                fontSize: 17,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.grey),
-                          ),
-                          IconButton(
-                            color: Colors.grey,
-                            icon: Icon(selected
-                                ? Icons.expand_more
-                                : Icons.expand_less),
-                            onPressed: () {
-                              setState(() {
-                                selected = !selected;
-                                AddtionalService = !AddtionalService;
-                              });
-                            },
-                          ),
-                        ],
+                      InkWell(
+                        onTap: (() {
+                          setState(() {
+                            selected = !selected;
+                            AddtionalService = !AddtionalService;
+                          });
+                        }),
+                        child: Row(
+                          children: [
+                            const Text(
+                              'Addtional services',
+                              style: TextStyle(
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.grey),
+                            ),
+                            IconButton(
+                              color: Colors.grey,
+                              icon: Icon(selected
+                                  ? Icons.expand_more
+                                  : Icons.expand_less),
+                              onPressed: () {},
+                            ),
+                          ],
+                        ),
                       ),
                       Visibility(
                         visible: AddtionalService,
