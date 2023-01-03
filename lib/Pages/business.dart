@@ -2,10 +2,9 @@ import 'package:borzo/Pages/Otppage.dart';
 import 'package:borzo/constant.dart';
 import 'package:borzo/mainscreen.dart';
 import 'package:borzo/widgets/textfield.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
 import 'package:get/get.dart';
 
 class Business extends StatefulWidget {
@@ -62,7 +61,8 @@ class _BusinessState extends State<Business> {
                         if (Forminhg_.currentState!.validate()) {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => HomePage()),
+                            MaterialPageRoute(
+                                builder: (context) => OtpScreen()),
                           );
                           Get.snackbar('', 'Login in Successfull');
                           // number.clear();

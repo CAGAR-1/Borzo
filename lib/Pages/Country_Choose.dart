@@ -15,18 +15,10 @@ class _Country_ChooseState extends State<Country_Choose> {
     'images/india-flag.jpg',
     'images/vietnam.jpg',
     'images/nepal.jpg',
-    'images/bangladesh.png',
     'images/philip.jpg',
     'images/mexico.jpg'
   ];
-  List CountryName = [
-    'India',
-    'veitnam',
-    'nepal',
-    'bangladesh',
-    'philipness',
-    'Mexico'
-  ];
+  List CountryName = ['India', 'Veitnam', 'Nepal', 'Philipness', 'Mexico'];
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +46,6 @@ class _Country_ChooseState extends State<Country_Choose> {
         ),
       ),
       body: SingleChildScrollView(
-        // height: 250,
         child: ListView.builder(
             itemCount: images.length,
             scrollDirection: Axis.vertical,

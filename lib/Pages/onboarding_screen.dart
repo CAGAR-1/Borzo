@@ -3,11 +3,9 @@ import 'package:borzo/Pages/OnBordWidget3.dart';
 import 'package:borzo/Pages/onboardWidget.dart';
 import 'package:borzo/Pages/welcomePage.dart';
 import 'package:borzo/constant.dart';
-import 'package:borzo/mainscreen.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class Onboard_Screen extends StatefulWidget {

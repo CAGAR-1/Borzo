@@ -2,20 +2,21 @@ import 'dart:async';
 
 import 'package:borzo/Pages/NewPassword.dart';
 import 'package:borzo/constant.dart';
+import 'package:borzo/mainscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-class OtpScreen extends StatefulWidget {
-  OtpScreen({
+class LoginOtp extends StatefulWidget {
+  LoginOtp({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<OtpScreen> createState() => _OtpScreenState();
+  State<LoginOtp> createState() => _LoginOtpState();
 }
 
-class _OtpScreenState extends State<OtpScreen> {
+class _LoginOtpState extends State<LoginOtp> {
   final otp1 = GlobalKey<FormState>();
   final otp2 = GlobalKey<FormState>();
   final otp3 = GlobalKey<FormState>();
@@ -167,11 +168,13 @@ class _OtpScreenState extends State<OtpScreen> {
                                               otp2.currentState!.validate() ||
                                               otp3.currentState!.validate() ||
                                               otp4.currentState!.validate()) {
+                                            Get.snackbar(
+                                                '', 'User Signup Successfully');
                                             Navigator.push(
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      NewPassword()),
+                                                      HomePage()),
                                             );
                                           } else {}
                                         }),

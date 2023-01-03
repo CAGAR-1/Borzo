@@ -6,10 +6,6 @@ import 'package:borzo/map.dart';
 import 'package:borzo/widgets/textfield.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:get/get.dart';
-import 'package:http/http.dart';
 
 class NewDeliv extends StatefulWidget {
   int index;
@@ -48,7 +44,6 @@ class _NewDelivState extends State<NewDeliv> {
     if (widget.index >= 2) {
       setState(() {
         widget.index = widget.index - 1;
-        // currentIndex = index;
       });
     }
   }
@@ -127,13 +122,11 @@ class _NewDelivState extends State<NewDeliv> {
                           width: double.infinity,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              // color: blueColor.withOpacity(0.15)
                               color: Colors.blue.withOpacity(0.5)),
                           child: Row(
                             children: [
                               Icon(
                                 Icons.timer,
-                                // color: blueColor,
                                 color: Colors.blue,
                               ),
                               const SizedBox(
@@ -276,11 +269,6 @@ class _NewDelivState extends State<NewDeliv> {
                                                         width: 150,
                                                         color: Colors.grey[200],
                                                       ),
-                                                      // Expanded(
-                                                      //     child: Container(
-                                                      //   height: 100,
-                                                      //   color: Colors.white,
-                                                      // )),
                                                     ],
                                                   ),
                                                   Visibility(
@@ -373,9 +361,6 @@ class _NewDelivState extends State<NewDeliv> {
                                 ],
                               ),
                             ),
-                            // SizedBox(
-                            //   width: MediaQuery.of(context).size.width / 3.99,
-                            // ),
                             IconButton(
                               onPressed: () {},
                               icon: const Icon(
@@ -423,8 +408,8 @@ class _NewDelivState extends State<NewDeliv> {
                         visible: AddtionalService,
                         child: Column(
                           children: [
-                            CustomTextField(label: "ads"),
-                            CustomTextField(label: "adsf"),
+                            CustomTextField(label: "Contact Person"),
+                            CustomTextField(label: "You order Number"),
                           ],
                         ),
                       ),

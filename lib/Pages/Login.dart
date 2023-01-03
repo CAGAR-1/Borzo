@@ -1,10 +1,7 @@
 import 'package:borzo/Pages/business.dart';
 import 'package:borzo/Pages/individual.dart';
-import 'package:borzo/Swap/DeliverNow.dart';
-import 'package:borzo/Swap/Schedule.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -39,7 +36,6 @@ class _LoginState extends State<Login> {
           ),
         ),
         backgroundColor: Colors.white,
-        // appBar: AppBar(),
         body: SafeArea(
             child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -51,12 +47,11 @@ class _LoginState extends State<Login> {
                       child: GestureDetector(
                     onTap: (() {
                       controller.animateToPage(0,
-                          duration: Duration(seconds: 1),
+                          duration: Duration(milliseconds: 500),
                           curve: Curves.easeInOut);
                       setState(() {
                         ChangeColor = true;
                       });
-                      print("Pinke is slect");
                     }),
                     child: Container(
                       child: Center(
@@ -77,12 +72,12 @@ class _LoginState extends State<Login> {
                       child: GestureDetector(
                     onTap: (() {
                       controller.animateToPage(1,
-                          duration: Duration(seconds: 1),
+                          duration: Duration(milliseconds: 500),
                           curve: Curves.easeInOut);
                       setState(() {
                         ChangeColor = false;
                       });
-                      print("Yello is tap");
+                     
                     }),
                     child: Container(
                       child: Center(

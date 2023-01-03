@@ -33,7 +33,10 @@ class _NewPasswordState extends State<NewPassword> {
         elevation: 0,
         leading: InkWell(
           onTap: (() {
-            Navigator.pop(context);
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => HomePage()),
+            );
           }),
           child: Icon(
             Icons.clear,
@@ -45,63 +48,66 @@ class _NewPasswordState extends State<NewPassword> {
           style: TextStyle(color: Colors.black),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          // mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.2,
-            ),
-            Text(
-              'Reset Password',
-              style: TextStyle(
-                  fontSize: 30, fontWeight: FontWeight.bold, color: bluecolor),
-            ),
-            SizedBox(
-              height: 50,
-            ),
-            Center(
-                child: CustomTextField(
-                    formsss: ResetPassword,
-                    // controller: resetpass,
-                    errorText: 'Please Enter a New Password',
-                    label: "Enter New Password")),
-            Row(
-              children: [
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: InkWell(
-                      onTap: (() {
-                        if (ResetPassword.currentState!.validate()) {
-                          Get.snackbar('', 'Password Change Successfully');
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => HomePage()),
-                          );
-                          // number.clear();
-                        } else {}
-                      }),
-                      child: Container(
-                        child: Center(
-                          child: Text(
-                            "Confirm",
-                            style: TextStyle(color: Colors.white, fontSize: 20),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.2,
+              ),
+              Text(
+                'Reset Password',
+                style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    color: bluecolor),
+              ),
+              SizedBox(
+                height: 50,
+              ),
+              Center(
+                  child: CustomTextField(
+                      formsss: ResetPassword,
+                      errorText: 'Please Enter a New Password',
+                      label: "Enter New Password")),
+              Row(
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: InkWell(
+                        onTap: (() {
+                          if (ResetPassword.currentState!.validate()) {
+                            Get.snackbar('', 'Password Change Successfully');
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => HomePage()),
+                            );
+                          } else {}
+                        }),
+                        child: Container(
+                          child: Center(
+                            child: Text(
+                              "Confirm",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 20),
+                            ),
                           ),
+                          height: 50,
+                          decoration: BoxDecoration(
+                              color: bluecolor,
+                              borderRadius: BorderRadius.circular(30)),
                         ),
-                        height: 50,
-                        decoration: BoxDecoration(
-                            color: bluecolor,
-                            borderRadius: BorderRadius.circular(30)),
                       ),
                     ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

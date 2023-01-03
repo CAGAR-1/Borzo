@@ -1,11 +1,5 @@
-import 'dart:ui';
-
-import 'package:borzo/Swap/DeliverNow.dart';
 import 'package:borzo/constant.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class Chat extends StatefulWidget {
   const Chat({super.key});
@@ -85,8 +79,11 @@ class _ChatState extends State<Chat> {
           )),
           Positioned.fill(
               child: Padding(
-            padding: const EdgeInsets.only(
-                bottom: 435, left: 20, right: 20, top: 225),
+            padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).size.height / 2,
+                left: 20,
+                right: 20,
+                top: MediaQuery.of(context).size.height * 0.2),
             child: Container(
               child: Padding(
                 padding: EdgeInsets.all(20),
@@ -152,18 +149,8 @@ class _ChatState extends State<Chat> {
                   ),
                 ],
               ),
-              // color: Colors.white,
             ),
           )),
-          // ListView(
-          //   children: [
-          //     Container(
-          //       height: 100,
-          //       width: 100,
-          //       color: Colors.blue,
-          //     )
-          //   ],
-          // )
         ],
       ),
     ));

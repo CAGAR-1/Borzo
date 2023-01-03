@@ -1,8 +1,8 @@
-import 'package:borzo/Pages/Otppage.dart';
+import 'package:borzo/Pages/Otp_Login.dart';
+
 import 'package:borzo/widgets/textfield.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
 import 'package:get/get.dart';
 
 class CreateAccount extends StatefulWidget {
@@ -90,7 +90,7 @@ class _CreateAccountState extends State<CreateAccount> {
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      OtpScreen()),
+                                                      LoginOtp()),
                                             );
                                           }),
                                           child: Container(
@@ -107,23 +107,12 @@ class _CreateAccountState extends State<CreateAccount> {
                                           ),
                                         ),
                                       ),
-                                      // Text(
-                                      //   "Login",
-                                      //   style: TextStyle(
-                                      //       color: Colors.blueAccent,
-                                      //       fontSize: 20),
-                                      // ),
                                     ],
-                                    // child:
                                   ),
                                 ),
                               ),
                             ],
                           ),
-                          // Text(
-                          //   "Create Account",
-                          //   style: TextStyle(fontSize: 15, color: Colors.blue),
-                          // )
                         ],
                       ),
                       height: MediaQuery.of(context).size.height,

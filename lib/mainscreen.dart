@@ -18,7 +18,7 @@ class _HomePageState extends State<HomePage> {
   int pageIndex = 0;
 
   final pages = [
-    const orders(),
+    orders(),
     Profile(
       locations: "Chennai",
     )

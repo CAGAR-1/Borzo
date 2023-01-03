@@ -23,8 +23,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(GetMaterialApp(
-    debugShowCheckedModeBanner: false,
-    theme: ThemeData(fontFamily: GoogleFonts.lato().fontFamily),
-    home: NewPassword(),
-  ));
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(fontFamily: GoogleFonts.lato().fontFamily),
+      home: HomePage()));
 }

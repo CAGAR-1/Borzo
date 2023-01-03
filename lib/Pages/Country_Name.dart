@@ -22,13 +22,16 @@ class _CountryNameState extends State<CountryName> {
     'Chennai',
     'Kolkata',
     'Kanpur',
-    'Delhi',
-    'Delhi',
-    'Delhi',
-    'Delhi',
-    'Delhi',
-    'Delhi',
-    'Delhi',
+    'Pune',
+    'Chennai',
+    'Kolkata',
+    'Indore',
+    'Goa',
+    'Bhopal',
+    'Jodhpur',
+    'Lucknow',
+    'Udaipur',
+    'Dehradun',
   ];
   @override
   @override
@@ -61,12 +64,6 @@ class _CountryNameState extends State<CountryName> {
                       "India",
                       style: TextStyle(color: Colors.black, fontSize: 20),
                     ),
-                    // Image(
-                    //   image: AssetImage(
-                    //     "indiaa.png",
-                    //   ),
-                    //   height: 10,
-                    // )
                   ],
                 ),
               ),
