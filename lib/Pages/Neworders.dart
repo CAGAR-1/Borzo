@@ -5,8 +5,8 @@ import 'package:borzo/widgets/constant.dart';
 import 'package:borzo/Swap/DeliverNow.dart';
 import 'package:borzo/Swap/Schedule.dart';
 
-import 'package:borzo/mainscreen.dart';
-import 'package:borzo/map.dart';
+import 'package:borzo/Pages/mainscreen.dart';
+import 'package:borzo/Map/map.dart';
 import 'package:borzo/widgets/switch.dart';
 import 'package:borzo/widgets/textfield.dart';
 import 'package:flutter/material.dart';

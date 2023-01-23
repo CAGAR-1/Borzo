@@ -1,7 +1,7 @@
 import 'package:borzo/Pages/Neworders.dart';
 import 'package:borzo/widgets/constant.dart';
 
-import 'package:borzo/map.dart';
+import 'package:borzo/Map/map.dart';
 
 import 'package:borzo/widgets/textfield.dart';
 

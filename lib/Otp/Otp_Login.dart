@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:borzo/widgets/constant.dart';
-import 'package:borzo/mainscreen.dart';
+import 'package:borzo/Pages/mainscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';

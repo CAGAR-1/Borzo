@@ -1,5 +1,5 @@
 import 'package:borzo/widgets/constant.dart';
-import 'package:borzo/mainscreen.dart';
+import 'package:borzo/Pages/mainscreen.dart';
 import 'package:borzo/widgets/textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
