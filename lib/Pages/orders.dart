@@ -106,7 +106,7 @@ class orders extends StatelessWidget {
                     );
                   }),
                   child: Text(
-                    "Signup",
+                    "Sign up",
                     style: TextStyle(color: bluecolor, fontSize: 20),
                   ),
                 ),

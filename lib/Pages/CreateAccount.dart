@@ -1,4 +1,4 @@
-import 'package:borzo/Pages/Otp_Login.dart';
+import 'package:borzo/Otp/Otp_Login.dart';
 
 import 'package:borzo/widgets/textfield.dart';
 import 'package:flutter/material.dart';

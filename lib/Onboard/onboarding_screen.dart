@@ -1,6 +1,6 @@
-import 'package:borzo/Pages/OnBordWidget2.dart';
-import 'package:borzo/Pages/OnBordWidget3.dart';
-import 'package:borzo/Pages/onboardWidget.dart';
+import 'package:borzo/Onboard/OnBordWidget2.dart';
+import 'package:borzo/Onboard/OnBordWidget3.dart';
+import 'package:borzo/Onboard/onboardWidget.dart';
 import 'package:borzo/Pages/welcomePage.dart';
 import 'package:borzo/widgets/constant.dart';
 
@@ -27,6 +27,7 @@ class _Onboard_ScreenState extends State<Onboard_Screen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Container(
         child: Padding(
           padding: const EdgeInsets.only(bottom: 80),

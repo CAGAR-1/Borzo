@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:borzo/Pages/NewPassword.dart';
+import 'package:borzo/Otp/NewPassword.dart';
 import 'package:borzo/widgets/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

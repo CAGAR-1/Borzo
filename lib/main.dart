@@ -1,7 +1,5 @@
-
-
+import 'package:borzo/Onboard/onboarding_screen.dart';
 import 'package:borzo/mainscreen.dart';
-
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,5 +9,5 @@ void main() {
   runApp(GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: GoogleFonts.lato().fontFamily),
-      home: HomePage()));
+      home: Onboard_Screen()));
 }

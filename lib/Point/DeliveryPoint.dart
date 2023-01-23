@@ -231,7 +231,7 @@ class _NewDelivState extends State<NewDeliv> {
                                                           ],
                                                         ),
                                                         height: 40,
-                                                        width: 200,
+                                                        width: 230,
                                                         color: ccolor
                                                             ? Colors.grey[200]
                                                             : Colors.black,

@@ -5,8 +5,9 @@ import 'package:flutter_geocoder/geocoder.dart';
 
 import 'package:flutter/material.dart';
 
-import 'package:get/get.dart';
+// import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+// import 'package:http/retry.dart';
 
 class BrozoMap extends StatefulWidget {
   TextEditingController controller;
@@ -52,51 +53,70 @@ class _BrozoMapState extends State<BrozoMap> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Stack(
-      children: [
-        Positioned.fill(
-          child: GoogleMap(
-            onTap: (LatLng latlang) async {
-              var valuess = latlang;
+        body: SafeArea(
+      child: Stack(
+        children: [
+          Positioned.fill(
+            child: GoogleMap(
+              onTap: (LatLng latlang) async {
+                var valuess = latlang;
 
-              print(valuess);
+                print(valuess);
 
-              final coordinates =
-                  new Coordinates(latlang.latitude, latlang.longitude);
-              var address = await Geocoder.local
-                  .findAddressesFromCoordinates(coordinates);
+                final coordinates =
+                    new Coordinates(latlang.latitude, latlang.longitude);
+                var address = await Geocoder.local
+                    .findAddressesFromCoordinates(coordinates);
 
-              var first = address.first;
-              print("Address: " +
-                  first.featureName.toString() +
-                  first.addressLine.toString());
+                var first = address.first;
 
-              setState(() {
-                widget.controller.text =
-                    first.featureName.toString() + first.addressLine.toString();
-                Get.to(NewOrders);
-              });
-            },
-            onMapCreated: (GoogleMapController controller) {
-              _controller.complete(controller);
-            },
-            markers: markers.map((e) => e).toSet(),
-            polylines: _polylines,
-            initialCameraPosition: _kLake,
-            mapType: MapType.normal,
-            myLocationButtonEnabled: true,
-          ),
-        ),
-        Center(
-          child: Image(
-            image: AssetImage(
-              "images/marker.png",
+                setState(() {
+                  widget.controller.text = first.featureName.toString() +
+                      first.addressLine.toString();
+
+                  print(first.featureName.toString() +
+                      first.addressLine.toString());
+                  print('sdaffdsa');
+
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => NewOrders()),
+                  // );
+                });
+              },
+              onMapCreated: (GoogleMapController controller) {
+                _controller.complete(controller);
+              },
+              markers: markers.map((e) => e).toSet(),
+              polylines: _polylines,
+              initialCameraPosition: _kLake,
+              mapType: MapType.normal,
+              myLocationButtonEnabled: true,
             ),
-            height: 30,
-            width: 30,
           ),
-        )
-      ],
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Row(
+              children: [
+                InkWell(
+                    onTap: (() {
+                      Navigator.pop(context);
+                    }),
+                    child: Icon(Icons.clear, size: 40, color: Colors.black))
+              ],
+            ),
+          ),
+          Center(
+            child: Image(
+              image: AssetImage(
+                "images/marker.png",
+              ),
+              height: 30,
+              width: 30,
+            ),
+          )
+        ],
+      ),
     ));
   }
 }

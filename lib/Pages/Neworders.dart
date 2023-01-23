@@ -1,4 +1,4 @@
-import 'package:borzo/Pages/NewWidget.dart';
+import 'package:borzo/Point/DeliveryPoint.dart';
 
 import 'package:borzo/widgets/constant.dart';
 
@@ -250,13 +250,22 @@ class _NewOrdersState extends State<NewOrders> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      print("Second one is clcked");
                       setState(() {
                         is_visible = false;
 
                         showtext = false;
                         pressed = false;
                       });
+                    },
+                    onDoubleTap: () {
+                      print("Double Clicked");
+
+                      showModalBottomSheet(
+                          isScrollControlled: true,
+                          context: context,
+                          builder: (context) => PageView(
+                                children: [DeliverNow(), Schedule()],
+                              ));
                     },
                     child: Container(
                       child: Padding(
@@ -1132,7 +1141,7 @@ class _NewOrdersState extends State<NewOrders> {
                                                           ],
                                                         ),
                                                         height: 40,
-                                                        width: 200,
+                                                        width: 230,
                                                         color: ccolor
                                                             ? Colors.grey[200]
                                                             : Colors.black,

@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
-
-class OnBoardWidget2 extends StatefulWidget {
-  const OnBoardWidget2({super.key});
+class OnBoardWidget3 extends StatefulWidget {
+  const OnBoardWidget3({super.key});
 
   @override
-  State<OnBoardWidget2> createState() => _OnBoardWidgetState();
+  State<OnBoardWidget3> createState() => _OnBoardWidget3State();
 }
 
-class _OnBoardWidgetState extends State<OnBoardWidget2> {
+class _OnBoardWidget3State extends State<OnBoardWidget3> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.all(13.0),
         child: Column(
@@ -19,7 +19,7 @@ class _OnBoardWidgetState extends State<OnBoardWidget2> {
             Expanded(
                 child: Container(
               child: Image(
-                image: AssetImage('images/page2.jpg'),
+                image: AssetImage('images/page3.jpg'),
                 height: 200,
                 width: 200,
               ),
@@ -30,14 +30,14 @@ class _OnBoardWidgetState extends State<OnBoardWidget2> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Its affordable: pricing starts from Rs 45",
+                    "We are reliable",
                     style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
                     height: 10,
                   ),
                   Text(
-                      "We deliver documents, flowers,food,apparel and more precisely on your schedule")
+                      "We are quickly find a courier, notify at each delivery stage, and assist you in chat")
                 ],
               ),
               height: 200,

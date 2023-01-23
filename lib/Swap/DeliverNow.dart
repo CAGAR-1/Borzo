@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class DeliverNow extends StatefulWidget {
   const DeliverNow({super.key});
 
@@ -51,7 +50,7 @@ class _DeliverNowState extends State<DeliverNow> {
             height: 10,
           ),
           Text(
-            "From RS 45",
+            "From Rs 45",
             style: TextStyle(fontSize: 20),
           ),
           Divider(
@@ -166,16 +165,21 @@ class _DeliverNowState extends State<DeliverNow> {
                     Expanded(
                         child: Padding(
                       padding: const EdgeInsets.only(right: 25),
-                      child: Container(
-                        child: Center(
-                            child: Text(
-                          "Confirm",
-                          style: TextStyle(fontSize: 18, color: Colors.white),
-                        )),
-                        height: 50,
-                        decoration: BoxDecoration(
-                            color: Colors.blue,
-                            borderRadius: BorderRadius.circular(50)),
+                      child: InkWell(
+                        onTap: (() {
+                          Navigator.pop(context);
+                        }),
+                        child: Container(
+                          child: Center(
+                              child: Text(
+                            "Confirm",
+                            style: TextStyle(fontSize: 18, color: Colors.white),
+                          )),
+                          height: 50,
+                          decoration: BoxDecoration(
+                              color: Colors.blue,
+                              borderRadius: BorderRadius.circular(50)),
+                        ),
                       ),
                     )),
                   ],

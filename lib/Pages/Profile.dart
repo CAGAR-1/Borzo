@@ -1,10 +1,10 @@
 import 'dart:ui';
 
-import 'package:borzo/Pages/Country_Name.dart';
+import 'package:borzo/Country_Region/Country_Name.dart';
 import 'package:borzo/Pages/CreateAccount.dart';
 import 'package:borzo/Pages/Login.dart';
 import 'package:borzo/Pages/Neworders.dart';
-import 'package:borzo/Pages/termsAndCondition.dart';
+import 'package:borzo/About/termsAndCondition.dart';
 import 'package:borzo/widgets/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';

@@ -1,4 +1,4 @@
-import 'package:borzo/Pages/Country_Choose.dart';
+import 'package:borzo/Country_Region/Country_Choose.dart';
 import 'package:borzo/widgets/constant.dart';
 import 'package:borzo/mainscreen.dart';
 import 'package:flutter/material.dart';

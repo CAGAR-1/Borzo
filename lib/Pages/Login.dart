@@ -1,5 +1,5 @@
-import 'package:borzo/Pages/business.dart';
-import 'package:borzo/Pages/individual.dart';
+import 'package:borzo/Pages/Login_Group/business.dart';
+import 'package:borzo/Pages/Login_Group/individual.dart';
 
 import 'package:flutter/material.dart';
 
