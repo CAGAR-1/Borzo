@@ -4,6 +4,7 @@ import 'package:borzo/Onboard/onboarding_screen.dart';
 import 'package:borzo/Otp/NewPassword.dart';
 import 'package:borzo/Otp/Otp_Login.dart';
 import 'package:borzo/Otp/Otppage.dart';
+
 import 'package:borzo/Pages/Chat.dart';
 import 'package:borzo/Pages/CreateAccount.dart';
 import 'package:borzo/Pages/Login.dart';
@@ -13,11 +14,9 @@ import 'package:borzo/Pages/Neworders.dart';
 import 'package:borzo/Pages/Profile.dart';
 import 'package:borzo/Pages/SplashScreen.dart';
 import 'package:borzo/Pages/orders.dart';
-import 'package:borzo/Pages/welcomePage.dart';
+
 import 'package:borzo/Swap/DeliverNow.dart';
 import 'package:borzo/Swap/Schedule.dart';
-import 'package:borzo/mainscreen.dart';
-import 'package:borzo/map.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -33,7 +32,6 @@ void main() {
         GetPage(name: '/', page: () => Onboard_Screen()),
         GetPage(name: '/CreateAccount', page: () => CreateAccount()),
         GetPage(name: '/Login', page: () => Login()),
-        GetPage(name: '/CreateAccount', page: () => CreateAccount()),
         GetPage(name: '/Orders', page: () => orders()),
         GetPage(name: '/Chat', page: () => Chat()),
         GetPage(name: '/Profile', page: () => Profile()),
@@ -48,6 +46,7 @@ void main() {
         GetPage(name: '/Splash_Screen', page: () => SplashScreen()),
         GetPage(name: '/DeliverNow', page: () => DeliverNow()),
         GetPage(name: '/Schedule', page: () => Schedule()),
+        GetPage(name: '/OtpScreen', page: () => OtpScreen()),
       ],
     ),
   );
